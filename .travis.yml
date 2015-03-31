@@ -3,8 +3,8 @@ before_script:
 - "cd BibLexRefManager"
 
 notifications:
-  irc: 
-   channels:
+  irc:
+    channels:
       - "irc.cc.tut.fi#cyborgducks"
     template:
       - "%{repository} (%{commit}) : %{message} %{foo} "
