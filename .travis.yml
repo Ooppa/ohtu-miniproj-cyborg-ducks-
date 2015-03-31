@@ -2,4 +2,4 @@ language: java
 before_script:
 - "cd BibLexRefManager"
 notifications:
-  irc: "irc.nebula.fi#cyborgducks"
+  irc: "irc.cc.tut.fi#cyborgducks"
