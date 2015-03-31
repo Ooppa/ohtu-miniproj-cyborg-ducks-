@@ -1,5 +1,7 @@
 language: java
 before_script:
 - "cd BibLexRefManager"
+
 notifications:
-  irc: "irc.cc.tut.fi#cyborgducks"
+  irc: 
+    - "hub.uk#cyborgducks"
