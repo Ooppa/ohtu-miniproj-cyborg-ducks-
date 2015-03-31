@@ -7,5 +7,5 @@ notifications:
     channels:
       - "irc.cc.tut.fi#cyborgducks"
     template:
-      - "%{repository} (%{commit}) : %{message} %{foo} "
+      - "%{repository} (%{commit}) : %{message}"
       - "Build details: %{build_url}"
