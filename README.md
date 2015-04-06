@@ -6,3 +6,7 @@ Projektiin kuuluvat:
 * [samutamm](https://github.com/samutamm)
 * [wakr](https://github.com/wakr)
 * [goalaleo](https://github.com/goalaleo)
+
+
+Dokumentit:
+* [Backlog](https://trello.com/b/tS8tf010/cyborg-ducks)
