@@ -10,4 +10,4 @@ Projektiin kuuluvat:
 
 Dokumentit:
 * [Backlog](https://trello.com/b/tS8tf010/cyborg-ducks)
-* [Burndown -toDo]()
+* [Burndown](https://docs.google.com/spreadsheets/d/1qPd8qaQYev4x2YJNMHeP2SSYDPlNjsK7Se7ehJQST1E/edit?usp=sharing)
