@@ -5,80 +5,89 @@
  */
 package fi.cyborgducks.biblexrefmanager.references;
 
-import fi.cyborgducks.biblexrefmanager.fields.Field;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.Arrays;
+import org.jbibtex.BibTeXEntry;
+import org.jbibtex.Key;
+import org.jbibtex.Value;
 
 /**
- * Defines a Reference
+ *
+ * @author Ooppa
  */
-public abstract class Reference {
+public abstract class Reference extends BibTeXEntry {
 
-    private final String referenceName;
-    private ArrayList<Field> requiredFields;
-    private ArrayList<Field> optionalFields;
+    private Key[] requiredFields = {};
 
-    /**
-     * Creates a new Reference with no required or optional fields
-     */
-    public Reference(String referenceName) {
-        this.referenceName = referenceName;
-        requiredFields = new ArrayList<>();
-        optionalFields = new ArrayList<>();
+    private Key[] optionalFields = {BibTeXEntry.KEY_NOTE, BibTeXEntry.KEY_KEY};
+
+    public Reference(Key type, Key key) {
+        super(type, key);
     }
 
     /**
-     * Returns the required fields of this Reference
+     * Adds a new field to the Reference given that it's listed as required of
+     * optional field.
      *
-     * @return a list of required fields
+     * @param key   Type of the Field
+     * @param value KeyValue of the field
      */
-    public ArrayList<Field> getRequiredFields() {
+    @Override
+    public void addField(Key key, Value value) {
+        if(Arrays.asList(getRequiredFields()).contains(key)) {
+            super.addField(key, value);
+        } else if(Arrays.asList(getOptionalFields()).contains(key)) {
+            super.addField(key, value);
+        }
+    }
+
+    /**
+     * Returns an array of required fields for this Field.
+     *
+     * @return Array of Required key-types
+     */
+    public Key[] getRequiredFields() {
         return requiredFields;
     }
 
     /**
-     * Returns the optional fields of this Reference
+     * Set new required key-types for this field.
      *
-     * @return a list of optional fields
+     * @param requiredFields Keys-types to accept
      */
-    public ArrayList<Field> getOptionalFields() {
+    public void setRequiredFields(Key[] requiredFields) {
+        this.requiredFields = requiredFields;
+    }
+
+    /**
+     * Returns an array of optional key-types for this Field.
+     *
+     * @return Array of Optional key-types
+     */
+    public Key[] getOptionalFields() {
         return optionalFields;
     }
 
-    @Override
-    public String toString() {
-        
-        // print @name{
-        // TODO, foreach requiredFields
-        // foreach optionalFields
-        // }
-        
-        return "not yet implemented";
+    /**
+     * Set new optional key-types for this field.
+     *
+     * @param optionalFields Key-types to accept
+     */
+    public void setOptionalFields(Key[] optionalFields) {
+        this.optionalFields = optionalFields;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 11*hash+Objects.hashCode(this.requiredFields);
-        hash = 11*hash+Objects.hashCode(this.optionalFields);
-        return hash;
-    }
+    /**
+     * Returns true if all required fields are present in the field.
+     *
+     * @return Boolean
+     */
+    public boolean isComplete() {
+        for(int i = 0; i<requiredFields.length; i++) {
+            if(getField(requiredFields[i])==null) {
+                return false;
+            }
+        }
 
-    @Override
-    public boolean equals(Object obj) {
-        if(obj==null) {
-            return false;
-        }
-        if(getClass()!=obj.getClass()) {
-            return false;
-        }
-        final Reference other = (Reference) obj;
-        if(!Objects.equals(this.requiredFields, other.requiredFields)) {
-            return false;
-        }
-        if(!Objects.equals(this.optionalFields, other.optionalFields)) {
-            return false;
-        }
         return true;
     }
 
