@@ -6,8 +6,10 @@
 package fi.cyborgducks.biblexrefmanager.data;
 
 import fi.cyborgducks.biblexrefmanager.references.Reference;
+import java.util.ArrayList;
 import java.util.List;
 import org.jbibtex.BibTeXDatabase;
+import org.jbibtex.BibTeXObject;
 
 /**
  *
@@ -15,7 +17,7 @@ import org.jbibtex.BibTeXDatabase;
  */
 public class InMemoryDatabase implements Database {
 
-    BibTeXDatabase bibTexDatabase;
+    private BibTeXDatabase bibTexDatabase;
 
     public InMemoryDatabase() {
         this.bibTexDatabase = new BibTeXDatabase();
@@ -28,7 +30,11 @@ public class InMemoryDatabase implements Database {
 
     @Override
     public List<Reference> getAllSavedReferences() {
-        return (List<Reference>) (Reference) bibTexDatabase.getObjects();
+        List<Reference> refs = new ArrayList<>();
+        for (BibTeXObject bo : bibTexDatabase.getObjects()) {
+            refs.add((Reference) bo);
+        }
+        return refs;
     }
 
     @Override
