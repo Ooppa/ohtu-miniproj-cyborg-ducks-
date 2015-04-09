@@ -7,15 +7,25 @@ package fi.cyborgducks.biblexrefmanager.data;
 
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import java.util.List;
+import org.jbibtex.BibTeXDatabase;
 
 /**
  *
+ *
  * @author kristianw
  */
-public interface Database {
+public abstract class Database {
 
-    public void saveReference(Reference ref);
-    public void removeReference(Reference ref);
-    public List<Reference> getAllSavedReferences();
+    protected BibTeXDatabase bibTexDatabase;
+
+    public Database() {
+        this.bibTexDatabase = new BibTeXDatabase();
+    }
+
+    public abstract void saveReference(Reference ref);
+
+    public abstract void removeReference(Reference ref);
+
+    public abstract List<Reference> getAllSavedReferences();
 
 }
