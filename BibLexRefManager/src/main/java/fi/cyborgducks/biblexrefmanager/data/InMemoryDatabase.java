@@ -12,16 +12,11 @@ import org.jbibtex.BibTeXDatabase;
 import org.jbibtex.BibTeXObject;
 
 /**
+ * Saves directly to formatted database without populating it first.
  *
  * @author kristianw
  */
-public class InMemoryDatabase implements Database {
-
-    private BibTeXDatabase bibTexDatabase;
-
-    public InMemoryDatabase() {
-        this.bibTexDatabase = new BibTeXDatabase();
-    }
+public class InMemoryDatabase extends Database {
 
     @Override
     public void saveReference(Reference ref) {
