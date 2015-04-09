@@ -5,12 +5,9 @@
  */
 package fi.cyborgducks.biblexrefmanager.UI;
 
-import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.data.*;
-import javax.swing.JTextArea;
 
 public class GraphicalUI extends javax.swing.JFrame {
 
@@ -54,7 +51,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         databaseSizeOutput = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ErrorMessageArea = new javax.swing.JTextArea();
+        StatusMessageTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,9 +109,9 @@ public class GraphicalUI extends javax.swing.JFrame {
             }
         });
 
-        ErrorMessageArea.setColumns(20);
-        ErrorMessageArea.setRows(5);
-        jScrollPane1.setViewportView(ErrorMessageArea);
+        StatusMessageTextArea.setColumns(20);
+        StatusMessageTextArea.setRows(5);
+        jScrollPane1.setViewportView(StatusMessageTextArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -240,7 +237,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea ErrorMessageArea;
+    private javax.swing.JTextArea StatusMessageTextArea;
     private javax.swing.JTextField YearInputTextField;
     private javax.swing.JButton addButton;
     private javax.swing.JTextField authorInputTextField;
@@ -259,15 +256,12 @@ public class GraphicalUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private void handleOneBook(String[] bookParams) {
         String errMessage = Validator.isValidBookParams(bookParams);
-        if (!errMessage.isEmpty()) {
-            System.out.println("epävalidi");
-            ErrorMessageArea.setText(errMessage);
-        } else {
-            System.out.println("validi");
-            ErrorMessageArea.setText("Validi!");
+        if (errMessage.isEmpty()) {
+            StatusMessageTextArea.setText("Validi!");
             Reference r = BookFactory.createBook(bookParams);
             database.saveReference(r);
         }
+        StatusMessageTextArea.setText(errMessage);
         databaseSizeOutput.setText(""+database.getAllSavedReferences().size());
         //SwingUtilities.updateComponentTreeUI(this);
     }
