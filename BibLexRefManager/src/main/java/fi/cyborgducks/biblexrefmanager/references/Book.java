@@ -14,13 +14,13 @@ import org.jbibtex.KeyValue;
  */
 public class Book extends Reference {
 
-    public Book(String key, String author, String publisher, String year) {
-        super(BibTeXEntry.TYPE_BOOK, new Key(author));
+    public Book(String key, String author, String title, String publisher, String year) {
+        super(BibTeXEntry.TYPE_BOOK, new Key(key));
 
         setRequiredAndOptionalFields();
         
-        addField(BibTeXEntry.KEY_AUTHOR, new KeyValue(key));
-        addField(BibTeXEntry.KEY_TITLE, new KeyValue(author));
+        addField(BibTeXEntry.KEY_AUTHOR, new KeyValue(author));
+        addField(BibTeXEntry.KEY_TITLE, new KeyValue(title));
         addField(BibTeXEntry.KEY_PUBLISHER, new KeyValue(publisher));
         addField(BibTeXEntry.KEY_YEAR, new KeyValue(year));
     }
