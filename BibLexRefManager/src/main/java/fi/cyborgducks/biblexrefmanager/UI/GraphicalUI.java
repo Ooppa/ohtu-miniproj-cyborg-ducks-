@@ -237,7 +237,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
     private void handleOneBook(String[] bookParams) {
-        if (!this.validator.validateBookParams(bookParams)) {
+        if (!this.validator.isValidBookParams(bookParams)) {
             System.out.println("epävalidi");
             jTextField1.setText("Epävalidi!");
         } else {
