@@ -14,18 +14,27 @@ import org.jbibtex.KeyValue;
  */
 public class Book extends Reference {
 
+    /**
+     * Creates a new Book Reference
+     *
+     * @param key       Key to identify the reference by
+     * @param author    Author of the Book
+     * @param title     Title of the Book
+     * @param publisher Publisher of the Book
+     * @param year      Publishing year of the Book
+     */
     public Book(String key, String author, String title, String publisher, String year) {
         super(BibTeXEntry.TYPE_BOOK, new Key(key));
 
         setRequiredAndOptionalFields();
-        
+
         addField(BibTeXEntry.KEY_AUTHOR, new KeyValue(author));
         addField(BibTeXEntry.KEY_TITLE, new KeyValue(title));
         addField(BibTeXEntry.KEY_PUBLISHER, new KeyValue(publisher));
         addField(BibTeXEntry.KEY_YEAR, new KeyValue(year));
     }
-    
-    private void setRequiredAndOptionalFields(){
+
+    private void setRequiredAndOptionalFields() {
         setRequiredFields(new Key[] {
             BibTeXEntry.KEY_AUTHOR,
             BibTeXEntry.KEY_TITLE,
