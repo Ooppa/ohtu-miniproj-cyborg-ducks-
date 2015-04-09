@@ -28,14 +28,14 @@ public abstract class Reference extends BibTeXEntry {
      * Adds a new field to the Reference given that it's listed as required of
      * optional field.
      *
-     * @param key   Type of the Field
+     * @param key Type of the Field
      * @param value KeyValue of the field
      */
     @Override
     public void addField(Key key, Value value) {
-        if(Arrays.asList(getRequiredFields()).contains(key)) {
+        if (Arrays.asList(getRequiredFields()).contains(key)) {
             super.addField(key, value);
-        } else if(Arrays.asList(getOptionalFields()).contains(key)) {
+        } else if (Arrays.asList(getOptionalFields()).contains(key)) {
             super.addField(key, value);
         }
     }
@@ -82,8 +82,8 @@ public abstract class Reference extends BibTeXEntry {
      * @return Boolean
      */
     public boolean isComplete() {
-        for(int i = 0; i<requiredFields.length; i++) {
-            if(getField(requiredFields[i])==null) {
+        for (int i = 0; i < requiredFields.length; i++) {
+            if (getField(requiredFields[i]) == null) {
                 return false;
             }
         }

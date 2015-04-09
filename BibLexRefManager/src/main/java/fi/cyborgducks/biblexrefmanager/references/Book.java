@@ -17,11 +17,15 @@ public class Book extends Reference {
     public Book(String key, String author, String publisher, String year) {
         super(BibTeXEntry.TYPE_BOOK, new Key(author));
 
+        setRequiredAndOptionalFields();
+        
         addField(BibTeXEntry.KEY_AUTHOR, new KeyValue(key));
         addField(BibTeXEntry.KEY_TITLE, new KeyValue(author));
         addField(BibTeXEntry.KEY_PUBLISHER, new KeyValue(publisher));
         addField(BibTeXEntry.KEY_YEAR, new KeyValue(year));
-
+    }
+    
+    private void setRequiredAndOptionalFields(){
         setRequiredFields(new Key[] {
             BibTeXEntry.KEY_AUTHOR,
             BibTeXEntry.KEY_TITLE,
