@@ -28,4 +28,8 @@ public abstract class Database {
 
     public abstract List<Reference> getAllSavedReferences();
 
+    public BibTeXDatabase getDB() {
+        return bibTexDatabase;
+    }
+
 }
