@@ -20,16 +20,14 @@ public class GraphicalUI extends javax.swing.JFrame {
     private String year;
 
     private Validator validator;
-    private BookFactory bookFactory;
-    private InMemoryDatabase     database;
+    private InMemoryDatabase database;
 
     /**
      * Creates new form GraphicalUI
      */
     public GraphicalUI() {
         initComponents();
-        this.bookFactory = new BookFactory();
-        this.database = new InMemoryDatabase();
+        //this.database = new InMemoryDatabase();
     }
 
     /**
@@ -270,7 +268,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         } else {
             System.out.println("validi");
             jTextField1.setText("Validi!");
-            Reference r = bookFactory.createBook(bookParams);
+            Reference r = BookFactory.createBook(bookParams);
             //database.saveReference(r);
         }
         //jTextField7.setText(""+database.getAllSavedReferences().size());
