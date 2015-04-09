@@ -7,6 +7,8 @@ package fi.cyborgducks.biblexrefmanager.data;
 
 import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
+import org.jbibtex.BibTeXEntry;
+import org.jbibtex.Value;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
 
@@ -50,11 +52,19 @@ public class InMemoryDatabaseTest {
     }
 
     @Test
-    public void dataOfTheReferenceIsRightWhenFetched() {
+    public void TheReferenceIsValidWhenFetched() {
         Reference r = new Book("123", "Samu", "Super Book", "Samus publisher", "2015");
         imd.saveReference(r);
         Reference fetched = imd.getAllSavedReferences().get(0);
         assertEquals(true, fetched.isComplete());
+    }
+
+    @Test
+    public void dataOfTheReferenceIsRightAfterFetched() {
+        Reference r = new Book("123", "Samu", "Super Book", "Samus publisher", "2015");
+        imd.saveReference(r);
+        Reference fetched = imd.getAllSavedReferences().get(0);
+        assertEquals("Samu", fetched.getField(BibTeXEntry.KEY_AUTHOR).toUserString());
     }
 
 }
