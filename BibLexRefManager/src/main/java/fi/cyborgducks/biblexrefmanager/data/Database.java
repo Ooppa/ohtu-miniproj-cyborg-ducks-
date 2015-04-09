@@ -15,6 +15,7 @@ import java.util.List;
 public interface Database {
 
     public void saveReference(Reference ref);
+    public void removeReference(Reference ref);
     public List<Reference> getAllSavedReferences();
 
 }

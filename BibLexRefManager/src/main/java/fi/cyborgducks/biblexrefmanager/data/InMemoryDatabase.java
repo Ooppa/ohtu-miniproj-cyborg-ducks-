@@ -23,12 +23,17 @@ public class InMemoryDatabase implements Database {
 
     @Override
     public void saveReference(Reference ref) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        bibTexDatabase.addObject(ref);
     }
 
     @Override
     public List<Reference> getAllSavedReferences() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (List<Reference>) (Reference) bibTexDatabase.getObjects();
+    }
+
+    @Override
+    public void removeReference(Reference ref) {
+        bibTexDatabase.removeObject(ref);
     }
 
 }
