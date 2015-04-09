@@ -19,8 +19,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private String publisher;
     private String year;
 
-    private Validator validator;
-    private InMemoryDatabase database;
+    private Database database;
 
     /**
      * Creates new form GraphicalUI
