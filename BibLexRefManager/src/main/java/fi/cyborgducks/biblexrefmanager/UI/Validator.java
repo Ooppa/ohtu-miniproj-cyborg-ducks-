@@ -23,7 +23,12 @@ public class Validator {
         String author = fields[1];
         String title = fields[2];
         String publisher = fields[3];
-        int year = Integer.parseInt(fields[4]);
+        int year = 0;
+        try {
+            year = Integer.parseInt(fields[4]);
+        } catch (Exception ex) {
+            return ex.getMessage();
+        }
 
         if (key.length() <= 2 || key.length() >= 15) {
             return "Key length is wrong! Should be more than 2 and less than 16";

@@ -21,7 +21,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private Validator validator;
     private BookFactory bookFactory;
-    private InMemoryDatabase     database;
+    private Database database;
 
     /**
      * Creates new form GraphicalUI
@@ -270,7 +270,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         } else {
             System.out.println("validi");
             jTextField1.setText("Validi!");
-            Reference r = bookFactory.createBook(bookParams);
+            //Reference r = bookFactory.createBook(bookParams);
             //database.saveReference(r);
         }
         //jTextField7.setText(""+database.getAllSavedReferences().size());
