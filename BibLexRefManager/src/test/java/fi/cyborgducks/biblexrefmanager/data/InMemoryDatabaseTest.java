@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class InMemoryDatabaseTest {
 
-    InMemoryDatabase imd = new InMemoryDatabase();
+    Database imd = new InMemoryDatabase();
 
     @Test
     public void initiallyDatabaseIsEmpty() {
