@@ -5,9 +5,8 @@
  */
 package fi.cyborgducks.biblexrefmanager.references;
 
-import org.jbibtex.BibTeXEntry;
-import org.jbibtex.Key;
-import org.jbibtex.KeyValue;
+import org.jbibtex.*;
+import org.jbibtex.StringValue.Style;
 
 /**
  * Defines a Book reference
@@ -28,10 +27,10 @@ public class Book extends Reference {
 
         setRequiredAndOptionalFields();
 
-        addField(BibTeXEntry.KEY_AUTHOR, new KeyValue(author));
-        addField(BibTeXEntry.KEY_TITLE, new KeyValue(title));
-        addField(BibTeXEntry.KEY_PUBLISHER, new KeyValue(publisher));
-        addField(BibTeXEntry.KEY_YEAR, new KeyValue(year));
+        addField(BibTeXEntry.KEY_AUTHOR, new StringValue(author, Style.BRACED));
+        addField(BibTeXEntry.KEY_TITLE, new StringValue(title, Style.BRACED));
+        addField(BibTeXEntry.KEY_PUBLISHER, new StringValue(publisher, Style.BRACED));
+        addField(BibTeXEntry.KEY_YEAR, new DigitStringValue(year));
     }
 
     private void setRequiredAndOptionalFields() {
