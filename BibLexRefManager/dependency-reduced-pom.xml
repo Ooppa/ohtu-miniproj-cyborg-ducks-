@@ -48,6 +48,23 @@
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>2.10</version>
       </plugin>
+      <plugin>
+        <groupId>org.easyb</groupId>
+        <artifactId>maven-easyb-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <storyType>html</storyType>
+          <storyReport>${basedir}/target/easyb/easyb-report.html</storyReport>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
@@ -60,6 +77,38 @@
         <exclusion>
           <artifactId>hamcrest-core</artifactId>
           <groupId>org.hamcrest</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy</artifactId>
+      <version>1.7.10</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>antlr</artifactId>
+          <groupId>antlr</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>asm</artifactId>
+          <groupId>asm</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>asm-commons</artifactId>
+          <groupId>asm</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>asm-util</artifactId>
+          <groupId>asm</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>asm-analysis</artifactId>
+          <groupId>asm</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>asm-tree</artifactId>
+          <groupId>asm</groupId>
         </exclusion>
       </exclusions>
     </dependency>

@@ -24,7 +24,7 @@ public abstract class Database {
 
     public abstract void saveReference(Reference ref);
 
-    public abstract void removeReference(Reference ref);
+    //public abstract void removeReference(Reference ref);
 
     public abstract List<Reference> getAllSavedReferences();
 
