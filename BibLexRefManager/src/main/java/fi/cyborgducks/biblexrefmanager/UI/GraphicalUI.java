@@ -269,7 +269,9 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         String[] bookParams = new String[]{this.key, this.author, this.title, this.publisher, this.year};
         handleOneBook(bookParams);
+    }//GEN-LAST:event_addButtonActionPerformed
 
+    private void clearFields() {
         authorInputTextField.setText("");
         keyInputTextField.setText("");
         publisherInputTextField.setText("");
@@ -277,7 +279,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         titleInputTextField.setText("");
         optionalFieldKey.setText("");
         optionalFieldValue.setText("");
-    }//GEN-LAST:event_addButtonActionPerformed
+    }
 
     private void publisherInputTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publisherInputTextFieldActionPerformed
         this.publisher = publisherInputTextField.getText();
@@ -334,6 +336,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             Reference r = BookFactory.createBook(bookParams);
             r.addField(new Key(this.firstOptionalFieldKey), new StringValue(this.firstOptionalFieldValue, Style.BRACED));
             database.saveReference(r);
+            clearFields();
         }
         ErrorMessageArea.setText(errMessage);
         databaseSizeOutput.setText(""+database.getAllSavedReferences().size());
