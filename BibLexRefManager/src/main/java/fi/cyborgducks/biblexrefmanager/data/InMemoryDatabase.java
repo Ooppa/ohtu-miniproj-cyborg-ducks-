@@ -32,9 +32,5 @@ public class InMemoryDatabase extends Database {
         return refs;
     }
 
-    @Override
-    public void removeReference(Reference ref) {
-        bibTexDatabase.removeObject(ref);
-    }
 
 }
