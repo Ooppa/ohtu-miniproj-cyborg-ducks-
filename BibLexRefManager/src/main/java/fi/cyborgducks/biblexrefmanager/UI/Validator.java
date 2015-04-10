@@ -60,6 +60,7 @@ public class Validator {
         if (key == null || key.isEmpty()) {
             return "";
         }
+        key = key.toLowerCase();
         Book stub = new Book("", "", "", "", "");
         Key[] Optionals = stub.getOptionalFields();
 
