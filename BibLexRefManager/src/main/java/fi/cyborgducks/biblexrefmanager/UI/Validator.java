@@ -57,7 +57,9 @@ public class Validator {
      * Empty if key was found
      */
     public static String isValidOptionalFieldForBook(String key) {
-
+        if (key == null || key.isEmpty()) {
+            return "";
+        }
         Book stub = new Book("", "", "", "", "");
         Key[] Optionals = stub.getOptionalFields();
 
