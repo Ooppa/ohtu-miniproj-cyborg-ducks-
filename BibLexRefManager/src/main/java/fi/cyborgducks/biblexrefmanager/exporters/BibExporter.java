@@ -15,24 +15,17 @@ public class BibExporter {
 
     public static void export(BibTeXDatabase db) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         String path = ChooseFile();
-
-        Writer writer = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(path + ".bib"), "8859_1")
-        );
-
-        try {
-            BibTeXFormatter formatter = new BibTeXFormatter();
-            formatter.format(db, writer);
-        } finally {
-            writer.close();
-        }
+        exportStub(db, path);
     }
 
-    public void exportStub(BibTeXDatabase db, String p) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+    public static void exportStub(BibTeXDatabase db, String p) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         String path = p;
+        if (!path.endsWith(".bib")){
+            path += ".bib";
+        }
 
         Writer writer = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(path + ".bib"), "8859_1")
+                new OutputStreamWriter(new FileOutputStream(path), "8859_1")
         );
 
         try {
