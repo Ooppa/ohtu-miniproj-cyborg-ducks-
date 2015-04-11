@@ -51,7 +51,8 @@ scenario "file contains as many @book-blocks as there were book references saved
     }
     then 'all saved book references can be found from the file', {
         found = 0
-        br = new BufferedReader(new FileReader("src/mybib.bib"));
+        f = new File("src/mybib.bib")
+        br = new BufferedReader(new FileReader(f));
         line = "";
         while ((line = br.readLine()) != null) {
             if(line.contains("@book")){
@@ -59,6 +60,7 @@ scenario "file contains as many @book-blocks as there were book references saved
             }
         }
         br.close();
+        f.delete()
         found.shouldBe 2
     }
 }
