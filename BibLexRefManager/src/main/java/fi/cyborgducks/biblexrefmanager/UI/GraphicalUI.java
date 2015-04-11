@@ -387,9 +387,10 @@ public class GraphicalUI extends javax.swing.JFrame {
             r.addField(new Key(this.firstOptionalFieldKey), new StringValue(this.firstOptionalFieldValue, Style.BRACED));
             database.saveReference(r);
             clearFields();
+        } else {
+            JOptionPane.showMessageDialog(this, errMessage);
         }
         //ErrorMessageArea.setText(errMessage);
-        JOptionPane.showMessageDialog(this, errMessage);
         databaseSizeOutput.setText("" + database.getAllSavedReferences().size());
     }
 }
