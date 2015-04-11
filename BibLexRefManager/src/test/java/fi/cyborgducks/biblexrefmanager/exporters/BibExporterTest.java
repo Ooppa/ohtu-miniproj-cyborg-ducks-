@@ -34,16 +34,13 @@ public class BibExporterTest {
 
         boolean result = bracketsMatchHelper(path);
         assertEquals(true, result);
-        System.out.println("BracketsMatch() ended");
     }
 
     @Test
     public void bracketMismatchDetected() throws UnsupportedEncodingException, IOException {
-        System.out.println("BracketMismatchDetected() Started");
         InMemoryDatabase imd = new InMemoryDatabase();
         Reference ref = new Book("kikkelis", "Kokkelis Kiiski", "Häläpiti hoi", "Röllituotanto" + "{", "1789");
         imd.saveReference(ref);
-        System.out.println("Number or References in DB: " + imd.getAllSavedReferences().size());
 
         String path = "src/mybib";
         BibExporter.exportStub(imd.getDB(), path);
@@ -73,7 +70,6 @@ public class BibExporterTest {
             fileAsString += line;
         }
         scanner.close();
-        System.out.println(fileAsString);
 
         Stack<Character> pino = new Stack();
 
@@ -81,12 +77,10 @@ public class BibExporterTest {
             char c = fileAsString.charAt(i);
 
             if (c == '{') {
-                System.out.println(c);
                 pino.push(c);
             }
 
             if (c == '}') {
-                System.out.println(c);
                 if (pino.empty()) {
                     pino.push(c);
                     break;
