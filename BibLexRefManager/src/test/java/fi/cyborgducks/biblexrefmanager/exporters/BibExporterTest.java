@@ -8,7 +8,6 @@ package fi.cyborgducks.biblexrefmanager.exporters;
 import fi.cyborgducks.biblexrefmanager.data.InMemoryDatabase;
 import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;

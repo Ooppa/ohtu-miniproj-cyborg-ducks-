@@ -15,6 +15,9 @@ public class BibExporter {
 
     public static void export(BibTeXDatabase db) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         String path = ChooseFile();
+        if (path == null){
+            return;
+        }
         exportStub(db, path);
     }
 
@@ -27,7 +30,7 @@ public class BibExporter {
         Writer writer = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(path), "8859_1")
         );
-
+            
         try {
             BibTeXFormatter formatter = new BibTeXFormatter();
             formatter.format(db, writer);
@@ -47,6 +50,8 @@ public class BibExporter {
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             return chooser.getSelectedFile().getAbsolutePath();
+        } else {
+            chooser.cancelSelection();
         }
 
         return null;
