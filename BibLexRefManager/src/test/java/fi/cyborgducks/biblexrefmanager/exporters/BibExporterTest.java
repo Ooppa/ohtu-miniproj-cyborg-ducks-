@@ -8,6 +8,7 @@ package fi.cyborgducks.biblexrefmanager.exporters;
 import fi.cyborgducks.biblexrefmanager.data.InMemoryDatabase;
 import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,7 +21,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author wadror
+ * @author goalaleo
  */
 public class BibExporterTest {
 
@@ -59,8 +60,8 @@ public class BibExporterTest {
 
     private boolean bracketsMatchHelper(String path) throws FileNotFoundException, IOException {
 
-        InputStream file = new FileInputStream(path + ".bib");
-        Scanner scanner = new Scanner(file);
+        InputStream stream = new FileInputStream(path + ".bib");
+        Scanner scanner = new Scanner(stream);
 
         String fileAsString = "";
 
@@ -90,7 +91,9 @@ public class BibExporterTest {
 
         }
         boolean good = pino.empty();
-        file.close();
+        stream.close();
+        File file = new File(path+".bib");
+        file.delete();
 
         return good;
     }
