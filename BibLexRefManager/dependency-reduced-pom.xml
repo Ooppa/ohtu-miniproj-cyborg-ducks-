@@ -8,17 +8,14 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
         <version>2.6</version>
+        <configuration>
+          <format>xml</format>
+          <maxmem>256m</maxmem>
+          <aggregate>true</aggregate>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.pitest</groupId>
@@ -84,6 +81,14 @@
         <artifactId>groovy-eclipse-compiler</artifactId>
         <version>2.6.0-01</version>
         <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.eluder.coveralls</groupId>
+        <artifactId>coveralls-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <repoToken>z6cKXOXYLKglQzMcjROamHlnLVMwMbi3N</repoToken>
+        </configuration>
       </plugin>
     </plugins>
   </build>

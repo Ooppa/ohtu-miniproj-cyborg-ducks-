@@ -1,5 +1,6 @@
 import fi.cyborgducks.biblexrefmanager.*;
-
+import fi.cyborgducks.biblexrefmanager.data.*;
+import fi.cyborgducks.biblexrefmanager.references.*;
 
 description 'User can add a reference, which is saved to database'
 

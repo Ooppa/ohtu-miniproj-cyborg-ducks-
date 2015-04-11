@@ -27,7 +27,7 @@ public class Validator {
         try {
             year = Integer.parseInt(fields[4]);
         } catch (Exception ex) {
-            return ex.getMessage();
+            return "Unable to find correct year";
         }
 
         if (key.length() <= 2 || key.length() >= 15) {

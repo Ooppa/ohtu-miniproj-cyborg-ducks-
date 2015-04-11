@@ -15,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import org.jbibtex.Key;
 import org.jbibtex.StringValue;
 import org.jbibtex.StringValue.Style;
@@ -387,8 +388,8 @@ public class GraphicalUI extends javax.swing.JFrame {
             database.saveReference(r);
             clearFields();
         }
-        ErrorMessageArea.setText(errMessage);
+        //ErrorMessageArea.setText(errMessage);
+        JOptionPane.showMessageDialog(this, errMessage);
         databaseSizeOutput.setText("" + database.getAllSavedReferences().size());
-        //SwingUtilities.updateComponentTreeUI(this);
     }
 }

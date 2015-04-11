@@ -1,6 +1,7 @@
 import fi.cyborgducks.biblexrefmanager.*;
 
 
+
 description 'User can export all saved references'
 
 scenario "all exported book references can be found from the created file", {
