@@ -27,10 +27,10 @@ public class BibExporterTest {
 
     @Test
     public void bracketsMatch() throws UnsupportedEncodingException, IOException {
-        InMemoryDatabase imd = constructDataBaseWithTwoRefereces();
+        InMemoryDatabase inMemDB = constructDataBaseWithTwoRefereces();
 
         String path = "src/mybib";
-        BibExporter.exportStub(imd.getDB(), path);
+        BibExporter.export(inMemDB.getDB(), path);
 
         boolean result = bracketsMatchHelper(path);
         assertEquals(true, result);
@@ -38,60 +38,60 @@ public class BibExporterTest {
 
     @Test
     public void bracketMismatchDetected() throws UnsupportedEncodingException, IOException {
-        InMemoryDatabase imd = new InMemoryDatabase();
+        InMemoryDatabase inMemDB = new InMemoryDatabase();
         Reference ref = new Book("kikkelis", "Kokkelis Kiiski", "Häläpiti hoi", "Röllituotanto" + "{", "1789");
-        imd.saveReference(ref);
+        inMemDB.saveReference(ref);
 
         String path = "src/mybib";
-        BibExporter.exportStub(imd.getDB(), path);
+        BibExporter.export(inMemDB.getDB(), path);
 
         boolean result = bracketsMatchHelper(path);
         assertEquals(false, result);
     }
 
     private InMemoryDatabase constructDataBaseWithTwoRefereces() {
-        InMemoryDatabase db = new InMemoryDatabase();
+        InMemoryDatabase inMemDB = new InMemoryDatabase();
         Reference r = new Book("hepuli", "Leo Kiiski", "Sillikalastuksen alkeet", "Kalapanimo", "1991");
         Reference r2 = new Book("hippuli", "Peelo", "Super book", "Peelos publisher", "2012");
-        db.saveReference(r);
-        db.saveReference(r2);
-        return db;
+        inMemDB.saveReference(r);
+        inMemDB.saveReference(r2);
+        return inMemDB;
     }
 
     private boolean bracketsMatchHelper(String path) throws FileNotFoundException, IOException {
 
-        InputStream stream = new FileInputStream(path + ".bib");
-        Scanner scanner = new Scanner(stream);
+        InputStream streamFromFile = new FileInputStream(path + ".bib");
+        Scanner scanner = new Scanner(streamFromFile);
 
         String fileAsString = "";
 
         while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            fileAsString += line;
+            String lineInBibFile = scanner.nextLine();
+            fileAsString += lineInBibFile;
         }
         scanner.close();
 
-        Stack<Character> pino = new Stack();
+        Stack<Character> stackForBrackets = new Stack();
 
         for (int i = 0; i < fileAsString.length(); i++) {
             char c = fileAsString.charAt(i);
 
             if (c == '{') {
-                pino.push(c);
+                stackForBrackets.push(c);
             }
 
             if (c == '}') {
-                if (pino.empty()) {
-                    pino.push(c);
+                if (stackForBrackets.empty()) {
+                    stackForBrackets.push(c);
                     break;
-                } else if (pino.peek() == '{') {
-                    pino.pop();
+                } else if (stackForBrackets.peek() == '{') {
+                    stackForBrackets.pop();
                 }
             }
 
         }
-        boolean good = pino.empty();
-        stream.close();
+        boolean good = stackForBrackets.empty();
+        streamFromFile.close();
         File file = new File(path+".bib");
         file.delete();
 

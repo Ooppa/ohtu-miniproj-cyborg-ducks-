@@ -1,10 +1,7 @@
 package fi.cyborgducks.biblexrefmanager.exporters;
 
 import fi.cyborgducks.biblexrefmanager.UI.FileChooser;
-import java.awt.Component;
 import java.io.*;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jbibtex.BibTeXDatabase;
 import org.jbibtex.BibTeXFormatter;
 
@@ -21,7 +18,7 @@ public class BibExporter {
      * Takes the references added by the user, and exports them as a .bib file
      * to the chosen location. When this method is invoked, the program asks for
      * the user to choose a location for the .bib file to be exported. For
-     * testing, use the {@link fi.cyborgducks.biblexrefmanager.UI.FileChooser#chooseFile()} method
+     * testing, use the {@link #export(org.jbibtex.BibTeXDatabase, java.lang.String)} method
      *
      * @param db a BibTexDatabase of the added references
      * @throws FileNotFoundException
@@ -33,12 +30,12 @@ public class BibExporter {
         if (path == null) {
             return;
         }
-        exportStub(db, path);
+        export(db, path);
     }
 
     /**
      *
-     * Handles all the exporting logic apart from choosing a file. This method
+     * Handles all the exporting logic apart from choosing a file in a UI. This method
      * can be used for testing.
      *
      * @param db a BibTexDatabase of the added references
@@ -47,7 +44,7 @@ public class BibExporter {
      * @throws UnsupportedEncodingException
      * @throws IOException
      */
-    public static void exportStub(BibTeXDatabase db, String p) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+    public static void export(BibTeXDatabase db, String p) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         String path = p;
         if (!path.endsWith(".bib")) {
             path += ".bib";
