@@ -15,6 +15,11 @@
           <format>xml</format>
           <maxmem>256m</maxmem>
           <aggregate>true</aggregate>
+          <instrumentation>
+            <includes>
+              <include>fi/cyborgducks/biblexrefmanager/references/*.class</include>
+            </includes>
+          </instrumentation>
         </configuration>
       </plugin>
       <plugin>
