@@ -1,0 +1,14 @@
+language: java
+before_script:
+- "cd BibLexRefManager"
+
+after_success:
+  - mvn clean cobertura:cobertura coveralls:report
+
+notifications:
+  irc:
+    channels:
+      - "irc.cc.tut.fi#cyborgducks"
+    template:
+      - "%{repository} (%{commit}) : %{message}"
+      - "Build details: %{build_url}"
