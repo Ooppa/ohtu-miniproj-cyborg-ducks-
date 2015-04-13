@@ -5,7 +5,7 @@
  */
 package fi.cyborgducks.biblexrefmanager.application;
 
-import fi.cyborgducks.biblexrefmanager.UI.GraphicalUI;
+import fi.cyborgducks.biblexrefmanager.ui.GraphicalUI;
 
 /**
  * Starting point for the application.

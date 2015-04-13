@@ -1,6 +1,6 @@
 package fi.cyborgducks.biblexrefmanager.exporters;
 
-import fi.cyborgducks.biblexrefmanager.UI.FileChooser;
+import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
 import java.io.*;
 import org.jbibtex.BibTeXDatabase;
 import org.jbibtex.BibTeXFormatter;

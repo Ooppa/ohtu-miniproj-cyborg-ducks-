@@ -3,7 +3,7 @@
  * Helsingin yliopisto Tietojenkäsittelytieteen laitos
  * Cyborg Ducks 2015 - GNU General Public License, version 3.
  */
-package fi.cyborgducks.biblexrefmanager.UI;
+package fi.cyborgducks.biblexrefmanager.ui;
 
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
@@ -155,12 +155,12 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         jMenuBibExporter.setText("Export as .bib");
         jMenuBibExporter.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                jMenuBibExporterMenuSelected(evt);
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenuBibExporterMenuSelected(evt);
             }
         });
         jMenuBibExporter.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +215,6 @@ public class GraphicalUI extends javax.swing.JFrame {
                                                     .addComponent(authorInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(keyInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGap(0, 0, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
                                 .addComponent(optionalFieldValue, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
