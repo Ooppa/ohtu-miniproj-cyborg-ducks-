@@ -18,35 +18,35 @@ public class BibExporter {
      * Takes the references added by the user, and exports them as a .bib file
      * to the chosen location. When this method is invoked, the program asks for
      * the user to choose a location for the .bib file to be exported. For
-     * testing, use the {@link #export(org.jbibtex.BibTeXDatabase, java.lang.String)} method
+     * testing, use the
+     * {@link #export(org.jbibtex.BibTeXDatabase, java.lang.String)} method
      *
-     * @param db a BibTexDatabase of the added references
+     * @param database a BibTexDatabase of the added references
      * @throws FileNotFoundException
      * @throws UnsupportedEncodingException
      * @throws IOException
      */
-    public static void export(BibTeXDatabase db) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+    public static void export( BibTeXDatabase database ) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         String path = FileChooser.chooseFile();
-        if (path == null) {
+        if ( path == null ) {
             return;
         }
-        export(db, path);
+        export(database, path);
     }
 
     /**
      *
-     * Handles all the exporting logic apart from choosing a file in a UI. This method
-     * can be used for testing.
+     * Handles all the exporting logic apart from choosing a file in a UI. This
+     * method can be used for testing.
      *
-     * @param db a BibTexDatabase of the added references
-     * @param p the file path where you wish to export to
+     * @param database a BibTexDatabase of the added references
+     * @param path the file path where you wish to export to
      * @throws FileNotFoundException
      * @throws UnsupportedEncodingException
      * @throws IOException
      */
-    public static void export(BibTeXDatabase db, String p) throws FileNotFoundException, UnsupportedEncodingException, IOException {
-        String path = p;
-        if (!path.endsWith(".bib")) {
+    public static void export( BibTeXDatabase database, String path ) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+        if ( !path.endsWith(".bib") ) {
             path += ".bib";
         }
 
@@ -56,13 +56,9 @@ public class BibExporter {
 
         try {
             BibTeXFormatter formatter = new BibTeXFormatter();
-            formatter.format(db, writer);
+            formatter.format(database, writer);
         } finally {
             writer.close();
         }
     }
 }
-
-
-    
-
