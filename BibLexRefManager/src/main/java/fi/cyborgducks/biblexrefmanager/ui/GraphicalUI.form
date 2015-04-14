@@ -141,13 +141,20 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelKey" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelAuthor" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelPublisher" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="labelYear" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelAuthor" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelTitle" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="labelKey" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelPublisher" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="labelYear" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="keyInputTextField" pref="205" max="32767" attributes="0"/>
                                   <Component id="authorInputTextField" max="32767" attributes="0"/>
@@ -162,9 +169,11 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelOptionalValue" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelOptionalFieldsHeader" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelOptionalKey" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="labelOptionalValue" alignment="0" pref="81" max="32767" attributes="0"/>
+                                      <Component id="labelOptionalKey" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -360,8 +369,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="331" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" pref="341" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
