@@ -19,7 +19,7 @@ scenario "new .bib file is created", {
     }
     when 'book references have been saved to database', {
         exprt = new BibExporter()
-        exprt.exportStub(database.getDB(), "src/mybib")
+        exprt.export(database.getDB(), "src/mybib")
     }
     then 'all book references are being exported to .bib-file',{
         f = new File("src/mybib.bib")
@@ -47,7 +47,7 @@ scenario "file contains as many @book-blocks as there were book references saved
     }
     when 'all book references were valid', {
         exprt = new BibExporter()
-        exprt.exportStub(database.getDB(), "src/mybib")
+        exprt.export(database.getDB(), "src/mybib")
     }
     then 'all saved book references can be found from the file', {
         found = 0
