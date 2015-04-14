@@ -9,6 +9,7 @@ import fi.cyborgducks.biblexrefmanager.references.Reference;
 import java.util.ArrayList;
 import java.util.List;
 import org.jbibtex.BibTeXObject;
+import org.jbibtex.Key;
 
 /**
  * Saves directly to formatted database without populating it first.
@@ -25,10 +26,23 @@ public class InMemoryDatabase extends Database {
     @Override
     public List<Reference> getAllSavedReferences() {
         List<Reference> refs = new ArrayList<>();
-        for(BibTeXObject bo : bibTexDatabase.getObjects()) {
+        for (BibTeXObject bo : bibTexDatabase.getObjects()) {
             refs.add((Reference) bo);
         }
         return refs;
+    }
+
+    @Override
+    public Reference fetchReference(Key id, Key type) {
+        Reference fetched = null;
+        for (Reference r : getAllSavedReferences()) {
+            if (r.getType().equals(type)
+                    && r.getKey().equals(id)) {
+                fetched = r;
+                break;
+            }
+        }
+        return fetched;
     }
 
 }

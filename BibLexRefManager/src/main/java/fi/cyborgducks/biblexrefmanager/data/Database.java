@@ -8,6 +8,7 @@ package fi.cyborgducks.biblexrefmanager.data;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import java.util.List;
 import org.jbibtex.BibTeXDatabase;
+import org.jbibtex.Key;
 
 /**
  *
@@ -24,7 +25,14 @@ public abstract class Database {
 
     public abstract void saveReference(Reference ref);
 
-    //public abstract void removeReference(Reference ref);
+    /**
+     * Fetches one Reference from the database
+     *
+     * @param id - ID of the reference (usually key)
+     * @param type - type of the reference
+     * @return null - if no match, fetched reference else
+     */
+    public abstract Reference fetchReference(Key id, Key type);
 
     public abstract List<Reference> getAllSavedReferences();
 
