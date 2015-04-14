@@ -75,6 +75,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         jListRefereces = new javax.swing.JList();
         buttonDeleteSelected = new javax.swing.JButton();
         buttonEditSelected = new javax.swing.JButton();
+        labelSelectedItem = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemSave = new javax.swing.JMenuItem();
@@ -268,6 +269,11 @@ public class GraphicalUI extends javax.swing.JFrame {
         });
         jListRefereces.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListRefereces.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        jListRefereces.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListReferecesValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(jListRefereces);
         jListRefereces.getAccessibleContext().setAccessibleName("");
 
@@ -285,19 +291,25 @@ public class GraphicalUI extends javax.swing.JFrame {
             }
         });
 
+        labelSelectedItem.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        labelSelectedItem.setForeground(new java.awt.Color(153, 153, 153));
+        labelSelectedItem.setText("Selected Item");
+
         javax.swing.GroupLayout panelReferenceListLayout = new javax.swing.GroupLayout(panelReferenceList);
         panelReferenceList.setLayout(panelReferenceListLayout);
         panelReferenceListLayout.setHorizontalGroup(
             panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReferenceListLayout.createSequentialGroup()
+            .addGroup(panelReferenceListLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReferenceListLayout.createSequentialGroup()
-                .addContainerGap(261, Short.MAX_VALUE)
-                .addComponent(buttonEditSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonDeleteSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(panelReferenceListLayout.createSequentialGroup()
+                        .addComponent(labelSelectedItem, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonEditSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonDeleteSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         panelReferenceListLayout.setVerticalGroup(
             panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,9 +317,10 @@ public class GraphicalUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonDeleteSelected)
-                    .addComponent(buttonEditSelected))
+                .addGroup(panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonDeleteSelected, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonEditSelected, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelSelectedItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -448,6 +461,10 @@ public class GraphicalUI extends javax.swing.JFrame {
         // kun poistetaan valittua
     }//GEN-LAST:event_buttonDeleteSelectedActionPerformed
 
+    private void jListReferecesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListReferecesValueChanged
+        this.labelSelectedItem.setText(this.jListRefereces.getSelectedIndex() + "th item"); // myöhemmin nimi
+    }//GEN-LAST:event_jListReferecesValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -471,6 +488,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JLabel labelOptionalKey;
     private javax.swing.JLabel labelOptionalValue;
     private javax.swing.JLabel labelPublisher;
+    private javax.swing.JLabel labelSelectedItem;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JLabel labelYear;
     private javax.swing.JTextField optionalFieldKey;
