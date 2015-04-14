@@ -159,28 +159,15 @@
                                       <Component id="labelYear" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="labelVolume" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelAddress" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelSeries" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelEdition" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelMonth" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelNote" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -235,32 +222,32 @@
                       <Component id="labelOptionalFieldsHeader" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelVolume" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="optionalVolumeField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelSeries" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="optionalSeriesField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="optionalAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelEdition" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="optionalEditionField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelMonth" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="optionalMonthCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNote" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="optionalNoteField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="19" max="32767" attributes="0"/>
@@ -340,40 +327,40 @@
                 <Property name="text" type="java.lang.String" value="Optional fields:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="labelVolume">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Volume:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="optionalVolumeField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="labelSeries">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Series:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="optionalSeriesField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="labelAddress">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Address:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="optionalAddressField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
+            <Component class="javax.swing.JLabel" name="labelEdition">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edition:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="optionalEditionField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="labelMonth">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Month:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Component class="javax.swing.JLabel" name="labelNote">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Note:"/>
               </Properties>
@@ -491,11 +478,8 @@
             <Component class="javax.swing.JList" name="jListRefereces">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Will"/>
-                    <StringItem index="1" value="be"/>
-                    <StringItem index="2" value="implemented"/>
-                    <StringItem index="3" value="later"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="NaN"/>
                   </StringArray>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
