@@ -49,6 +49,7 @@
                     <aggregate>true</aggregate>
                     <instrumentation>
                         <includes>
+                            <include>fi/cyborgducks/biblexrefmanager/validators/*.class</include>
                             <include>fi/cyborgducks/biblexrefmanager/references/*.class</include>
                             <include>fi/cyborgducks/biblexrefmanager/data/*.class</include>
                             <include>fi/cyborgducks/biblexrefmanager/exporters/*.class</include>
