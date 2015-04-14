@@ -358,9 +358,11 @@ public class GraphicalUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jMenuFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/table.png"))); // NOI18N
         jMenuFile.setText("File");
 
         jMenuItemSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/table_save.png"))); // NOI18N
         jMenuItemSave.setText("Save");
         jMenuItemSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,6 +371,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         });
         jMenuFile.add(jMenuItemSave);
 
+        jMenuItemLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/folder_table.png"))); // NOI18N
         jMenuItemLoad.setText("Load");
         jMenuItemLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,6 +380,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         });
         jMenuFile.add(jMenuItemLoad);
 
+        jMenuItemExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/table_export.png"))); // NOI18N
         jMenuItemExport.setText("Export as .bib");
         jMenuItemExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
