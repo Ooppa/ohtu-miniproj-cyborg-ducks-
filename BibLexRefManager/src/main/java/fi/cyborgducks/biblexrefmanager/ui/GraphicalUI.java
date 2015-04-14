@@ -5,16 +5,14 @@
  */
 package fi.cyborgducks.biblexrefmanager.ui;
 
-import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
-import fi.cyborgducks.biblexrefmanager.validators.Validator;
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
-import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
+import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
+import fi.cyborgducks.biblexrefmanager.validators.Validator;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -75,6 +73,9 @@ public class GraphicalUI extends javax.swing.JFrame {
         panelReferenceList = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListRefereces = new javax.swing.JList();
+        buttonDeleteSelected = new javax.swing.JButton();
+        buttonEditSelected = new javax.swing.JButton();
+        labelSelectedItem = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemSave = new javax.swing.JMenuItem();
@@ -132,6 +133,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             }
         });
 
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_add.png"))); // NOI18N
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,7 +257,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             .addGroup(panelArticleLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelComingSoon, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Article", panelArticle);
@@ -267,8 +269,31 @@ public class GraphicalUI extends javax.swing.JFrame {
         });
         jListRefereces.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListRefereces.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        jListRefereces.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListReferecesValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(jListRefereces);
         jListRefereces.getAccessibleContext().setAccessibleName("");
+
+        buttonDeleteSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_delete.png"))); // NOI18N
+        buttonDeleteSelected.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteSelectedActionPerformed(evt);
+            }
+        });
+
+        buttonEditSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_edit.png"))); // NOI18N
+        buttonEditSelected.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditSelectedActionPerformed(evt);
+            }
+        });
+
+        labelSelectedItem.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        labelSelectedItem.setForeground(new java.awt.Color(153, 153, 153));
+        labelSelectedItem.setText("Selected Item");
 
         javax.swing.GroupLayout panelReferenceListLayout = new javax.swing.GroupLayout(panelReferenceList);
         panelReferenceList.setLayout(panelReferenceListLayout);
@@ -276,13 +301,27 @@ public class GraphicalUI extends javax.swing.JFrame {
             panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelReferenceListLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
+                .addGroup(panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(panelReferenceListLayout.createSequentialGroup()
+                        .addComponent(labelSelectedItem, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonEditSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonDeleteSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         panelReferenceListLayout.setVerticalGroup(
             panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelReferenceListLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2))
+                .addComponent(jScrollPane2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonDeleteSelected, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonEditSelected, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelSelectedItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jMenuFile.setText("File");
@@ -338,7 +377,7 @@ public class GraphicalUI extends javax.swing.JFrame {
                     .addComponent(tabbedPanel)
                     .addComponent(panelReferenceList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -414,10 +453,24 @@ public class GraphicalUI extends javax.swing.JFrame {
         // kun tallennetaan nykyinen tietokanta
     }//GEN-LAST:event_jMenuItemSaveActionPerformed
 
+    private void buttonEditSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditSelectedActionPerformed
+        // kun muokataan valittua
+    }//GEN-LAST:event_buttonEditSelectedActionPerformed
+
+    private void buttonDeleteSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteSelectedActionPerformed
+        // kun poistetaan valittua
+    }//GEN-LAST:event_buttonDeleteSelectedActionPerformed
+
+    private void jListReferecesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListReferecesValueChanged
+        this.labelSelectedItem.setText(this.jListRefereces.getSelectedIndex() + "th item"); // myöhemmin nimi
+    }//GEN-LAST:event_jListReferecesValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JTextField authorInputTextField;
+    private javax.swing.JButton buttonDeleteSelected;
+    private javax.swing.JButton buttonEditSelected;
     private javax.swing.JTextArea errorMessageArea;
     private javax.swing.JList jListRefereces;
     private javax.swing.JMenuBar jMenuBar;
@@ -435,6 +488,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JLabel labelOptionalKey;
     private javax.swing.JLabel labelOptionalValue;
     private javax.swing.JLabel labelPublisher;
+    private javax.swing.JLabel labelSelectedItem;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JLabel labelYear;
     private javax.swing.JTextField optionalFieldKey;
