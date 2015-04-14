@@ -222,9 +222,9 @@
                           <Component id="optionalFieldKey" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labelOptionalValue" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="optionalFieldValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="optionalFieldValue" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="72" max="32767" attributes="0"/>
                       <Component id="addButton" min="-2" max="-2" attributes="0"/>

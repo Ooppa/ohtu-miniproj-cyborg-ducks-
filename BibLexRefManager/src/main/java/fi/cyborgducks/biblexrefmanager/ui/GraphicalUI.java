@@ -5,6 +5,8 @@
  */
 package fi.cyborgducks.biblexrefmanager.ui;
 
+import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
+import fi.cyborgducks.biblexrefmanager.validators.Validator;
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
@@ -28,6 +30,9 @@ public class GraphicalUI extends javax.swing.JFrame {
     private String firstOptionalFieldKey;
     private String firstOptionalFieldValue;
 
+    // validators
+    private Validator bookValidator;
+
     private Database database;
 
     /**
@@ -36,6 +41,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     public GraphicalUI() {
         initComponents();
         this.database = new InMemoryDatabase();
+        this.bookValidator = new BookValidator();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -219,7 +225,7 @@ public class GraphicalUI extends javax.swing.JFrame {
                     .addComponent(labelOptionalKey)
                     .addComponent(optionalFieldKey, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelOptionalValue)
                     .addComponent(optionalFieldValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
@@ -353,7 +359,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         optionalFieldKeyActionPerformed(evt);
         optionalFieldValueActionPerformed(evt);
 
-        String[] bookParams = new String[] {this.key, this.author, this.title, this.publisher, this.year};
+        String[] bookParams = new String[]{this.key, this.author, this.title, this.publisher, this.year};
         handleOneBook(bookParams);
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -390,9 +396,9 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void jMenuItemExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExportActionPerformed
         try {
             BibExporter.export(database.getDB());
-        } catch(UnsupportedEncodingException ex) {
+        } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItemExportActionPerformed
@@ -438,22 +444,22 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JTextField titleInputTextField;
     private javax.swing.JTextField yearInputTextField;
     // End of variables declaration//GEN-END:variables
-    
+
     private void handleOneBook(String[] bookParams) {
-        
-        String errMessage = Validator.isValidBookParams(bookParams);
-        errMessage += Validator.isValidOptionalFieldForBook(firstOptionalFieldKey);
-        
-        if(errMessage.isEmpty()) {
+
+        bookValidator.isValidParams(bookParams);
+        bookValidator.isValidOptionalFieldFor(firstOptionalFieldKey);
+
+        if (!bookValidator.hasErrors()) {
             errorMessageArea.append("\n> Input was valid.");
             Reference r = BookFactory.createBook(bookParams);
             r.addField(new Key(this.firstOptionalFieldKey), new StringValue(this.firstOptionalFieldValue, Style.BRACED));
             database.saveReference(r);
             clearFields();
-            errorMessageArea.append("\n> Database has now "+ database.getAllSavedReferences().size() + " items.");
+            errorMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
         } else {
-            JOptionPane.showMessageDialog(this, errMessage);
+            JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
         }
-        
+
     }
 }
