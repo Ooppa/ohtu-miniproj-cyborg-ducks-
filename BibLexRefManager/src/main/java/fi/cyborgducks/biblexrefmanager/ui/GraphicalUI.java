@@ -10,9 +10,11 @@ import fi.cyborgducks.biblexrefmanager.validators.Validator;
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
+import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,7 +23,7 @@ import org.jbibtex.StringValue;
 import org.jbibtex.StringValue.Style;
 
 public class GraphicalUI extends javax.swing.JFrame {
-
+    
     private String key;
     private String author;
     private String title;
@@ -32,7 +34,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     // validators
     private Validator bookValidator;
-
+    
     private Database database;
 
     /**
@@ -42,6 +44,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         initComponents();
         this.database = new InMemoryDatabase();
         this.bookValidator = new BookValidator();
+        this.jListRefereces.setListData(this.database.getAllSavedReferences().toArray());
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,7 +74,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         labelComingSoon = new javax.swing.JLabel();
         panelReferenceList = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jListRefereces = new javax.swing.JList();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemSave = new javax.swing.JMenuItem();
@@ -257,15 +260,15 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         tabbedPanel.addTab("Article", panelArticle);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        jListRefereces.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Will", "be", "implemented", "later" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList1.setSelectionBackground(new java.awt.Color(153, 153, 153));
-        jScrollPane2.setViewportView(jList1);
-        jList1.getAccessibleContext().setAccessibleName("");
+        jListRefereces.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListRefereces.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        jScrollPane2.setViewportView(jListRefereces);
+        jListRefereces.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout panelReferenceListLayout = new javax.swing.GroupLayout(panelReferenceList);
         panelReferenceList.setLayout(panelReferenceListLayout);
@@ -358,11 +361,11 @@ public class GraphicalUI extends javax.swing.JFrame {
         yearInputTextFieldActionPerformed(evt);
         optionalFieldKeyActionPerformed(evt);
         optionalFieldValueActionPerformed(evt);
-
+        
         String[] bookParams = new String[]{this.key, this.author, this.title, this.publisher, this.year};
         handleOneBook(bookParams);
     }//GEN-LAST:event_addButtonActionPerformed
-
+    
     private void clearFields() {
         authorInputTextField.setText("");
         keyInputTextField.setText("");
@@ -416,7 +419,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JTextField authorInputTextField;
     private javax.swing.JTextArea errorMessageArea;
-    private javax.swing.JList jList1;
+    private javax.swing.JList jListRefereces;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemExport;
@@ -446,20 +449,21 @@ public class GraphicalUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void handleOneBook(String[] bookParams) {
-
+        
         bookValidator.isValidParams(bookParams);
         bookValidator.isValidOptionalFieldFor(firstOptionalFieldKey);
-
+        
         if (!bookValidator.hasErrors()) {
             errorMessageArea.append("\n> Input was valid.");
             Reference r = BookFactory.createBook(bookParams);
             r.addField(new Key(this.firstOptionalFieldKey), new StringValue(this.firstOptionalFieldValue, Style.BRACED));
             database.saveReference(r);
+            jListRefereces.setListData(database.getAllSavedReferences().toArray());
             clearFields();
             errorMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
         } else {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
         }
-
+        
     }
 }

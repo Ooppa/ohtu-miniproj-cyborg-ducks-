@@ -16,11 +16,11 @@ public class Book extends Reference {
     /**
      * Creates a new Book Reference
      *
-     * @param key       Key to identify the reference by
-     * @param author    Author of the Book
-     * @param title     Title of the Book
+     * @param key Key to identify the reference by
+     * @param author Author of the Book
+     * @param title Title of the Book
      * @param publisher Publisher of the Book
-     * @param year      Publishing year of the Book
+     * @param year Publishing year of the Book
      */
     public Book(String key, String author, String title, String publisher, String year) {
         super(BibTeXEntry.TYPE_BOOK, new Key(key));
@@ -34,14 +34,14 @@ public class Book extends Reference {
     }
 
     private void setRequiredAndOptionalFields() {
-        setRequiredFields(new Key[] {
+        setRequiredFields(new Key[]{
             BibTeXEntry.KEY_AUTHOR,
             BibTeXEntry.KEY_TITLE,
             BibTeXEntry.KEY_PUBLISHER,
             BibTeXEntry.KEY_YEAR
         });
 
-        setOptionalFields(new Key[] {
+        setOptionalFields(new Key[]{
             BibTeXEntry.KEY_VOLUME,
             BibTeXEntry.KEY_SERIES,
             BibTeXEntry.KEY_ADDRESS,
@@ -50,6 +50,14 @@ public class Book extends Reference {
             BibTeXEntry.KEY_NOTE,
             BibTeXEntry.KEY_KEY
         });
+    }
+
+    /**
+     * type |  key |  (author)
+     */
+    @Override
+    public String toString() {
+        return super.getType() + " | " + super.getKey() + " (" + super.getField(KEY_TITLE).toUserString() + ")";
     }
 
 }
