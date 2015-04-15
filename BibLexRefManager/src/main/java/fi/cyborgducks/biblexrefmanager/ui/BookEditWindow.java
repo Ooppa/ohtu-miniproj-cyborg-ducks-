@@ -7,14 +7,10 @@ package fi.cyborgducks.biblexrefmanager.ui;
 
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
-import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFrame;
 import org.jbibtex.BibTeXEntry;
 import org.jbibtex.Key;
-import org.jbibtex.StringValue;
-import org.jbibtex.StringValue.Style;
 import org.jbibtex.Value;
 
 /**
@@ -24,6 +20,7 @@ import org.jbibtex.Value;
 public class BookEditWindow extends javax.swing.JDialog {
 
     private Reference editedAtm;
+    private final JFrame parent;
     private final BookValidator bookValidator;
 
     /**
@@ -38,7 +35,8 @@ public class BookEditWindow extends javax.swing.JDialog {
         setLocationRelativeTo(parent);
         this.editedAtm = selected;
         this.bookValidator = new BookValidator();
-
+        this.parent = parent;
+        
         initComponents();
         setTitle("Editing reference with key: " + selected.getKey());
         initializeFields();
@@ -86,6 +84,7 @@ public class BookEditWindow extends javax.swing.JDialog {
 
         jLabelYear.setText("Year:");
 
+        jButtonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cross.png"))); // NOI18N
         jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +92,7 @@ public class BookEditWindow extends javax.swing.JDialog {
             }
         });
 
+        jButtonAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tick.png"))); // NOI18N
         jButtonAccept.setText("Accept Changes");
         jButtonAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,10 +120,10 @@ public class BookEditWindow extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonAccept))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +140,7 @@ public class BookEditWindow extends javax.swing.JDialog {
                         .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldTitle)
-                            .addComponent(jTextFieldAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                            .addComponent(jTextFieldAuthor)
                             .addComponent(jTextFieldPublisher)
                             .addComponent(jTextFieldYear)
                             .addComponent(jTextFieldVolume)
@@ -148,14 +148,13 @@ public class BookEditWindow extends javax.swing.JDialog {
                             .addComponent(jTextFieldAddress)
                             .addComponent(jTextFieldEdition)
                             .addComponent(jTextFieldNote)
-                            .addComponent(jComboMonth, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jComboMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelReferenceTitle)
                     .addComponent(jTextFieldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,11 +194,11 @@ public class BookEditWindow extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNote)
                     .addComponent(jTextFieldNote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAccept)
                     .addComponent(jButtonCancel))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,7 +210,9 @@ public class BookEditWindow extends javax.swing.JDialog {
 
     private void jButtonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptActionPerformed
         getAllChangedFields();
-
+        
+        parent.update(null); // updates the list in main window
+        dispose(); // Dispose the window after editing is done
     }//GEN-LAST:event_jButtonAcceptActionPerformed
 
 

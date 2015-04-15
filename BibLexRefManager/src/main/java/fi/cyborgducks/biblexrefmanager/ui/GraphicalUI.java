@@ -12,6 +12,7 @@ import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
+import java.awt.Graphics;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -491,24 +492,18 @@ public class GraphicalUI extends javax.swing.JFrame {
         // -1 index indicates that "nothing is selected"
         if (this.jListRefereces.getSelectedIndex() != -1) {
             Reference chosenReference = (Reference) this.jListRefereces.getSelectedValue();
-            showEditWIndow(chosenReference);
+            showEditWindow(chosenReference);
         }
 
         // TODO - reference type directs you to different kind of forms
 
     }//GEN-LAST:event_buttonEditSelectedActionPerformed
 
-    private void showEditWIndow(final Reference selected) {
+    private void showEditWindow(final Reference selected) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 BookEditWindow dialog = new BookEditWindow(new javax.swing.JFrame(), true, selected);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
                 dialog.setVisible(true);
             }
         });
@@ -533,6 +528,14 @@ public class GraphicalUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jListReferecesValueChanged
 
+    /*
+     * Changed to also update the refrences list
+     */
+    @Override
+    public void update(Graphics g){
+        super.update(g);
+        updateReferenceList();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
