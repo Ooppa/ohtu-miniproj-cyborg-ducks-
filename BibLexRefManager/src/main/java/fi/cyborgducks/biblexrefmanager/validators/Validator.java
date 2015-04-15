@@ -30,13 +30,13 @@ public abstract class Validator {
         this.errors = new ArrayList<>();
     }
 
-    protected void addError(String message) {
-        errors.add(new ErrorMessage(message));
-    }
-
     public abstract void isValidOptionalFieldFor(String key);
 
     public abstract void isValidParams(String[] fields);
+
+    protected void addError(String message) {
+        errors.add(new ErrorMessage(message));
+    }
 
     public boolean hasErrors() {
         return !errors.isEmpty();
