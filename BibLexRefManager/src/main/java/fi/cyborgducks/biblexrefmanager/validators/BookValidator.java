@@ -6,6 +6,7 @@
 package fi.cyborgducks.biblexrefmanager.validators;
 
 import fi.cyborgducks.biblexrefmanager.references.Book;
+import fi.cyborgducks.biblexrefmanager.references.Reference;
 import java.util.Calendar;
 import org.jbibtex.Key;
 
@@ -68,6 +69,14 @@ public class BookValidator extends Validator {
             super.addError("Year should be more than 1000 and less or equal than current year");
         }
 
+    }
+
+    @Override
+    public void validateReference(Reference toBeValidated) {
+        // would be type of book
+        if (toBeValidated instanceof Book) {
+            
+        }
     }
 
 }

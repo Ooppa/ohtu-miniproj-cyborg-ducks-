@@ -25,6 +25,8 @@ public abstract class Database {
 
     public abstract void saveReference(Reference ref);
 
+    public abstract boolean deleteReference(Key id, Key type);
+    
     /**
      * Fetches one Reference from the database
      *
@@ -35,6 +37,7 @@ public abstract class Database {
     public abstract Reference fetchReference(Key id, Key type);
 
     public abstract List<Reference> getAllSavedReferences();
+    
 
     public BibTeXDatabase getDB() {
         return bibTexDatabase;

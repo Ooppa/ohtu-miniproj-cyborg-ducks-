@@ -45,4 +45,14 @@ public class InMemoryDatabase extends Database {
         return fetched;
     }
 
+    @Override
+    public boolean deleteReference(Key id, Key type) {
+        Reference fetched = fetchReference(id, type);
+        if (fetched == null) {
+            return false;
+        }
+        bibTexDatabase.removeObject(fetched);
+        return true;
+    }
+
 }

@@ -5,6 +5,7 @@
  */
 package fi.cyborgducks.biblexrefmanager.validators;
 
+import fi.cyborgducks.biblexrefmanager.references.Reference;
 import java.util.ArrayList;
 
 public abstract class Validator {
@@ -33,6 +34,8 @@ public abstract class Validator {
     public abstract void isValidOptionalFieldFor(String key);
 
     public abstract void isValidParams(String[] fields);
+
+    public abstract void validateReference(Reference toBeValidated);
 
     protected void addError(String message) {
         errors.add(new ErrorMessage(message));

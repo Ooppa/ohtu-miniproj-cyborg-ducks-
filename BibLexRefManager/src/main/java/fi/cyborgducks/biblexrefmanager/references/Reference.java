@@ -39,8 +39,6 @@ public abstract class Reference extends BibTeXEntry {
             super.addField(key, value);
         }
     }
-    
-   
 
     /**
      * Returns an array of required fields for this Field.
@@ -76,6 +74,16 @@ public abstract class Reference extends BibTeXEntry {
      */
     public void setOptionalFields(Key[] optionalFields) {
         this.optionalFields = optionalFields;
+    }
+
+    /**
+     * Asks if specific key has already been inserted for this reference
+     * @param askedKey wanted key
+     * @return true - if key has been set, false otherwise
+     */
+    
+    public boolean hasKeySet(Key askedKey) {
+        return super.getField(askedKey) != null;
     }
 
     /**

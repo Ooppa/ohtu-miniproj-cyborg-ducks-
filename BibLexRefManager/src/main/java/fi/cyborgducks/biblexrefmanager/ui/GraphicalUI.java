@@ -502,7 +502,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                EditWindow dialog = new EditWindow(new javax.swing.JFrame(), true, selected);
+                BookEditWindow dialog = new BookEditWindow(new javax.swing.JFrame(), true, selected);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
