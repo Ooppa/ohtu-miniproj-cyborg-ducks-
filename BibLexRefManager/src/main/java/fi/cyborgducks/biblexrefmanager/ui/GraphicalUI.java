@@ -8,6 +8,7 @@ package fi.cyborgducks.biblexrefmanager.ui;
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
+import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
@@ -24,7 +25,7 @@ import org.jbibtex.StringValue;
 import org.jbibtex.StringValue.Style;
 
 public class GraphicalUI extends javax.swing.JFrame {
-    
+
     private String key;
     private String author;
     private String title;
@@ -35,7 +36,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     // validators
     private Validator bookValidator;
-    
+
     private Database database;
 
     /**
@@ -44,10 +45,10 @@ public class GraphicalUI extends javax.swing.JFrame {
     public GraphicalUI() {
         initComponents();
         setLocationRelativeTo(null); // Centered to screen
-        
+
         this.database = new InMemoryDatabase();
         this.bookValidator = new BookValidator();
-        
+        database.saveReference(new Book("123", "Samu", "Super book", "Samus publisher", "2015")); // just a stub to help editing
         updateReferenceList();
     }
 
@@ -436,18 +437,18 @@ public class GraphicalUI extends javax.swing.JFrame {
         titleInputTextFieldActionPerformed(evt);
         publisherInputTextFieldActionPerformed(evt);
         yearInputTextFieldActionPerformed(evt);
-        
+
         String[] bookParams = new String[]{this.key, this.author, this.title, this.publisher, this.year};
         handleOneBook(bookParams);
     }//GEN-LAST:event_addButtonActionPerformed
-    
+
     private void clearFields() {
         clearTextField(authorInputTextField);
         clearTextField(keyInputTextField);
         clearTextField(publisherInputTextField);
         clearTextField(yearInputTextField);
         clearTextField(titleInputTextField);
-        
+
         clearTextField(optionalAddressField);
         clearTextField(optionalEditionField);
         clearTextField(optionalNoteField);
@@ -488,30 +489,47 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void buttonEditSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
-        if(this.jListRefereces.getSelectedIndex()!=-1){
+        if (this.jListRefereces.getSelectedIndex() != -1) {
             Reference chosenReference = (Reference) this.jListRefereces.getSelectedValue();
+            showEditWIndow(chosenReference);
         }
-        
-        // TODO
-        
+
+        // TODO - reference type directs you to different kind of forms
+
     }//GEN-LAST:event_buttonEditSelectedActionPerformed
+
+    private void showEditWIndow(final Reference selected) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                EditWindow dialog = new EditWindow(new javax.swing.JFrame(), true, selected);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     private void buttonDeleteSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
-        if(this.jListRefereces.getSelectedIndex()!=-1){
+        if (this.jListRefereces.getSelectedIndex() != -1) {
             Reference chosenReference = (Reference) this.jListRefereces.getSelectedValue();
         }
-        
+
         // TODO
-        
+
     }//GEN-LAST:event_buttonDeleteSelectedActionPerformed
 
     private void jListReferecesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListReferecesValueChanged
-        if(this.jListRefereces.getSelectedIndex()==-1){
+        if (this.jListRefereces.getSelectedIndex() == -1) {
             this.labelSelectedItem.setText("Selected item");
         } else {
             Reference reference = (Reference) this.jListRefereces.getSelectedValue();
-            this.labelSelectedItem.setText("Selected: "+ reference.getKey().toString());
+            this.labelSelectedItem.setText("Selected: " + reference.getKey().toString());
         }
     }//GEN-LAST:event_jListReferecesValueChanged
 
@@ -560,71 +578,71 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JTextField yearInputTextField;
     // End of variables declaration//GEN-END:variables
 
-    private void clearTextField(JTextField field){
+    private void clearTextField(JTextField field) {
         field.setText("");
     }
-    
-    private void updateReferenceList(){
+
+    private void updateReferenceList() {
         List<Reference> allSavedReferences = this.database.getAllSavedReferences();
         jListRefereces.setListData(allSavedReferences.toArray());
     }
-    
+
     private void handleOneBook(String[] bookParams) {
         bookValidator.isValidParams(bookParams);
         // TODO: Optional fieldeille oma validaattori
-        
+
         if (!bookValidator.hasErrors()) {
             errorMessageArea.append("\n> Input was valid.");
-            
+
             Reference addableReference = BookFactory.createBook(bookParams);
 
             addOptionalBookFields(addableReference);
             database.saveReference(addableReference);
-            
+
             updateReferenceList();
             clearFields();
-            
+
             errorMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
         } else {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
         }
-        
+
     }
-    
-    private void addOptionalBookFields(Reference reference){
-        if(!optionalVolumeField.getText().isEmpty()){
-            reference.addField(BibTeXEntry.KEY_VOLUME, 
+
+    private void addOptionalBookFields(Reference reference) {
+        if (!optionalVolumeField.getText().isEmpty()) {
+            reference.addField(BibTeXEntry.KEY_VOLUME,
                     new DigitStringValue(optionalVolumeField.getText())
             );
         }
-        
-        if(!optionalSeriesField.getText().isEmpty()){
-            reference.addField(BibTeXEntry.KEY_SERIES, 
+
+        if (!optionalSeriesField.getText().isEmpty()) {
+            reference.addField(BibTeXEntry.KEY_SERIES,
                     new StringValue(optionalSeriesField.getText(), Style.BRACED)
             );
         }
-        
-        if(!optionalAddressField.getText().isEmpty()){
-            reference.addField(BibTeXEntry.KEY_ADDRESS, 
+
+        if (!optionalAddressField.getText().isEmpty()) {
+            reference.addField(BibTeXEntry.KEY_ADDRESS,
                     new StringValue(optionalAddressField.getText(), Style.BRACED)
             );
         }
-        
-        if(!optionalEditionField.getText().isEmpty()){
-            reference.addField(BibTeXEntry.KEY_EDITION, 
+
+        if (!optionalEditionField.getText().isEmpty()) {
+            reference.addField(BibTeXEntry.KEY_EDITION,
                     new StringValue(optionalEditionField.getText(), Style.BRACED)
             );
         }
-        
+
         // 0 is the index for NaN
-        if(this.optionalMonthCombobox.getSelectedIndex()!=0){
-            reference.addField(BibTeXEntry.KEY_MONTH, 
+        if (this.optionalMonthCombobox.getSelectedIndex() != 0) {
+            reference.addField(BibTeXEntry.KEY_MONTH,
                     new StringValue(optionalMonthCombobox.getSelectedItem().toString(), Style.BRACED)
             );
         }
-        
-        if(!optionalNoteField.getText().isEmpty()){
-            reference.addField(BibTeXEntry.KEY_NOTE, 
+
+        if (!optionalNoteField.getText().isEmpty()) {
+            reference.addField(BibTeXEntry.KEY_NOTE,
                     new StringValue(optionalNoteField.getText(), Style.BRACED)
             );
         }
