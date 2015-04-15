@@ -39,6 +39,8 @@ public abstract class Reference extends BibTeXEntry {
             super.addField(key, value);
         }
     }
+    
+   
 
     /**
      * Returns an array of required fields for this Field.
