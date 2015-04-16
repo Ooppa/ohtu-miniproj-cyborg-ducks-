@@ -11,22 +11,15 @@ import fi.cyborgducks.biblexrefmanager.exporters.BibExporterTest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 import org.jbibtex.BibTeXDatabase;
-import org.jbibtex.BibTeXEntry;
-import org.jbibtex.BibTeXParser;
-import org.jbibtex.BibTeXString;
-import org.jbibtex.Key;
 import org.jbibtex.ObjectResolutionException;
 import org.jbibtex.ParseException;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
 
 /**
  *

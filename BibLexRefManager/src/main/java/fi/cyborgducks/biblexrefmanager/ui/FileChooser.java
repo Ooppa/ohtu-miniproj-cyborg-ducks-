@@ -21,12 +21,14 @@ public class FileChooser {
      * 
      * Creates a pop up window for choosing a location.
      * 
+     * @param approveButtonText changes the text for the approving button eg. 'OK', 'Accept', 'Save' etc.
      * @return returns the chosen directory path + file name as an absolute path. If cancel is pressed, returns null.
      */
-    public static String chooseFile() {
+    public static String chooseFile(String approveButtonText) {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("bib files", "bib");
         chooser.setFileFilter(filter);
+        chooser.setApproveButtonText(approveButtonText);
 
         Component parent = new Component() {
         };
