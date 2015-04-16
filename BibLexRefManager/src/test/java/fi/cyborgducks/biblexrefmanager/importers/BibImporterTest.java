@@ -26,6 +26,7 @@ import org.jbibtex.ObjectResolutionException;
 import org.jbibtex.ParseException;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
 
 /**
  *
@@ -41,16 +42,13 @@ public class BibImporterTest {
         String path1 = "src/mybib";
         BibExporter.export(inMemDB.getDB(), path1);
         
-        File input = new File(path1 +".bib");
-        
-        BibTeXDatabase importedDB = parseBibTex(input);
-        
+        path1 += ".bib";
+        BibTeXDatabase importedDB = BibImporter.importFromBib(path1); 
         inMemDB.setDB(importedDB);
         
         String path2 = "src/mybib2";
         BibExporter.export(inMemDB.getDB(), path2);
-        
-        path1 += ".bib";
+
         path2 += ".bib";
         
         String bib1 = bibAsString(path1);
@@ -59,36 +57,11 @@ public class BibImporterTest {
         System.out.println("Second file: "+ bib2);
         
         assertEquals(bib1, bib2);
-    }
-
-    private BibTeXDatabase parseBibTex(File input) throws FileNotFoundException, ObjectResolutionException, ParseException, IOException {
         
-        Reader reader = new FileReader(input);
-
-		try {
-			BibTeXParser parser = new BibTeXParser(){
-
-				@Override
-				public void checkStringResolution(Key key, BibTeXString string){
-
-					if(string == null){
-						System.err.println("Unresolved string: \"" + key.getValue() + "\"");
-					}
-				}
-
-				@Override
-				public void checkCrossReferenceResolution(Key key, BibTeXEntry entry){
-
-					if(entry == null){
-						System.err.println("Unresolved cross-reference: \"" + key.getValue() + "\"");
-					}
-				}
-			};
-
-			return parser.parse(reader);
-		} finally {
-			reader.close();
-		}
+        File file1 = new File(path1);
+        File file2 = new File(path2);
+        file1.delete();
+        file2.delete();
     }
 
     private String bibAsString(String filePath) throws FileNotFoundException {
