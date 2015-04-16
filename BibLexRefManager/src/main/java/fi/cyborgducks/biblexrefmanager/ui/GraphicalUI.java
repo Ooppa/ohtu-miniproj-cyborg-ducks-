@@ -8,6 +8,7 @@ package fi.cyborgducks.biblexrefmanager.ui;
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
+import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
 import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
@@ -22,6 +23,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jbibtex.BibTeXEntry;
 import org.jbibtex.DigitStringValue;
+import org.jbibtex.ObjectResolutionException;
+import org.jbibtex.ParseException;
 import org.jbibtex.StringValue;
 import org.jbibtex.StringValue.Style;
 
@@ -483,7 +486,13 @@ public class GraphicalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemExportActionPerformed
 
     private void jMenuItemLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoadActionPerformed
-        // kun loadataan uusi tietokanta
+        try {
+            database.setDB(BibImporter.importFromBib());
+        } catch (ObjectResolutionException | ParseException | IOException ex) {
+            Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            updateReferenceList();
+        }
     }//GEN-LAST:event_jMenuItemLoadActionPerformed
 
     private void jMenuItemSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSaveActionPerformed
