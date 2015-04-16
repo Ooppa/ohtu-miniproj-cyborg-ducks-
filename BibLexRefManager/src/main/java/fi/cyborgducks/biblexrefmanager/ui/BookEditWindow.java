@@ -8,16 +8,12 @@ package fi.cyborgducks.biblexrefmanager.ui;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import java.awt.Component;
-import java.util.Map;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import org.jbibtex.BibTeXEntry;
-import org.jbibtex.DigitStringValue;
-import org.jbibtex.Key;
-import org.jbibtex.StringValue;
+import org.jbibtex.*;
 import org.jbibtex.StringValue.Style;
-import org.jbibtex.Value;
 
 /**
  *
@@ -82,6 +78,7 @@ public class BookEditWindow extends javax.swing.JDialog {
         jLabelInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabelReferenceTitle.setText("Title:");
 
@@ -132,47 +129,42 @@ public class BookEditWindow extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelInfo)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonCancel)
-                                .addGap(201, 201, 201)
-                                .addComponent(jButtonAccept)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelAuthorName)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabelYear)
-                                    .addComponent(jLabelReferenceTitle)
-                                    .addComponent(jLabelVolume)
-                                    .addComponent(jLabelSeries)
-                                    .addComponent(jLabelAddress)
-                                    .addComponent(jLabelEdition)
-                                    .addComponent(jLabelMonth)
-                                    .addComponent(jLabelNote))
-                                .addGap(79, 79, 79)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldTitle)
-                                    .addComponent(jTextFieldAuthor)
-                                    .addComponent(jTextFieldPublisher)
-                                    .addComponent(jTextFieldYear)
-                                    .addComponent(jTextFieldVolume)
-                                    .addComponent(jTextFieldSeries)
-                                    .addComponent(jTextFieldAddress)
-                                    .addComponent(jTextFieldEdition)
-                                    .addComponent(jTextFieldNote)
-                                    .addComponent(jComboMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())))
+                    .addComponent(jLabelInfo)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jButtonCancel)
+                            .addGap(166, 166, 166)
+                            .addComponent(jButtonAccept))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelAuthorName)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabelYear)
+                                .addComponent(jLabelReferenceTitle)
+                                .addComponent(jLabelVolume)
+                                .addComponent(jLabelSeries)
+                                .addComponent(jLabelAddress)
+                                .addComponent(jLabelEdition)
+                                .addComponent(jLabelMonth)
+                                .addComponent(jLabelNote))
+                            .addGap(79, 79, 79)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldTitle)
+                                .addComponent(jTextFieldAuthor)
+                                .addComponent(jTextFieldPublisher)
+                                .addComponent(jTextFieldYear)
+                                .addComponent(jTextFieldVolume)
+                                .addComponent(jTextFieldSeries)
+                                .addComponent(jTextFieldAddress)
+                                .addComponent(jTextFieldEdition)
+                                .addComponent(jTextFieldNote)
+                                .addComponent(jComboMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabelInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -218,7 +210,7 @@ public class BookEditWindow extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAccept)
                     .addComponent(jButtonCancel))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,6 +222,13 @@ public class BookEditWindow extends javax.swing.JDialog {
 
     private void jButtonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptActionPerformed
         getAllChangedFields();
+
+        isValidNewReference();
+
+        if (bookValidator.hasErrors()) {
+            JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
+            return;
+        }
 
         parent.update(null); // updates the list in main window
         dispose(); // Dispose the window after editing is done
@@ -345,12 +344,22 @@ public class BookEditWindow extends javax.swing.JDialog {
     private void addFromTextField(JTextField inputField, Key keyAssociatedToInput) {
         String newStringValue = inputField.getText();
         Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
+
+        if (!isValidNewReference()) {
+            return;
+        }
+
         editedAtm.addField(keyAssociatedToInput, newValue);
     }
 
     private void addFromComboBox(JComboBox inputField, Key keyAssociatedToInput) {
         String newStringValue = (String) inputField.getSelectedItem();
         Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
+
+        if (!isValidNewReference()) {
+            return;
+        }
+
         editedAtm.addField(keyAssociatedToInput, newValue);
     }
 
@@ -409,5 +418,33 @@ public class BookEditWindow extends javax.swing.JDialog {
             v = new StringValue(valueOfKey, Style.BRACED);
         }
         return v;
+    }
+
+    private boolean isValidNewReference() {
+
+        Key[] required = new Key[]{BibTeXEntry.KEY_AUTHOR,
+            BibTeXEntry.KEY_TITLE,
+            BibTeXEntry.KEY_PUBLISHER,
+            BibTeXEntry.KEY_YEAR};
+
+        String[] toBeValidatedFields = new String[]{editedAtm.getKey().getValue(), "", "", "", ""};
+
+        for (int i = 1; i < required.length; i++) {
+            Key key = required[i - 1];
+            try {
+                toBeValidatedFields[i] = editedAtm.getField(key).toUserString();
+            } catch (Exception ex) {
+                // y u no throw null pointer
+            }
+        }
+
+        String[] newFields = new String[toBeValidatedFields.length];
+        System.arraycopy(toBeValidatedFields, 0, newFields, 0, toBeValidatedFields.length);
+        bookValidator.isValidParams(newFields);
+
+        if (bookValidator.hasErrors()) {
+            return false;
+        }
+        return true;
     }
 }
