@@ -314,6 +314,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         jListRefereces.getAccessibleContext().setAccessibleName("");
 
         buttonDeleteSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_delete.png"))); // NOI18N
+        buttonDeleteSelected.setToolTipText("Delete selected reference");
         buttonDeleteSelected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeleteSelectedActionPerformed(evt);
@@ -321,6 +322,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         });
 
         buttonEditSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_edit.png"))); // NOI18N
+        buttonEditSelected.setToolTipText("Edit selected reference");
         buttonEditSelected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditSelectedActionPerformed(evt);
