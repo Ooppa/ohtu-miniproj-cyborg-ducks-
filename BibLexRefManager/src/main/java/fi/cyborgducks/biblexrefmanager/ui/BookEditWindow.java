@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.util.Map;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jbibtex.BibTeXEntry;
 import org.jbibtex.DigitStringValue;
@@ -82,6 +83,7 @@ public class BookEditWindow extends javax.swing.JDialog {
         jLabelInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabelReferenceTitle.setText("Title:");
 
@@ -231,6 +233,13 @@ public class BookEditWindow extends javax.swing.JDialog {
     private void jButtonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptActionPerformed
         getAllChangedFields();
 
+        isValidNewReference();
+
+        if (bookValidator.hasErrors()) {
+            JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
+            return;
+        }
+
         parent.update(null); // updates the list in main window
         dispose(); // Dispose the window after editing is done
     }//GEN-LAST:event_jButtonAcceptActionPerformed
@@ -345,12 +354,22 @@ public class BookEditWindow extends javax.swing.JDialog {
     private void addFromTextField(JTextField inputField, Key keyAssociatedToInput) {
         String newStringValue = inputField.getText();
         Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
+
+        if (!isValidNewReference()) {
+            return;
+        }
+
         editedAtm.addField(keyAssociatedToInput, newValue);
     }
 
     private void addFromComboBox(JComboBox inputField, Key keyAssociatedToInput) {
         String newStringValue = (String) inputField.getSelectedItem();
         Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
+
+        if (!isValidNewReference()) {
+            return;
+        }
+
         editedAtm.addField(keyAssociatedToInput, newValue);
     }
 
@@ -409,5 +428,33 @@ public class BookEditWindow extends javax.swing.JDialog {
             v = new StringValue(valueOfKey, Style.BRACED);
         }
         return v;
+    }
+
+    private boolean isValidNewReference() {
+
+        Key[] required = new Key[]{BibTeXEntry.KEY_AUTHOR,
+            BibTeXEntry.KEY_TITLE,
+            BibTeXEntry.KEY_PUBLISHER,
+            BibTeXEntry.KEY_YEAR};
+
+        String[] toBeValidatedFields = new String[]{editedAtm.getKey().getValue(), "", "", "", ""};
+
+        for (int i = 1; i < required.length; i++) {
+            Key key = required[i - 1];
+            try {
+                toBeValidatedFields[i] = editedAtm.getField(key).toUserString();
+            } catch (Exception ex) {
+                // y u no throw null pointer
+            }
+        }
+
+        String[] newFields = new String[toBeValidatedFields.length];
+        System.arraycopy(toBeValidatedFields, 0, newFields, 0, toBeValidatedFields.length);
+        bookValidator.isValidParams(newFields);
+
+        if (bookValidator.hasErrors()) {
+            return false;
+        }
+        return true;
     }
 }
