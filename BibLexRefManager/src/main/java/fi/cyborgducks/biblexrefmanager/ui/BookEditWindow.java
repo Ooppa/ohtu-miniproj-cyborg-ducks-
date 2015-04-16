@@ -9,10 +9,14 @@ import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import java.awt.Component;
 import java.util.Map;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import org.jbibtex.BibTeXEntry;
+import org.jbibtex.DigitStringValue;
 import org.jbibtex.Key;
+import org.jbibtex.StringValue;
+import org.jbibtex.StringValue.Style;
 import org.jbibtex.Value;
 
 /**
@@ -20,7 +24,7 @@ import org.jbibtex.Value;
  * @author kristianw
  */
 public class BookEditWindow extends javax.swing.JDialog {
-    
+
     private Reference editedAtm;
     private final JFrame parent;
     private final BookValidator bookValidator;
@@ -38,7 +42,7 @@ public class BookEditWindow extends javax.swing.JDialog {
         this.editedAtm = selected;
         this.bookValidator = new BookValidator();
         this.parent = parent;
-        
+
         initComponents();
         setTitle("Editing reference with key: " + selected.getKey());
         initializeFields();
@@ -226,7 +230,7 @@ public class BookEditWindow extends javax.swing.JDialog {
 
     private void jButtonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptActionPerformed
         getAllChangedFields();
-        
+
         parent.update(null); // updates the list in main window
         dispose(); // Dispose the window after editing is done
     }//GEN-LAST:event_jButtonAcceptActionPerformed
@@ -264,7 +268,7 @@ public class BookEditWindow extends javax.swing.JDialog {
         jTextFieldPublisher.setText(editedAtm.getField(BibTeXEntry.KEY_PUBLISHER).toUserString());
         jTextFieldTitle.setText(editedAtm.getField(BibTeXEntry.KEY_TITLE).toUserString());
         jTextFieldYear.setText(editedAtm.getField(BibTeXEntry.KEY_YEAR).toUserString());
-        
+
         jTextFieldAddress.setName("jTextFieldAddress");
         jTextFieldAuthor.setName("jTextFieldAuthor");
         jTextFieldEdition.setName("jTextFieldEdition");
@@ -279,9 +283,9 @@ public class BookEditWindow extends javax.swing.JDialog {
         // optional fields
         showOptionalFields();
     }
-    
+
     private void showOptionalFields() {
-        
+
         if (editedAtm.hasKeySet(BibTeXEntry.KEY_VOLUME)) {
             jTextFieldVolume.setText(editedAtm.getField(BibTeXEntry.KEY_VOLUME).toUserString());
         }
@@ -301,34 +305,66 @@ public class BookEditWindow extends javax.swing.JDialog {
             jTextFieldNote.setText(editedAtm.getField(BibTeXEntry.KEY_NOTE).toUserString());
         }
     }
-    
+
     private void getAllChangedFields() {
-        
-        Map<Key, Value> oldOnes = editedAtm.getFields();
-        
-        for (Component c : getContentPane().getComponents()) {
-            if (c instanceof JTextField) {
-                JTextField inputField = (JTextField) c;
-                System.out.println(inputField.getName());
-                
-                Key keyAssociatedToInput = resolveKey(inputField.getName());
-                if (inputField.getText().isEmpty() && editedAtm.hasKeySet(keyAssociatedToInput)) {
-                    editedAtm.removeField(keyAssociatedToInput);
-                } else { // update
-                    
-                }
+
+        for (Component component : getContentPane().getComponents()) {
+
+            if (component instanceof JTextField) {
+                JTextField inputField = (JTextField) component;
+                addOrRemoveFromTextField(inputField);
+
+            } else if (component instanceof JComboBox) {
+                JComboBox inputField = (JComboBox) component;
+                addOrRemoveFromComboBox(inputField);
             }
-        }        
-        
+        }
+
     }
-    
+
+    private void addOrRemoveFromComboBox(JComboBox inputField) {
+        Key keyAssociatedToInput = resolveKey(inputField.getName());
+
+        if (((String) inputField.getSelectedItem()).equals("NaN") && editedAtm.hasKeySet(keyAssociatedToInput)) {
+            editedAtm.removeField(keyAssociatedToInput);
+        } else if (!((String) inputField.getSelectedItem()).equals("NaN") && !editedAtm.hasKeySet(keyAssociatedToInput)) {
+            addFromComboBox(inputField, keyAssociatedToInput);
+        }
+    }
+
+    private void addOrRemoveFromTextField(JTextField inputField) {
+        Key keyAssociatedToInput = resolveKey(inputField.getName());
+
+        if (inputField.getText().isEmpty() && editedAtm.hasKeySet(keyAssociatedToInput)) {
+            editedAtm.removeField(keyAssociatedToInput);
+        } else if (!inputField.getText().isEmpty() && !editedAtm.hasKeySet(keyAssociatedToInput)) {
+            addFromTextField(inputField, keyAssociatedToInput);
+        }
+    }
+
+    private void addFromTextField(JTextField inputField, Key keyAssociatedToInput) {
+        String newStringValue = inputField.getText();
+        Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
+        editedAtm.addField(keyAssociatedToInput, newValue);
+    }
+
+    private void addFromComboBox(JComboBox inputField, Key keyAssociatedToInput) {
+        String newStringValue = (String) inputField.getSelectedItem();
+        Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
+        editedAtm.addField(keyAssociatedToInput, newValue);
+    }
+
     private Key resolveKey(String componentName) {
         String lastPart = componentName.replaceAll("jTextField", "");
-        
+
+        if (lastPart.length() >= componentName.length()) { // must be comboBox
+            lastPart = componentName.replaceAll("jCombo", "");
+        }
+
         Key key = null;
-        
-        switch(lastPart){
-        
+
+        switch (lastPart) {
+
             case "Title":
                 key = BibTeXEntry.KEY_TITLE;
                 break;
@@ -338,7 +374,7 @@ public class BookEditWindow extends javax.swing.JDialog {
             case "Publisher":
                 key = BibTeXEntry.KEY_PUBLISHER;
                 break;
-            case "Year": 
+            case "Year":
                 key = BibTeXEntry.KEY_YEAR;
                 break;
             case "Volume":
@@ -347,7 +383,7 @@ public class BookEditWindow extends javax.swing.JDialog {
             case "Series":
                 key = BibTeXEntry.KEY_SERIES;
                 break;
-            case "Address": 
+            case "Address":
                 key = BibTeXEntry.KEY_ADDRESS;
                 break;
             case "Edition":
@@ -356,12 +392,22 @@ public class BookEditWindow extends javax.swing.JDialog {
             case "Note":
                 key = BibTeXEntry.KEY_NOTE;
                 break;
-                
-            
+            case "Month":
+                key = BibTeXEntry.KEY_MONTH;
+                break;
+
         }
-        
-        
-        
+
         return key;
+    }
+
+    private Value resolveValue(Key keyAssociatedToInput, String valueOfKey) {
+        Value v = null;
+        if (keyAssociatedToInput == BibTeXEntry.KEY_VOLUME || keyAssociatedToInput == BibTeXEntry.KEY_YEAR) { // digit field
+            v = new DigitStringValue(valueOfKey);
+        } else {
+            v = new StringValue(valueOfKey, Style.BRACED);
+        }
+        return v;
     }
 }
