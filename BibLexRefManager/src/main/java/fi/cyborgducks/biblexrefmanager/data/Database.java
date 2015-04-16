@@ -42,5 +42,9 @@ public abstract class Database {
     public BibTeXDatabase getDB() {
         return bibTexDatabase;
     }
+    
+    public void setDB(BibTeXDatabase db){
+        this.bibTexDatabase = db;
+    }
 
 }

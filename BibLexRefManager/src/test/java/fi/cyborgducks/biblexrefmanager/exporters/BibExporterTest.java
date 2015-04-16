@@ -49,7 +49,7 @@ public class BibExporterTest {
         assertEquals(false, result);
     }
 
-    private InMemoryDatabase constructDataBaseWithTwoRefereces() {
+    public static InMemoryDatabase constructDataBaseWithTwoRefereces() {
         InMemoryDatabase inMemDB = new InMemoryDatabase();
         Reference r = new Book("hepuli", "Leo Kiiski", "Sillikalastuksen alkeet", "Kalapanimo", "1991");
         Reference r2 = new Book("hippuli", "Peelo", "Super book", "Peelos publisher", "2012");
