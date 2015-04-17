@@ -8,6 +8,7 @@ package fi.cyborgducks.biblexrefmanager.exporters;
 import fi.cyborgducks.biblexrefmanager.data.InMemoryDatabase;
 import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
+import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,13 +17,22 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 import java.util.Stack;
+import org.jbibtex.BibTeXDatabase;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.mockito.BDDMockito;
+import static org.mockito.Mockito.*;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
  *
  * @author goalaleo
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({FileChooser.class, BibExporter.class})  // Static.class contains static methods
 public class BibExporterTest {
 
     @Test
@@ -48,6 +58,31 @@ public class BibExporterTest {
         boolean result = bracketsMatchHelper(path);
         assertEquals(false, result);
     }
+
+    @Test
+    public void exportToNullDoNotCallExportTest() throws UnsupportedEncodingException, IOException {
+        PowerMockito.mockStatic(FileChooser.class);
+        BDDMockito.given(FileChooser.chooseFile("Save")).willReturn(null);
+        
+        BibTeXDatabase mockDB = mock(BibTeXDatabase.class);
+        BibExporter.export(mockDB);
+
+        PowerMockito.verifyStatic();
+    }
+    
+//    @Test
+//    public void exportWithValidPathTest() throws UnsupportedEncodingException, IOException {
+//        PowerMockito.mockStatic(FileChooser.class);
+//        PowerMockito.mockStatic(BibExporter.class);
+//        BDDMockito.given(FileChooser.chooseFile("Save")).willReturn("path/to/there");
+//        
+//        BibTeXDatabase mockDB = mock(BibTeXDatabase.class);
+//        
+//        PowerMockito.
+//        BibExporter.export(mockDB);
+//
+//        PowerMockito.verifyStatic();
+//    }
 
     public static InMemoryDatabase constructDataBaseWithTwoRefereces() {
         InMemoryDatabase inMemDB = new InMemoryDatabase();
@@ -92,9 +127,10 @@ public class BibExporterTest {
         }
         boolean good = stackForBrackets.empty();
         streamFromFile.close();
-        File file = new File(path+".bib");
+        File file = new File(path + ".bib");
         file.delete();
 
         return good;
     }
+
 }
