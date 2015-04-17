@@ -229,7 +229,9 @@ public class BookEditWindow extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
             return;
         }
-
+        
+        JOptionPane.showMessageDialog(this, "Changes are saved!");
+        
         parent.updateReferenceList(); // updates the list in main window
         dispose(); // Dispose the window after editing is done
     }//GEN-LAST:event_jButtonAcceptActionPerformed
