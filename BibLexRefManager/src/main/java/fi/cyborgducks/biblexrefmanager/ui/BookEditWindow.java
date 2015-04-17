@@ -217,6 +217,14 @@ public class BookEditWindow extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+
+        isValidNewReference();
+
+        if (bookValidator.hasErrors()) {
+            JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
+            return;
+        }
+
         this.dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
@@ -345,20 +353,12 @@ public class BookEditWindow extends javax.swing.JDialog {
         String newStringValue = inputField.getText();
         Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
 
-        if (!isValidNewReference()) {
-            return;
-        }
-
         editedAtm.addField(keyAssociatedToInput, newValue);
     }
 
     private void addFromComboBox(JComboBox inputField, Key keyAssociatedToInput) {
         String newStringValue = (String) inputField.getSelectedItem();
         Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
-
-        if (!isValidNewReference()) {
-            return;
-        }
 
         editedAtm.addField(keyAssociatedToInput, newValue);
     }
@@ -429,7 +429,7 @@ public class BookEditWindow extends javax.swing.JDialog {
 
         String[] toBeValidatedFields = new String[]{editedAtm.getKey().getValue(), "", "", "", ""};
 
-        for (int i = 1; i < required.length; i++) {
+        for (int i = 1; i <= required.length; i++) {
             Key key = required[i - 1];
             try {
                 toBeValidatedFields[i] = editedAtm.getField(key).toUserString();
