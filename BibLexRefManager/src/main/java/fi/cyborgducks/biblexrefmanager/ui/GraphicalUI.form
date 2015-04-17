@@ -524,7 +524,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/reference_edit.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Edit selected reference"/>
+            <Property name="toolTipText" type="java.lang.String" value="View and Edit selected reference"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEditSelectedActionPerformed"/>
