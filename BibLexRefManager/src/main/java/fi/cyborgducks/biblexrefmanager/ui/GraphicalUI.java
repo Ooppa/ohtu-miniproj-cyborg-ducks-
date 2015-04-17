@@ -439,7 +439,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         publisherInputTextFieldActionPerformed(evt);
         yearInputTextFieldActionPerformed(evt);
 
-        String[] bookParams = new String[] {this.key, this.author, this.title, this.publisher, this.year};
+        String[] bookParams = new String[]{this.key, this.author, this.title, this.publisher, this.year};
         handleOneBook(bookParams);
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -473,9 +473,9 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void jMenuItemExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExportActionPerformed
         try {
             BibExporter.export(database.getDB());
-        } catch(UnsupportedEncodingException ex) {
+        } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItemExportActionPerformed
@@ -483,7 +483,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void jMenuItemLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoadActionPerformed
         try {
             database.setDB(BibImporter.importFromBib());
-        } catch(ObjectResolutionException|ParseException|IOException ex) {
+        } catch (ObjectResolutionException | ParseException | IOException ex) {
             Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             updateReferenceList();
@@ -496,7 +496,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void buttonEditSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
-        if(this.jListRefereces.getSelectedIndex()!=-1) {
+        if (this.jListRefereces.getSelectedIndex() != -1) {
             Reference chosenReference = (Reference) this.jListRefereces.getSelectedValue();
             showEditWindow(chosenReference);
         }
@@ -512,8 +512,11 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void buttonDeleteSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
-        if(this.jListRefereces.getSelectedIndex()!=-1) {
+        if (this.jListRefereces.getSelectedIndex() != -1) {
             Reference chosenReference = (Reference) this.jListRefereces.getSelectedValue();
+            database.deleteReference(chosenReference.getKey(), chosenReference.getType());
+            this.updateReferenceList();
+            errorMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
         }
 
         // TODO
@@ -521,11 +524,11 @@ public class GraphicalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDeleteSelectedActionPerformed
 
     private void jListReferecesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListReferecesValueChanged
-        if(this.jListRefereces.getSelectedIndex()==-1) {
+        if (this.jListRefereces.getSelectedIndex() == -1) {
             this.labelSelectedItem.setText("Selected item");
         } else {
             Reference reference = (Reference) this.jListRefereces.getSelectedValue();
-            this.labelSelectedItem.setText("Selected: "+reference.getKey().toString());
+            this.labelSelectedItem.setText("Selected: " + reference.getKey().toString());
         }
     }//GEN-LAST:event_jListReferecesValueChanged
 
@@ -578,7 +581,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     }
 
     public void appendToOutput(String text) {
-        this.errorMessageArea.append("\n> "+text);
+        this.errorMessageArea.append("\n> " + text);
     }
 
     public void updateReferenceList() {
@@ -590,7 +593,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         bookValidator.isValidParams(bookParams);
         // TODO: Optional fieldeille oma validaattori
 
-        if(!bookValidator.hasErrors()) {
+        if (!bookValidator.hasErrors()) {
             errorMessageArea.append("\n> Input was valid.");
 
             Reference addableReference = BookFactory.createBook(bookParams);
@@ -601,7 +604,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             updateReferenceList();
             clearFields();
 
-            errorMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+            errorMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
         } else {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
         }
@@ -609,38 +612,38 @@ public class GraphicalUI extends javax.swing.JFrame {
     }
 
     private void addOptionalBookFields(Reference reference) {
-        if(!optionalVolumeField.getText().isEmpty()) {
+        if (!optionalVolumeField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_VOLUME,
                     new DigitStringValue(optionalVolumeField.getText())
             );
         }
 
-        if(!optionalSeriesField.getText().isEmpty()) {
+        if (!optionalSeriesField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_SERIES,
                     new StringValue(optionalSeriesField.getText(), Style.BRACED)
             );
         }
 
-        if(!optionalAddressField.getText().isEmpty()) {
+        if (!optionalAddressField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_ADDRESS,
                     new StringValue(optionalAddressField.getText(), Style.BRACED)
             );
         }
 
-        if(!optionalEditionField.getText().isEmpty()) {
+        if (!optionalEditionField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_EDITION,
                     new StringValue(optionalEditionField.getText(), Style.BRACED)
             );
         }
 
         // 0 is the index for NaN
-        if(this.optionalMonthCombobox.getSelectedIndex()!=0) {
+        if (this.optionalMonthCombobox.getSelectedIndex() != 0) {
             reference.addField(BibTeXEntry.KEY_MONTH,
                     new StringValue(optionalMonthCombobox.getSelectedItem().toString(), Style.BRACED)
             );
         }
 
-        if(!optionalNoteField.getText().isEmpty()) {
+        if (!optionalNoteField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_NOTE,
                     new StringValue(optionalNoteField.getText(), Style.BRACED)
             );
