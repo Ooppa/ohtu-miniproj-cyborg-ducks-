@@ -230,7 +230,7 @@ public class BookEditWindow extends javax.swing.JDialog {
             return;
         }
         
-        JOptionPane.showMessageDialog(this, "Changes are saved!");
+        parent.appendToOutput("Successfully edited reference "+ editedAtm.getKey());
         
         parent.updateReferenceList(); // updates the list in main window
         dispose(); // Dispose the window after editing is done

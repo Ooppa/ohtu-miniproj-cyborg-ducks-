@@ -577,6 +577,10 @@ public class GraphicalUI extends javax.swing.JFrame {
         field.setText("");
     }
 
+    public void appendToOutput(String text) {
+        this.errorMessageArea.append("\n> "+text);
+    }
+
     public void updateReferenceList() {
         List<Reference> allSavedReferences = this.database.getAllSavedReferences();
         jListRefereces.setListData(allSavedReferences.toArray());
