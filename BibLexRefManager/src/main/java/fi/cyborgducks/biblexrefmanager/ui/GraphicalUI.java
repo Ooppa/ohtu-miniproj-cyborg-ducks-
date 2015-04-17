@@ -47,7 +47,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         this.database = new InMemoryDatabase();
         this.bookValidator = new BookValidator();
-        database.saveReference(new Book("123", "Samu", "Super book", "Samus publisher", "2015")); // just a stub to help editing
+        //database.saveReference(new Book("123", "Samu", "Super book", "Samus publisher", "2015")); // just a stub to help editing
         updateReferenceList();
     }
 
