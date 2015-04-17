@@ -9,7 +9,6 @@ import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import java.awt.Component;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jbibtex.*;
@@ -22,7 +21,7 @@ import org.jbibtex.StringValue.Style;
 public class BookEditWindow extends javax.swing.JDialog {
 
     private Reference editedAtm;
-    private final JFrame parent;
+    private final GraphicalUI parent;
     private final BookValidator bookValidator;
 
     /**
@@ -32,7 +31,7 @@ public class BookEditWindow extends javax.swing.JDialog {
      * @param modal
      * @param selected
      */
-    public BookEditWindow(JFrame parent, boolean modal, Reference selected) {
+    public BookEditWindow(GraphicalUI parent, boolean modal, Reference selected) {
         super(parent, modal);
         setLocationRelativeTo(parent);
         this.editedAtm = selected;
@@ -230,8 +229,8 @@ public class BookEditWindow extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
             return;
         }
-        JOptionPane.showMessageDialog(this, "Changes are saved!");
-        parent.update(null); // updates the list in main window
+
+        parent.updateReferenceList(); // updates the list in main window
         dispose(); // Dispose the window after editing is done
     }//GEN-LAST:event_jButtonAcceptActionPerformed
 
