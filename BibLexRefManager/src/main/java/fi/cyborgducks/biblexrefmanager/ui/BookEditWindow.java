@@ -218,13 +218,6 @@ public class BookEditWindow extends javax.swing.JDialog {
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
 
-        isValidNewReference();
-
-        if (bookValidator.hasErrors()) {
-            JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
-            return;
-        }
-
         this.dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
@@ -334,7 +327,7 @@ public class BookEditWindow extends javax.swing.JDialog {
 
         if (((String) inputField.getSelectedItem()).equals("NaN") && editedAtm.hasKeySet(keyAssociatedToInput)) {
             editedAtm.removeField(keyAssociatedToInput);
-        } else if (!((String) inputField.getSelectedItem()).equals("NaN") && !editedAtm.hasKeySet(keyAssociatedToInput)) {
+        } else if (!((String) inputField.getSelectedItem()).equals("NaN")) {
             addFromComboBox(inputField, keyAssociatedToInput);
         }
     }
@@ -344,7 +337,7 @@ public class BookEditWindow extends javax.swing.JDialog {
 
         if (inputField.getText().isEmpty() && editedAtm.hasKeySet(keyAssociatedToInput)) {
             editedAtm.removeField(keyAssociatedToInput);
-        } else if (!inputField.getText().isEmpty() && !editedAtm.hasKeySet(keyAssociatedToInput)) {
+        } else if (!inputField.getText().isEmpty()) {
             addFromTextField(inputField, keyAssociatedToInput);
         }
     }
