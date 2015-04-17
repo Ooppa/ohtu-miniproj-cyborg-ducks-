@@ -320,7 +320,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         });
 
         buttonEditSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_edit.png"))); // NOI18N
-        buttonEditSelected.setToolTipText("Edit selected reference");
+        buttonEditSelected.setToolTipText("View and Edit selected reference");
         buttonEditSelected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditSelectedActionPerformed(evt);
