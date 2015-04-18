@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jbibtex.BibTeXObject;
 import org.jbibtex.Key;
+import org.jbibtex.Value;
 
 /**
  * Saves directly to formatted database without populating it first.
@@ -53,6 +54,13 @@ public class InMemoryDatabase extends Database {
         }
         bibTexDatabase.removeObject(fetched);
         return true;
+    }
+
+    @Override
+    public void updateReference(Key id, Key type, Key editKey, Value newInfo) {
+        //should also have check for id-key, that can't be edited
+        Reference fetchedRef = fetchReference(id, type);
+        fetchedRef.addField(editKey, newInfo);
     }
 
 }
