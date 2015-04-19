@@ -14,7 +14,7 @@ notifications:
       - "Build details: %{build_url}"
 deploy:
   provider: releases
-  api_key: auth
+  api_key: $auth
   file: "BibLexRefManager/target/BibLexRefManager-*.jar"
   skip_cleanup: true
   on:
