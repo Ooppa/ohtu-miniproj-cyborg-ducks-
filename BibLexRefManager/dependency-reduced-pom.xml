@@ -101,6 +101,25 @@
           <repoToken>z6cKXOXYLKglQzMcjROamHlnLVMwMbi3N</repoToken>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.2</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer>
+                  <mainClass>fi.cyborgducks.biblexrefmanager.application.Application</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <dependencies>

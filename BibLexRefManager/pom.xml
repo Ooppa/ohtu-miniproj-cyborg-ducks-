@@ -6,6 +6,7 @@
     <version>v1.00</version><!-- Sprintti 2, merge 00 -->
     <description>Ohjelmistotuotanto kevät 2015 Miniprojekti, BibLex viitteiden hallintajärjestelmä</description>
     <packaging>jar</packaging>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
@@ -40,7 +41,6 @@
             <artifactId>mockito-all</artifactId>
             <version>1.9.5</version>
         </dependency>
-        
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito</artifactId>
@@ -59,13 +59,11 @@
             <version>1.5</version>
             <scope>test</scope>
         </dependency>
-        
         <dependency>
-		<groupId>org.codehaus.jackson</groupId>
-		<artifactId>jackson-mapper-asl</artifactId>
-		<version>1.8.5</version>
-	</dependency>
-        
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.8.5</version>
+        </dependency>
     </dependencies>
     
     <build>
@@ -168,7 +166,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        
     </build>
     
 </project>
