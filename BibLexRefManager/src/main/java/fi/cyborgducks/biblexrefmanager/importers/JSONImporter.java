@@ -32,7 +32,7 @@ import org.jbibtex.ParseException;
 public class JSONImporter {
 
     public static BibTeXDatabase importFromJSON() throws ObjectResolutionException, ParseException, IOException {
-        String filePath = FileChooser.chooseFile("Load");
+        String filePath = FileChooser.chooseFile("Load", "json");
         if (filePath == null) {
             return null;
         }

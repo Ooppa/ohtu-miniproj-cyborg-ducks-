@@ -62,7 +62,7 @@ public class BibExporterTest {
     @Test
     public void exportToNullDoNotCallExportTest() throws UnsupportedEncodingException, IOException {
         PowerMockito.mockStatic(FileChooser.class);
-        BDDMockito.given(FileChooser.chooseFile("Save")).willReturn(null);
+        BDDMockito.given(FileChooser.chooseFile("Save", "bib")).willReturn(null);
         
         BibTeXDatabase mockDB = mock(BibTeXDatabase.class);
         BibExporter.export(mockDB);
