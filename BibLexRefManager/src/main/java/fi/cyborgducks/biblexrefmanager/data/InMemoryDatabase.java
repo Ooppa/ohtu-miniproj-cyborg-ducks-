@@ -6,6 +6,7 @@
 package fi.cyborgducks.biblexrefmanager.data;
 
 import fi.cyborgducks.biblexrefmanager.references.Reference;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import org.jbibtex.BibTeXObject;
@@ -17,7 +18,7 @@ import org.jbibtex.Value;
  *
  * @author kristianw
  */
-public class InMemoryDatabase extends Database {
+public class InMemoryDatabase extends Database implements Serializable {
 
     @Override
     public void saveReference(Reference ref) {

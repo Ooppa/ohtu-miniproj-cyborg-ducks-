@@ -32,7 +32,9 @@ public class Book extends Reference implements java.io.Serializable {
         addField(BibTeXEntry.KEY_PUBLISHER, new StringValue(publisher, Style.BRACED));
         addField(BibTeXEntry.KEY_YEAR, new DigitStringValue(year));
     }
-    
+
+    public Book() {
+    }
 
     private void setRequiredAndOptionalFields() {
         setRequiredFields(new Key[]{

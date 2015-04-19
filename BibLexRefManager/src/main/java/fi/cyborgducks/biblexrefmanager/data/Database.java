@@ -6,6 +6,7 @@
 package fi.cyborgducks.biblexrefmanager.data;
 
 import fi.cyborgducks.biblexrefmanager.references.Reference;
+import java.io.Serializable;
 import java.util.List;
 import org.jbibtex.BibTeXDatabase;
 import org.jbibtex.Key;
@@ -16,7 +17,7 @@ import org.jbibtex.Value;
  *
  * @author kristianw
  */
-public abstract class Database {
+public abstract class Database implements Serializable {
 
     protected BibTeXDatabase bibTexDatabase;
 

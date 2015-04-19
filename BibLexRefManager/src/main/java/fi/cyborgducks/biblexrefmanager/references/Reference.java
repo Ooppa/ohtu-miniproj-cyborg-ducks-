@@ -20,6 +20,10 @@ public abstract class Reference extends BibTeXEntry implements java.io.Serializa
 
     private Key[] optionalFields = {BibTeXEntry.KEY_NOTE, BibTeXEntry.KEY_KEY};
 
+    public Reference() {
+        super(null, null);
+    }
+
     public Reference(Key type, Key key) {
         super(type, key);
     }

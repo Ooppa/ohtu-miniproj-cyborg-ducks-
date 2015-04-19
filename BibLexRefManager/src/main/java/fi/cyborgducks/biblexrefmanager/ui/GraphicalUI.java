@@ -7,9 +7,9 @@ package fi.cyborgducks.biblexrefmanager.ui;
 
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
-import fi.cyborgducks.biblexrefmanager.exporters.JSONExporter;
+import fi.cyborgducks.biblexrefmanager.exporters.SerializableExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
-import fi.cyborgducks.biblexrefmanager.importers.JSONImporter;
+import fi.cyborgducks.biblexrefmanager.importers.SerializableImporter;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
@@ -479,7 +479,8 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void jMenuItemLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoadActionPerformed
         try {
-            database.setDB(JSONImporter.importFromJSON());
+            //database.setDB(JSONImporter.importFromJSON());
+            database = SerializableImporter.importFromSer();
         } catch (ObjectResolutionException | ParseException | IOException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -490,7 +491,8 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void jMenuItemSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSaveActionPerformed
         // kun tallennetaan nykyinen tietokanta
         try {
-            JSONExporter.export(database);
+            //JSONExporter.export(database);
+            SerializableExporter.export(database);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
