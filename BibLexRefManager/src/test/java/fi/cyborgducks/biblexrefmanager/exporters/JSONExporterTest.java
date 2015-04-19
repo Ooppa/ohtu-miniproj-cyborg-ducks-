@@ -5,10 +5,7 @@
  */
 package fi.cyborgducks.biblexrefmanager.exporters;
 
-/**
- *
- * @author samutamm
- */
+
 public class JSONExporterTest {
     
 }
