@@ -6,6 +6,10 @@
 package fi.cyborgducks.biblexrefmanager.references;
 
 import java.util.Arrays;
+import org.codehaus.jackson.annotate.JsonSubTypes;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+import org.codehaus.jackson.annotate.JsonTypeInfo.As;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.jbibtex.BibTeXEntry;
 import org.jbibtex.Key;
 import org.jbibtex.Value;
@@ -14,6 +18,10 @@ import org.jbibtex.Value;
  *
  * @author Ooppa
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.WRAPPER_OBJECT, property = "@class")
+@JsonSubTypes(
+        {@JsonSubTypes.Type(value = Book.class)}
+)
 public abstract class Reference extends BibTeXEntry {
 
     private Key[] requiredFields = {};
@@ -78,10 +86,10 @@ public abstract class Reference extends BibTeXEntry {
 
     /**
      * Asks if specific key has already been inserted for this reference
+     *
      * @param askedKey wanted key
      * @return true - if key has been set, false otherwise
      */
-    
     public boolean hasKeySet(Key askedKey) {
         return super.getField(askedKey) != null;
     }

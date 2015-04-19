@@ -52,6 +52,7 @@ public class JSONImporter {
 
         JsonFactory factory = new JsonFactory();
         ObjectMapper mapper = new ObjectMapper(factory);
+        mapper.registerSubtypes(Book.class);
         TypeReference<List<Reference>> typeRef
                 = new TypeReference<List<Reference>>() {
                 };

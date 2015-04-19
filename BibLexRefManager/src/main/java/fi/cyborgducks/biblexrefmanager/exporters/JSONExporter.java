@@ -6,6 +6,7 @@
 package fi.cyborgducks.biblexrefmanager.exporters;
 
 import fi.cyborgducks.biblexrefmanager.data.Database;
+import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
 import java.io.BufferedWriter;
@@ -71,13 +72,11 @@ public class JSONExporter {
         try {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
+            mapper.registerSubtypes(Book.class);
             //mapper.writeValue(new File("c:\\user.json"), user);
             List<Reference> objects = database.getAllSavedReferences();
+            mapper.writeValue(writer, objects);
 
-            for (Reference object : objects) {
-                System.out.println(mapper.writeValueAsString(object));
-                mapper.writeValue(writer, object);
-            }
         } finally {
             writer.close();
         }
