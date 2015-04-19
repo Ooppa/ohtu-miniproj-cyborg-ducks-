@@ -10,6 +10,7 @@ import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.exporters.JSONExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
 import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
+import fi.cyborgducks.biblexrefmanager.importers.JSONImporter;
 import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
@@ -483,9 +484,9 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void jMenuItemLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoadActionPerformed
         try {
-            database.setDB(BibImporter.importFromBib());
+            database.setDB(JSONImporter.importFromJSON());
         } catch (ObjectResolutionException | ParseException | IOException ex) {
-            Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         } finally {
             updateReferenceList();
         }
@@ -494,7 +495,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void jMenuItemSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSaveActionPerformed
         // kun tallennetaan nykyinen tietokanta
         try {
-            JSONExporter.export(database.getDB());
+            JSONExporter.export(database);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

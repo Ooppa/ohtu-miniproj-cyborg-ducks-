@@ -5,6 +5,8 @@
  */
 package fi.cyborgducks.biblexrefmanager.exporters;
 
+import fi.cyborgducks.biblexrefmanager.data.Database;
+import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -18,7 +20,6 @@ import org.codehaus.jackson.JsonGenerator;
 import org.jbibtex.BibTeXDatabase;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.jbibtex.BibTeXObject;
-
 
 /**
  *
@@ -39,7 +40,7 @@ public class JSONExporter {
      * @throws UnsupportedEncodingException
      * @throws IOException
      */
-    public static void export(BibTeXDatabase database) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+    public static void export(Database database) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         String path = FileChooser.chooseFile("Save", "json");
         if (path == null) {
             return;
@@ -58,7 +59,7 @@ public class JSONExporter {
      * @throws UnsupportedEncodingException
      * @throws IOException
      */
-    public static void export(BibTeXDatabase database, String path) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+    public static void export(Database database, String path) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         if (!path.endsWith(".json")) {
             path += ".json";
         }
@@ -71,8 +72,9 @@ public class JSONExporter {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
             //mapper.writeValue(new File("c:\\user.json"), user);
-            List<BibTeXObject> objects = database.getObjects();
-            for (BibTeXObject object : objects) {
+            List<Reference> objects = database.getAllSavedReferences();
+
+            for (Reference object : objects) {
                 System.out.println(mapper.writeValueAsString(object));
                 mapper.writeValue(writer, object);
             }

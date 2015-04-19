@@ -13,7 +13,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
@@ -50,31 +52,16 @@ public class JSONImporter {
 
         JsonFactory factory = new JsonFactory();
         ObjectMapper mapper = new ObjectMapper(factory);
-        TypeReference<HashMap<String, Object>> typeRef
-                = new TypeReference<HashMap<String, Object>>() {
+        TypeReference<List<Reference>> typeRef
+                = new TypeReference<List<Reference>>() {
                 };
 
         try {
-//			BibTeXParser parser = new BibTeXParser(){
-//				@Override
-//				public void checkStringResolution(Key key, BibTeXString string){
-//					if(string == null){
-//						System.err.println("Unresolved string: \"" + key.getValue() + "\"");
-//					}
-//				}
-//				@Override
-//				public void checkCrossReferenceResolution(Key key, BibTeXEntry entry){
-//
-//					if(entry == null){
-//						System.err.println("Unresolved cross-reference: \"" + key.getValue() + "\"");
-//					}
-//				}
-//			};
-            //return parser.parse(reader);
 
-            HashMap<String, Object> objects = mapper.readValue(reader, typeRef);
-            for (String key : objects.keySet()) {
-                System.out.println("KEY: " + key + ", VALUE: " + objects.get(key));
+            List<Reference> objects = mapper.readValue(reader, typeRef);
+            for (Reference r : objects) {
+                //System.out.println("KEY: " + key + ", VALUE: " + objects.get(key));
+                System.out.println(r);
             }
             return null;
         } finally {
