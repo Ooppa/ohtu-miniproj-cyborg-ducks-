@@ -64,7 +64,7 @@ public class JSONExporter {
         }
 
         Writer writer = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(path), "8859_1")
+                new OutputStreamWriter(new FileOutputStream(path), "UTF-8")
         );
 
         try {
