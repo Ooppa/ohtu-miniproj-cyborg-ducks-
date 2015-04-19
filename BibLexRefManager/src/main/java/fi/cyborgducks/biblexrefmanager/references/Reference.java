@@ -14,7 +14,7 @@ import org.jbibtex.Value;
  *
  * @author Ooppa
  */
-public abstract class Reference extends BibTeXEntry {
+public abstract class Reference extends BibTeXEntry implements java.io.Serializable {
 
     private Key[] requiredFields = {};
 
@@ -23,6 +23,7 @@ public abstract class Reference extends BibTeXEntry {
     public Reference(Key type, Key key) {
         super(type, key);
     }
+    
 
     /**
      * Adds a new field to the Reference given that it's listed as required of

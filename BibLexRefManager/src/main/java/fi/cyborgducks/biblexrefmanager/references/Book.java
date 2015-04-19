@@ -11,7 +11,7 @@ import org.jbibtex.StringValue.Style;
 /**
  * Defines a Book reference
  */
-public class Book extends Reference {
+public class Book extends Reference implements java.io.Serializable {
 
     /**
      * Creates a new Book Reference
@@ -32,6 +32,7 @@ public class Book extends Reference {
         addField(BibTeXEntry.KEY_PUBLISHER, new StringValue(publisher, Style.BRACED));
         addField(BibTeXEntry.KEY_YEAR, new DigitStringValue(year));
     }
+    
 
     private void setRequiredAndOptionalFields() {
         setRequiredFields(new Key[]{

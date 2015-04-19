@@ -33,7 +33,7 @@ public class FileChooser {
         if (fileExtension.equals("bib")) {
             filter = new FileNameExtensionFilter("bib files", "bib");
         } else {
-            filter = new FileNameExtensionFilter("json files", "json");
+            filter = new FileNameExtensionFilter("ser files", "ser");
         }
 
         JFileChooser chooser = new JFileChooser();
