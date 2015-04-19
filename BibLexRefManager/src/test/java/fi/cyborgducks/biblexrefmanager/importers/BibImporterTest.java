@@ -8,6 +8,7 @@ package fi.cyborgducks.biblexrefmanager.importers;
 import fi.cyborgducks.biblexrefmanager.data.InMemoryDatabase;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporterTest;
+import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -20,11 +21,19 @@ import org.jbibtex.ObjectResolutionException;
 import org.jbibtex.ParseException;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.mockito.BDDMockito;
+import static org.mockito.Mockito.mock;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
  *
  * @author goalaleo
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({FileChooser.class, BibImporter.class})
 public class BibImporterTest {
     
     @Test
@@ -55,6 +64,18 @@ public class BibImporterTest {
         File file2 = new File(path2);
         file1.delete();
         file2.delete();
+    }
+    
+        @Test
+    public void importFromBibReturnsNullIfPathIsNull() throws UnsupportedEncodingException, IOException, ObjectResolutionException, ParseException {
+        PowerMockito.mockStatic(FileChooser.class);
+        BDDMockito.given(FileChooser.chooseFile("Load")).willReturn(null);
+        
+        PowerMockito.mockStatic(BibImporter.class);
+        
+        assertNull(BibImporter.importFromBib());
+        
+        PowerMockito.verifyStatic();
     }
 
     private String bibAsString(String filePath) throws FileNotFoundException {
