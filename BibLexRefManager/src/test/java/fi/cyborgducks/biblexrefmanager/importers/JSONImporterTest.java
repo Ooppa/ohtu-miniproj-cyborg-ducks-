@@ -3,9 +3,12 @@
  * Helsingin yliopisto Tietojenkäsittelytieteen laitos
  * Cyborg Ducks 2015 - GNU General Public License, version 3.
  */
-package fi.cyborgducks.biblexrefmanager.exporters;
+package fi.cyborgducks.biblexrefmanager.importers;
 
-
-public class JSONExporterTest {
+/**
+ *
+ * @author samutamm
+ */
+public class JSONImporterTest {
     
 }

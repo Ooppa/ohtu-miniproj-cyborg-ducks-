@@ -27,7 +27,7 @@ public class BibExporter {
      * @throws IOException
      */
     public static void export( BibTeXDatabase database ) throws FileNotFoundException, UnsupportedEncodingException, IOException {
-        String path = FileChooser.chooseFile("Save");
+        String path = FileChooser.chooseFile("Save", "bib");
         if ( path == null ) {
             return;
         }

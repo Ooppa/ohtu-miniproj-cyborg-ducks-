@@ -69,7 +69,7 @@ public class BibImporterTest {
         @Test
     public void importFromBibReturnsNullIfPathIsNull() throws UnsupportedEncodingException, IOException, ObjectResolutionException, ParseException {
         PowerMockito.mockStatic(FileChooser.class);
-        BDDMockito.given(FileChooser.chooseFile("Load")).willReturn(null);
+        BDDMockito.given(FileChooser.chooseFile("Load", "bib")).willReturn(null);
         
         PowerMockito.mockStatic(BibImporter.class);
         

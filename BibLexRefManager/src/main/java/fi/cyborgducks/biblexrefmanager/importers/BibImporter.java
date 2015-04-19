@@ -26,7 +26,7 @@ import org.jbibtex.ParseException;
 public class BibImporter {
     
     public static BibTeXDatabase importFromBib() throws ObjectResolutionException, ParseException, IOException{
-    String filePath = FileChooser.chooseFile("Load");
+    String filePath = FileChooser.chooseFile("Load", "bib");
         if ( filePath == null ) {
             return null;
         }
