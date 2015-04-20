@@ -6,7 +6,8 @@
 package fi.cyborgducks.biblexrefmanager.ui;
 
 import fi.cyborgducks.biblexrefmanager.references.Book;
-import fi.cyborgducks.biblexrefmanager.references.Reference;
+import fi.cyborgducks.biblexrefmanager.references.utils.ReferenceUtils;
+
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import java.awt.Component;
 import java.util.HashSet;
@@ -23,7 +24,7 @@ import org.jbibtex.StringValue.Style;
  */
 public class BookEditWindow extends javax.swing.JDialog {
 
-    private Reference editedAtm, copyEditedAtm;
+    private BibTeXEntry editedAtm, copyEditedAtm;
     private final GraphicalUI parent;
     private final BookValidator bookValidator;
     private Set<Key> startKeys;
@@ -35,7 +36,7 @@ public class BookEditWindow extends javax.swing.JDialog {
      * @param modal
      * @param selected
      */
-    public BookEditWindow(GraphicalUI parent, boolean modal, Reference selected) {
+    public BookEditWindow(GraphicalUI parent, boolean modal, BibTeXEntry selected) {
         super(parent, modal);
         setLocationRelativeTo(parent);
         this.editedAtm = selected;
@@ -303,22 +304,22 @@ public class BookEditWindow extends javax.swing.JDialog {
 
     private void showOptionalFields() {
 
-        if (editedAtm.hasKeySet(BibTeXEntry.KEY_VOLUME)) {
+        if (ReferenceUtils.hasKeySet(editedAtm, BibTeXEntry.KEY_VOLUME)) {
             jTextFieldVolume.setText(editedAtm.getField(BibTeXEntry.KEY_VOLUME).toUserString());
         }
-        if (editedAtm.hasKeySet(BibTeXEntry.KEY_SERIES)) {
+        if (ReferenceUtils.hasKeySet(editedAtm, BibTeXEntry.KEY_SERIES)) {
             jTextFieldSeries.setText(editedAtm.getField(BibTeXEntry.KEY_SERIES).toUserString());
         }
-        if (editedAtm.hasKeySet(BibTeXEntry.KEY_ADDRESS)) {
+        if (ReferenceUtils.hasKeySet(editedAtm, BibTeXEntry.KEY_ADDRESS)) {
             jTextFieldAddress.setText(editedAtm.getField(BibTeXEntry.KEY_ADDRESS).toUserString());
         }
-        if (editedAtm.hasKeySet(BibTeXEntry.KEY_EDITION)) {
+        if (ReferenceUtils.hasKeySet(editedAtm, BibTeXEntry.KEY_EDITION)) {
             jTextFieldEdition.setText(editedAtm.getField(BibTeXEntry.KEY_EDITION).toUserString());
         }
-        if (editedAtm.hasKeySet(BibTeXEntry.KEY_MONTH)) {
+        if (ReferenceUtils.hasKeySet(editedAtm, BibTeXEntry.KEY_MONTH)) {
             jComboMonth.setSelectedItem(editedAtm.getField(BibTeXEntry.KEY_MONTH).toUserString());
         }
-        if (editedAtm.hasKeySet(BibTeXEntry.KEY_NOTE)) {
+        if (ReferenceUtils.hasKeySet(editedAtm, BibTeXEntry.KEY_NOTE)) {
             jTextFieldNote.setText(editedAtm.getField(BibTeXEntry.KEY_NOTE).toUserString());
         }
     }
@@ -342,7 +343,7 @@ public class BookEditWindow extends javax.swing.JDialog {
     private void addOrRemoveFromComboBox(JComboBox inputField) {
         Key keyAssociatedToInput = resolveKey(inputField.getName());
 
-        if (((String) inputField.getSelectedItem()).equals("NaN") && copyEditedAtm.hasKeySet(keyAssociatedToInput)) {
+        if (((String) inputField.getSelectedItem()).equals("NaN") && ReferenceUtils.hasKeySet(copyEditedAtm, keyAssociatedToInput)) {
             copyEditedAtm.removeField(keyAssociatedToInput);
         } else if (!((String) inputField.getSelectedItem()).equals("NaN")) {
             addFromComboBox(inputField, keyAssociatedToInput);
@@ -352,7 +353,7 @@ public class BookEditWindow extends javax.swing.JDialog {
     private void addOrRemoveFromTextField(JTextField inputField) {
         Key keyAssociatedToInput = resolveKey(inputField.getName());
 
-        if (inputField.getText().isEmpty() && copyEditedAtm.hasKeySet(keyAssociatedToInput)) {
+        if (inputField.getText().isEmpty() && ReferenceUtils.hasKeySet(copyEditedAtm, keyAssociatedToInput)) {
             copyEditedAtm.removeField(keyAssociatedToInput);
         } else if (!inputField.getText().isEmpty()) {
             addFromTextField(inputField, keyAssociatedToInput);
@@ -430,7 +431,7 @@ public class BookEditWindow extends javax.swing.JDialog {
         return v;
     }
 
-    private boolean isValidNewReference(Reference toBeValidated) {
+    private boolean isValidNewReference(BibTeXEntry toBeValidated) {
 
         Key[] required = new Key[]{BibTeXEntry.KEY_AUTHOR,
             BibTeXEntry.KEY_TITLE,

@@ -9,8 +9,9 @@ import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.exporters.JSONExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
-import fi.cyborgducks.biblexrefmanager.importers.JSONImporter;
-import fi.cyborgducks.biblexrefmanager.references.Reference;
+import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
+
+
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
 import java.io.IOException;
@@ -479,7 +480,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void jMenuItemLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoadActionPerformed
         try {
-            database.setDB(JSONImporter.importFromJSON());
+            database.setDB(BibImporter.importFromBib());
         } catch (ObjectResolutionException | ParseException | IOException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -490,7 +491,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void jMenuItemSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSaveActionPerformed
         // kun tallennetaan nykyinen tietokanta
         try {
-            JSONExporter.export(database);
+            BibExporter.export(database.getDB());
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -501,7 +502,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void buttonEditSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
         if (this.jListRefereces.getSelectedIndex() != -1) {
-            Reference chosenReference = (Reference) this.jListRefereces.getSelectedValue();
+            BibTeXEntry chosenReference = (BibTeXEntry) this.jListRefereces.getSelectedValue();
             showEditWindow(chosenReference);
         }
 
@@ -509,7 +510,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buttonEditSelectedActionPerformed
 
-    private void showEditWindow(final Reference selected) {
+    private void showEditWindow(final BibTeXEntry selected) {
         BookEditWindow dialog = new BookEditWindow(this, true, selected);
         dialog.setVisible(true);
     }
@@ -517,7 +518,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void buttonDeleteSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
         if (this.jListRefereces.getSelectedIndex() != -1) {
-            Reference chosenReference = (Reference) this.jListRefereces.getSelectedValue();
+            BibTeXEntry chosenReference = (BibTeXEntry) this.jListRefereces.getSelectedValue();
             database.deleteReference(chosenReference.getKey(), chosenReference.getType());
             this.updateReferenceList();
             errorMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
@@ -531,7 +532,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         if (this.jListRefereces.getSelectedIndex() == -1) {
             this.labelSelectedItem.setText("Selected item");
         } else {
-            Reference reference = (Reference) this.jListRefereces.getSelectedValue();
+            BibTeXEntry reference = (BibTeXEntry) this.jListRefereces.getSelectedValue();
             this.labelSelectedItem.setText("Selected: " + reference.getKey().toString());
         }
     }//GEN-LAST:event_jListReferecesValueChanged
@@ -589,7 +590,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     }
 
     public void updateReferenceList() {
-        List<Reference> allSavedReferences = this.database.getAllSavedReferences();
+        List<BibTeXEntry> allSavedReferences = this.database.getAllSavedReferences();
         jListRefereces.setListData(allSavedReferences.toArray());
     }
 
@@ -600,7 +601,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         if (!bookValidator.hasErrors()) {
             errorMessageArea.append("\n> Input was valid.");
 
-            Reference addableReference = BookFactory.createBook(bookParams);
+            BibTeXEntry addableReference = BookFactory.createBook(bookParams);
 
             addOptionalBookFields(addableReference);
             database.saveReference(addableReference);
@@ -615,7 +616,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     }
 
-    private void addOptionalBookFields(Reference reference) {
+    private void addOptionalBookFields(BibTeXEntry reference) {
         if (!optionalVolumeField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_VOLUME,
                     new DigitStringValue(optionalVolumeField.getText())

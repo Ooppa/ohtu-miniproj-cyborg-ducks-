@@ -5,8 +5,9 @@
  */
 package fi.cyborgducks.biblexrefmanager.validators;
 
-import fi.cyborgducks.biblexrefmanager.references.Reference;
+
 import java.util.ArrayList;
+import org.jbibtex.BibTeXEntry;
 
 public abstract class Validator {
 
@@ -35,7 +36,7 @@ public abstract class Validator {
 
     public abstract void isValidParams(String[] fields);
 
-    public abstract void validateReference(Reference toBeValidated);
+    public abstract void validateReference(BibTeXEntry toBeValidated);
 
     protected void addError(String message) {
         errors.add(new ErrorMessage(message));

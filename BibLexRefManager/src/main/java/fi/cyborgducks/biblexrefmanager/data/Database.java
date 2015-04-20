@@ -5,9 +5,10 @@
  */
 package fi.cyborgducks.biblexrefmanager.data;
 
-import fi.cyborgducks.biblexrefmanager.references.Reference;
+
 import java.util.List;
 import org.jbibtex.BibTeXDatabase;
+import org.jbibtex.BibTeXEntry;
 import org.jbibtex.Key;
 import org.jbibtex.Value;
 
@@ -24,7 +25,7 @@ public abstract class Database {
         this.bibTexDatabase = new BibTeXDatabase();
     }
 
-    public abstract void saveReference(Reference ref);
+    public abstract void saveReference(BibTeXEntry ref);
 
     /**
      * Updates the wanted reference with the given data
@@ -39,15 +40,15 @@ public abstract class Database {
     public abstract boolean deleteReference(Key id, Key type);
 
     /**
-     * Fetches one Reference from the database
+     * Fetches one BibTeXEntry from the database
      *
      * @param id - ID of the reference (usually key)
      * @param type - type of the reference
      * @return null - if no match, fetched reference else
      */
-    public abstract Reference fetchReference(Key id, Key type);
+    public abstract BibTeXEntry fetchReference(Key id, Key type);
 
-    public abstract List<Reference> getAllSavedReferences();
+    public abstract List<BibTeXEntry> getAllSavedReferences();
 
     public BibTeXDatabase getDB() {
         return bibTexDatabase;

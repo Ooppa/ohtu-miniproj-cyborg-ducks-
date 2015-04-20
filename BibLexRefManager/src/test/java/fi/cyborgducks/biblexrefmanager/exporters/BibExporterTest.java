@@ -7,7 +7,7 @@ package fi.cyborgducks.biblexrefmanager.exporters;
 
 import fi.cyborgducks.biblexrefmanager.data.InMemoryDatabase;
 import fi.cyborgducks.biblexrefmanager.references.Book;
-import fi.cyborgducks.biblexrefmanager.references.Reference;
+import fi.cyborgducks.biblexrefmanager.references.BibTeXEntry;
 import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,7 +49,7 @@ public class BibExporterTest {
     @Test
     public void bracketMismatchDetected() throws UnsupportedEncodingException, IOException {
         InMemoryDatabase inMemDB = new InMemoryDatabase();
-        Reference ref = new Book("kikkelis", "Kokkelis Kiiski", "Häläpiti hoi", "Röllituotanto" + "{", "1789");
+        BibTeXEntry ref = new Book("kikkelis", "Kokkelis Kiiski", "Häläpiti hoi", "Röllituotanto" + "{", "1789");
         inMemDB.saveReference(ref);
 
         String path = "src/mybib";
@@ -86,8 +86,8 @@ public class BibExporterTest {
 
     public static InMemoryDatabase constructDataBaseWithTwoRefereces() {
         InMemoryDatabase inMemDB = new InMemoryDatabase();
-        Reference r = new Book("hepuli", "Leo Kiiski", "Sillikalastuksen alkeet", "Kalapanimo", "1991");
-        Reference r2 = new Book("hippuli", "Peelo", "Super book", "Peelos publisher", "2012");
+        BibTeXEntry r = new Book("hepuli", "Leo Kiiski", "Sillikalastuksen alkeet", "Kalapanimo", "1991");
+        BibTeXEntry r2 = new Book("hippuli", "Peelo", "Super book", "Peelos publisher", "2012");
         inMemDB.saveReference(r);
         inMemDB.saveReference(r2);
         return inMemDB;

@@ -5,9 +5,10 @@
  */
 package fi.cyborgducks.biblexrefmanager.data;
 
-import fi.cyborgducks.biblexrefmanager.references.Reference;
+
 import java.util.ArrayList;
 import java.util.List;
+import org.jbibtex.BibTeXEntry;
 import org.jbibtex.BibTeXObject;
 import org.jbibtex.Key;
 import org.jbibtex.Value;
@@ -20,23 +21,23 @@ import org.jbibtex.Value;
 public class InMemoryDatabase extends Database {
 
     @Override
-    public void saveReference(Reference ref) {
+    public void saveReference(BibTeXEntry ref) {
         bibTexDatabase.addObject(ref);
     }
 
     @Override
-    public List<Reference> getAllSavedReferences() {
-        List<Reference> refs = new ArrayList<>();
+    public List<BibTeXEntry> getAllSavedReferences() {
+        List<BibTeXEntry> refs = new ArrayList<>();
         for (BibTeXObject bo : bibTexDatabase.getObjects()) {
-            refs.add((Reference) bo);
+            refs.add((BibTeXEntry) bo);
         }
         return refs;
     }
 
     @Override
-    public Reference fetchReference(Key id, Key type) {
-        Reference fetched = null;
-        for (Reference r : getAllSavedReferences()) {
+    public BibTeXEntry fetchReference(Key id, Key type) {
+        BibTeXEntry fetched = null;
+        for (BibTeXEntry r : getAllSavedReferences()) {
             if (r.getType().equals(type)
                     && r.getKey().equals(id)) {
                 fetched = r;
@@ -48,7 +49,7 @@ public class InMemoryDatabase extends Database {
 
     @Override
     public boolean deleteReference(Key id, Key type) {
-        Reference fetched = fetchReference(id, type);
+        BibTeXEntry fetched = fetchReference(id, type);
         if (fetched == null) {
             return false;
         }
@@ -59,7 +60,7 @@ public class InMemoryDatabase extends Database {
     @Override
     public void updateReference(Key id, Key type, Key editKey, Value newInfo) {
         //should also have check for id-key, that can't be edited
-        Reference fetchedRef = fetchReference(id, type);
+        BibTeXEntry fetchedRef = fetchReference(id, type);
         fetchedRef.addField(editKey, newInfo);
     }
 

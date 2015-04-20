@@ -11,6 +11,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 import org.codehaus.jackson.annotate.JsonTypeInfo.As;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.jbibtex.BibTeXEntry;
+
 import org.jbibtex.Key;
 import org.jbibtex.Value;
 
@@ -18,10 +19,7 @@ import org.jbibtex.Value;
  *
  * @author Ooppa
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.WRAPPER_OBJECT, property = "@class")
-@JsonSubTypes(
-        {@JsonSubTypes.Type(value = Book.class)}
-)
+
 public abstract class Reference extends BibTeXEntry {
 
     private Key[] requiredFields = {};
@@ -33,8 +31,8 @@ public abstract class Reference extends BibTeXEntry {
     }
 
     /**
-     * Adds a new field to the Reference given that it's listed as required of
-     * optional field.
+     * Adds a new field to the BibTeXEntry given that it's listed as required of
+ optional field.
      *
      * @param key Type of the Field
      * @param value KeyValue of the field

@@ -76,9 +76,9 @@ public class ReferenceTest {
     }
 
     /*
-     * Creates a generic Reference implementation that we can test.
+     * Creates a generic BibTeXEntry implementation that we can test.
      */
-    public class GenericReferenceImpl extends Reference {
+    public class GenericReferenceImpl extends BibTeXEntry {
 
         public GenericReferenceImpl(String author, String title) {
             super(BibTeXEntry.TYPE_MISC, new Key("Generic Reference"));

@@ -6,24 +6,19 @@
 package fi.cyborgducks.biblexrefmanager.importers;
 
 import fi.cyborgducks.biblexrefmanager.references.Book;
-import fi.cyborgducks.biblexrefmanager.references.Reference;
+
 import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.jbibtex.BibTeXDatabase;
 import org.jbibtex.BibTeXEntry;
-import org.jbibtex.BibTeXParser;
-import org.jbibtex.BibTeXString;
-import org.jbibtex.Key;
 import org.jbibtex.ObjectResolutionException;
 import org.jbibtex.ParseException;
 
@@ -53,14 +48,14 @@ public class JSONImporter {
         JsonFactory factory = new JsonFactory();
         ObjectMapper mapper = new ObjectMapper(factory);
         mapper.registerSubtypes(Book.class);
-        TypeReference<List<Reference>> typeRef
-                = new TypeReference<List<Reference>>() {
+        TypeReference<List<BibTeXEntry>> typeRef
+                = new TypeReference<List<BibTeXEntry>>() {
                 };
 
         try {
 
-            List<Reference> objects = mapper.readValue(reader, typeRef);
-            for (Reference r : objects) {
+            List<BibTeXEntry> objects = mapper.readValue(reader, typeRef);
+            for (BibTeXEntry r : objects) {
                 //System.out.println("KEY: " + key + ", VALUE: " + objects.get(key));
                 System.out.println(r);
             }

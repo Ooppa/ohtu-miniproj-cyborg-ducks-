@@ -6,7 +6,7 @@
 package fi.cyborgducks.biblexrefmanager.validators;
 
 import fi.cyborgducks.biblexrefmanager.references.Book;
-import fi.cyborgducks.biblexrefmanager.references.Reference;
+
 import java.util.Calendar;
 import org.jbibtex.BibTeXEntry;
 import org.jbibtex.DigitStringValue;
@@ -74,7 +74,7 @@ public class BookValidator extends Validator {
     }
     
     @Override
-    public void validateReference(Reference toBeValidated) {
+    public void validateReference(BibTeXEntry toBeValidated) {
         // would be type of book
         if (toBeValidated instanceof Book) {
             

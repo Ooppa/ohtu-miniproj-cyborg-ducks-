@@ -14,10 +14,10 @@ import org.jbibtex.StringValue.Style;
  * Defines a Book reference
  */
 @JsonTypeName("book")
-public class Book extends Reference {
+public class Book extends BibTeXEntry {
 
     /**
-     * Creates a new Book Reference
+     * Creates a new Book BibTeXEntry
      *
      * @param key Key to identify the reference by
      * @param author Author of the Book
@@ -61,6 +61,19 @@ public class Book extends Reference {
     @Override
     public String toString() {
         return super.getType() + " | " + super.getKey() + " (" + super.getField(KEY_TITLE).toUserString() + ")";
+    }
+
+    private void setRequiredFields(Key[] key) {
+        
+    }
+    
+
+    private void setOptionalFields(Key[] key) {
+
+    }
+
+    public Key[] getOptionalFields() {
+        return new Key[]{};
     }
 
 }

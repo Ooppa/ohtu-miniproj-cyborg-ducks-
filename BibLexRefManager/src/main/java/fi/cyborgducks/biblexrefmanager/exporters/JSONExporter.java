@@ -7,7 +7,6 @@ package fi.cyborgducks.biblexrefmanager.exporters;
 
 import fi.cyborgducks.biblexrefmanager.data.Database;
 import fi.cyborgducks.biblexrefmanager.references.Book;
-import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -20,6 +19,7 @@ import java.util.List;
 import org.codehaus.jackson.JsonGenerator;
 import org.jbibtex.BibTeXDatabase;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.jbibtex.BibTeXEntry;
 import org.jbibtex.BibTeXObject;
 
 /**
@@ -74,7 +74,7 @@ public class JSONExporter {
             mapper.configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
             mapper.registerSubtypes(Book.class);
             //mapper.writeValue(new File("c:\\user.json"), user);
-            List<Reference> objects = database.getAllSavedReferences();
+            List<BibTeXEntry> objects = database.getAllSavedReferences();
             mapper.writeValue(writer, objects);
 
         } finally {
