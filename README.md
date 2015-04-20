@@ -1,3 +1,4 @@
+[![Download ohtu-miniproj-cyborg-ducks-](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/ohtuminiprojcyborgducks/files/latest/download)
 # Cyborg Ducks [![Build Status](https://travis-ci.org/Ooppa/ohtu-miniproj-cyborg-ducks-.svg)](https://travis-ci.org/Ooppa/ohtu-miniproj-cyborg-ducks-) [![Coverage Status](https://coveralls.io/repos/Ooppa/ohtu-miniproj-cyborg-ducks-/badge.svg?branch=master)](https://coveralls.io/r/Ooppa/ohtu-miniproj-cyborg-ducks-?branch=master)
 Ohjelmistotuotanto kevät 2015 Miniprojekti
 
