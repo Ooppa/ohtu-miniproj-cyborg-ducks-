@@ -5,9 +5,12 @@
  */
 package fi.cyborgducks.biblexrefmanager.ui;
 
+import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import java.awt.Component;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -20,9 +23,10 @@ import org.jbibtex.StringValue.Style;
  */
 public class BookEditWindow extends javax.swing.JDialog {
 
-    private Reference editedAtm;
+    private Reference editedAtm, copyEditedAtm;
     private final GraphicalUI parent;
     private final BookValidator bookValidator;
+    private Set<Key> startKeys;
 
     /**
      * Creates new form EditWindow
@@ -35,9 +39,20 @@ public class BookEditWindow extends javax.swing.JDialog {
         super(parent, modal);
         setLocationRelativeTo(parent);
         this.editedAtm = selected;
+
+        copyEditedAtm = new Book(selected.getKey().getValue(),
+                selected.getField(BibTeXEntry.KEY_AUTHOR).toUserString(),
+                selected.getField(BibTeXEntry.KEY_TITLE).toUserString(),
+                selected.getField(BibTeXEntry.KEY_PUBLISHER).toUserString(),
+                selected.getField(BibTeXEntry.KEY_YEAR).toUserString());
+        copyEditedAtm.addAllFields(editedAtm.getFields());
+        startKeys = new HashSet<>();
+        for (Key k : copyEditedAtm.getFields().keySet()) {
+            startKeys.add(k);
+        }
+
         this.bookValidator = new BookValidator();
         this.parent = parent;
-
         initComponents();
         setTitle("Editing reference with key: " + selected.getKey());
         initializeFields();
@@ -223,15 +238,16 @@ public class BookEditWindow extends javax.swing.JDialog {
     private void jButtonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptActionPerformed
         getAllChangedFields();
 
-        isValidNewReference();
+        isValidNewReference(copyEditedAtm);
 
         if (bookValidator.hasErrors()) {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
             return;
         }
-        
-        parent.appendToOutput("Successfully edited reference "+ editedAtm.getKey());
-        
+
+        copyAllFieldsToEdited();
+        parent.appendToOutput("Successfully edited reference " + editedAtm.getKey());
+
         parent.updateReferenceList(); // updates the list in main window
         dispose(); // Dispose the window after editing is done
     }//GEN-LAST:event_jButtonAcceptActionPerformed
@@ -326,8 +342,8 @@ public class BookEditWindow extends javax.swing.JDialog {
     private void addOrRemoveFromComboBox(JComboBox inputField) {
         Key keyAssociatedToInput = resolveKey(inputField.getName());
 
-        if (((String) inputField.getSelectedItem()).equals("NaN") && editedAtm.hasKeySet(keyAssociatedToInput)) {
-            editedAtm.removeField(keyAssociatedToInput);
+        if (((String) inputField.getSelectedItem()).equals("NaN") && copyEditedAtm.hasKeySet(keyAssociatedToInput)) {
+            copyEditedAtm.removeField(keyAssociatedToInput);
         } else if (!((String) inputField.getSelectedItem()).equals("NaN")) {
             addFromComboBox(inputField, keyAssociatedToInput);
         }
@@ -336,8 +352,8 @@ public class BookEditWindow extends javax.swing.JDialog {
     private void addOrRemoveFromTextField(JTextField inputField) {
         Key keyAssociatedToInput = resolveKey(inputField.getName());
 
-        if (inputField.getText().isEmpty() && editedAtm.hasKeySet(keyAssociatedToInput)) {
-            editedAtm.removeField(keyAssociatedToInput);
+        if (inputField.getText().isEmpty() && copyEditedAtm.hasKeySet(keyAssociatedToInput)) {
+            copyEditedAtm.removeField(keyAssociatedToInput);
         } else if (!inputField.getText().isEmpty()) {
             addFromTextField(inputField, keyAssociatedToInput);
         }
@@ -347,14 +363,14 @@ public class BookEditWindow extends javax.swing.JDialog {
         String newStringValue = inputField.getText();
         Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
 
-        editedAtm.addField(keyAssociatedToInput, newValue);
+        copyEditedAtm.addField(keyAssociatedToInput, newValue);
     }
 
     private void addFromComboBox(JComboBox inputField, Key keyAssociatedToInput) {
         String newStringValue = (String) inputField.getSelectedItem();
         Value newValue = resolveValue(keyAssociatedToInput, newStringValue);
 
-        editedAtm.addField(keyAssociatedToInput, newValue);
+        copyEditedAtm.addField(keyAssociatedToInput, newValue);
     }
 
     private Key resolveKey(String componentName) {
@@ -414,19 +430,19 @@ public class BookEditWindow extends javax.swing.JDialog {
         return v;
     }
 
-    private boolean isValidNewReference() {
+    private boolean isValidNewReference(Reference toBeValidated) {
 
         Key[] required = new Key[]{BibTeXEntry.KEY_AUTHOR,
             BibTeXEntry.KEY_TITLE,
             BibTeXEntry.KEY_PUBLISHER,
             BibTeXEntry.KEY_YEAR};
 
-        String[] toBeValidatedFields = new String[]{editedAtm.getKey().getValue(), "", "", "", ""};
+        String[] toBeValidatedFields = new String[]{toBeValidated.getKey().getValue(), "", "", "", ""};
 
         for (int i = 1; i <= required.length; i++) {
             Key key = required[i - 1];
             try {
-                toBeValidatedFields[i] = editedAtm.getField(key).toUserString();
+                toBeValidatedFields[i] = toBeValidated.getField(key).toUserString();
             } catch (Exception ex) {
                 // y u no throw null pointer
             }
@@ -440,5 +456,14 @@ public class BookEditWindow extends javax.swing.JDialog {
             return false;
         }
         return true;
+    }
+
+    private void copyAllFieldsToEdited() {
+
+        for (Key k : startKeys) {
+            this.editedAtm.removeField(k);
+        }
+
+        this.editedAtm.addAllFields(copyEditedAtm.getFields());
     }
 }
