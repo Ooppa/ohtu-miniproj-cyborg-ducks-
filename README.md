@@ -11,3 +11,5 @@ Projektiin kuuluvat:
 Dokumentit:
 * [Backlog](https://trello.com/b/tS8tf010/cyborg-ducks)
 * [Burndown](https://docs.google.com/spreadsheets/d/1qPd8qaQYev4x2YJNMHeP2SSYDPlNjsK7Se7ehJQST1E/edit?usp=sharing)
+
+[![Download ohtu-miniproj-cyborg-ducks-](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/ohtuminiprojcyborgducks/files/latest/download)

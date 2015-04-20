@@ -9,9 +9,7 @@ import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.exporters.JSONExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
-import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
 import fi.cyborgducks.biblexrefmanager.importers.JSONImporter;
-import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.references.Reference;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
@@ -32,8 +30,6 @@ public class GraphicalUI extends javax.swing.JFrame {
     private String title;
     private String publisher;
     private String year;
-    private String firstOptionalFieldKey;
-    private String firstOptionalFieldValue;
 
     // validators
     private Validator bookValidator;
@@ -49,7 +45,6 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         this.database = new InMemoryDatabase();
         this.bookValidator = new BookValidator();
-        //database.saveReference(new Book("123", "Samu", "Super book", "Samus publisher", "2015")); // just a stub to help editing
         updateReferenceList();
     }
 

@@ -54,9 +54,9 @@ public class BibImporterTest {
         path2 += ".bib";
         
         String bib1 = bibAsString(path1);
-        System.out.println("First file: " + bib1);
+       // System.out.println("First file: " + bib1);
         String bib2 = bibAsString(path2);
-        System.out.println("Second file: "+ bib2);
+        //System.out.println("Second file: "+ bib2);
         
         assertEquals(bib1, bib2);
         
