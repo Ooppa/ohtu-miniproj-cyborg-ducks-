@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Ooppa
  */
+@Ignore
 public class BookTest {
 
     private Book book;

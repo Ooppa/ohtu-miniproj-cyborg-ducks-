@@ -6,11 +6,9 @@
 package fi.cyborgducks.biblexrefmanager.data;
 
 import fi.cyborgducks.biblexrefmanager.references.Book;
-import fi.cyborgducks.biblexrefmanager.references.BibTeXEntry;
 import org.jbibtex.BibTeXEntry;
 import org.jbibtex.Key;
 import org.jbibtex.StringValue;
-import org.jbibtex.Value;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
 
@@ -20,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class InMemoryDatabaseTest {
 
-    Database imd;
+    private Database imd;
 
     @Before
     public void setUp() {
@@ -51,8 +49,8 @@ public class InMemoryDatabaseTest {
 
     @Test
     public void multipleAddedReferencesIncreasesCountProperly() {
-        for (int i = 0; i < 5; i++) {
-            BibTeXEntry r = new Book("123" + i, "Samu" + i, "Super Book " + i, "Samus publisher" + i, "2015" + i);
+        for(int i = 0; i<5; i++) {
+            BibTeXEntry r = new Book("123"+i, "Samu"+i, "Super Book "+i, "Samus publisher"+i, "2015"+i);
             imd.saveReference(r);
         }
         assertEquals(5, imd.getAllSavedReferences().size());
@@ -63,7 +61,7 @@ public class InMemoryDatabaseTest {
         BibTeXEntry r = new Book("123", "Samu", "Super Book", "Samus publisher", "2015");
         imd.saveReference(r);
         BibTeXEntry fetched = imd.getAllSavedReferences().get(0);
-        assertEquals(true, fetched.isComplete());
+        assertEquals(true, isBookComplete(fetched));
     }
 
     @Test
@@ -109,4 +107,22 @@ public class InMemoryDatabaseTest {
         BibTeXEntry fetched = imd.fetchReference(new Key("123"), BibTeXEntry.TYPE_BOOK);
         assertEquals("Kaapo", fetched.getField(BibTeXEntry.KEY_AUTHOR).toUserString());
     }
+
+    public boolean isBookComplete(BibTeXEntry fetched) {
+        Key[] requiredFields = new Key[] {
+            BibTeXEntry.KEY_AUTHOR,
+            BibTeXEntry.KEY_TITLE,
+            BibTeXEntry.KEY_PUBLISHER,
+            BibTeXEntry.KEY_YEAR
+        };
+
+        for(int i = 0; i<requiredFields.length; i++) {
+            if(fetched.getField(requiredFields[i])==null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

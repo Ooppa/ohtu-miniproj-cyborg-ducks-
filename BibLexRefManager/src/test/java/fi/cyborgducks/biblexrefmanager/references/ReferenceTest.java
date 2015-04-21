@@ -16,6 +16,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Ooppa
  */
+@Ignore
 public class ReferenceTest {
 
     private GenericReferenceImpl genericTestReference;

@@ -7,22 +7,17 @@ package fi.cyborgducks.biblexrefmanager.exporters;
 
 import fi.cyborgducks.biblexrefmanager.data.InMemoryDatabase;
 import fi.cyborgducks.biblexrefmanager.references.Book;
-import fi.cyborgducks.biblexrefmanager.references.BibTeXEntry;
 import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.Scanner;
 import java.util.Stack;
 import org.jbibtex.BibTeXDatabase;
+import org.jbibtex.BibTeXEntry;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -49,7 +44,7 @@ public class BibExporterTest {
     @Test
     public void bracketMismatchDetected() throws UnsupportedEncodingException, IOException {
         InMemoryDatabase inMemDB = new InMemoryDatabase();
-        BibTeXEntry ref = new Book("kikkelis", "Kokkelis Kiiski", "Häläpiti hoi", "Röllituotanto" + "{", "1789");
+        BibTeXEntry ref = new Book("kikkelis", "Kokkelis Kiiski", "Häläpiti hoi", "Röllituotanto"+"{", "1789");
         inMemDB.saveReference(ref);
 
         String path = "src/mybib";
@@ -63,26 +58,12 @@ public class BibExporterTest {
     public void exportToNullDoNotCallExportTest() throws UnsupportedEncodingException, IOException {
         PowerMockito.mockStatic(FileChooser.class);
         BDDMockito.given(FileChooser.chooseFile("Save", "bib")).willReturn(null);
-        
+
         BibTeXDatabase mockDB = mock(BibTeXDatabase.class);
         BibExporter.export(mockDB);
 
         PowerMockito.verifyStatic();
     }
-    
-//    @Test
-//    public void exportWithValidPathTest() throws UnsupportedEncodingException, IOException {
-//        PowerMockito.mockStatic(FileChooser.class);
-//        PowerMockito.mockStatic(BibExporter.class);
-//        BDDMockito.given(FileChooser.chooseFile("Save")).willReturn("path/to/there");
-//        
-//        BibTeXDatabase mockDB = mock(BibTeXDatabase.class);
-//        
-//        PowerMockito.
-//        BibExporter.export(mockDB);
-//
-//        PowerMockito.verifyStatic();
-//    }
 
     public static InMemoryDatabase constructDataBaseWithTwoRefereces() {
         InMemoryDatabase inMemDB = new InMemoryDatabase();
@@ -95,12 +76,12 @@ public class BibExporterTest {
 
     private boolean bracketsMatchHelper(String path) throws FileNotFoundException, IOException {
 
-        InputStream streamFromFile = new FileInputStream(path + ".bib");
+        InputStream streamFromFile = new FileInputStream(path+".bib");
         Scanner scanner = new Scanner(streamFromFile);
 
         String fileAsString = "";
 
-        while (scanner.hasNextLine()) {
+        while(scanner.hasNextLine()) {
             String lineInBibFile = scanner.nextLine();
             fileAsString += lineInBibFile;
         }
@@ -108,18 +89,18 @@ public class BibExporterTest {
 
         Stack<Character> stackForBrackets = new Stack();
 
-        for (int i = 0; i < fileAsString.length(); i++) {
+        for(int i = 0; i<fileAsString.length(); i++) {
             char c = fileAsString.charAt(i);
 
-            if (c == '{') {
+            if(c=='{') {
                 stackForBrackets.push(c);
             }
 
-            if (c == '}') {
-                if (stackForBrackets.empty()) {
+            if(c=='}') {
+                if(stackForBrackets.empty()) {
                     stackForBrackets.push(c);
                     break;
-                } else if (stackForBrackets.peek() == '{') {
+                } else if(stackForBrackets.peek()=='{') {
                     stackForBrackets.pop();
                 }
             }
@@ -127,7 +108,7 @@ public class BibExporterTest {
         }
         boolean good = stackForBrackets.empty();
         streamFromFile.close();
-        File file = new File(path + ".bib");
+        File file = new File(path+".bib");
         file.delete();
 
         return good;
