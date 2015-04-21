@@ -54,16 +54,16 @@ public class BookValidator extends Validator {
             super.addError("Key length is wrong! Should be more than 2 and less than 16");
         }
         
-        if (stringLengthCheck(author, 3, 20)) {
-            super.addError("Author name should be more than 2 and less than 20");
+        if (stringLengthCheck(author, 3, 100)) {
+            super.addError("Author name should be more than 2 and less than 100");
         }
         
-        if (stringLengthCheck(title, 3, 50)) {
-            super.addError("Title lenght should be more than 2 and less than 50");
+        if (stringLengthCheck(title, 3, 100)) {
+            super.addError("Title lenght should be more than 2 and less than 100");
         }
         
-        if (stringLengthCheck(title, 3, 30)) {
-            super.addError("Publisher length is wrong! Should be more than 2 and less than 30");
+        if (stringLengthCheck(title, 3, 100)) {
+            super.addError("Publisher length is wrong! Should be more than 2 and less than 100");
         }
         
         if (year < 1000 || year > Calendar.getInstance().get(Calendar.YEAR)) {
