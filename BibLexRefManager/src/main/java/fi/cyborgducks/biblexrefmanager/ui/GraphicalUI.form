@@ -94,12 +94,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="tabbedPanel" max="32767" attributes="0"/>
-                  <Component id="panelReferenceList" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="panelReferenceList" min="-2" max="-2" attributes="0"/>
+                  <Component id="tabbedPanel" min="-2" pref="476" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="86" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="98" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -154,7 +154,7 @@
                           <Component id="labelOptionalFieldsHeader" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="addButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="bookAddButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -163,7 +163,7 @@
                                           <Component id="labelAuthor" alignment="0" max="32767" attributes="0"/>
                                           <Component id="labelTitle" alignment="1" max="32767" attributes="0"/>
                                           <Component id="labelKey" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="labelPublisher" pref="95" max="32767" attributes="0"/>
+                                          <Component id="labelPublisher" pref="134" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -184,17 +184,17 @@
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="keyInputTextField" pref="205" max="32767" attributes="0"/>
-                                  <Component id="authorInputTextField" max="32767" attributes="0"/>
-                                  <Component id="titleInputTextField" max="32767" attributes="0"/>
-                                  <Component id="publisherInputTextField" max="32767" attributes="0"/>
-                                  <Component id="yearInputTextField" max="32767" attributes="0"/>
-                                  <Component id="optionalVolumeField" max="32767" attributes="0"/>
-                                  <Component id="optionalSeriesField" max="32767" attributes="0"/>
-                                  <Component id="optionalAddressField" max="32767" attributes="0"/>
-                                  <Component id="optionalEditionField" max="32767" attributes="0"/>
-                                  <Component id="optionalNoteField" max="32767" attributes="0"/>
-                                  <Component id="optionalMonthCombobox" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="bookKeyInputTextField" pref="205" max="32767" attributes="0"/>
+                                  <Component id="bookAuthorInputTextField" max="32767" attributes="0"/>
+                                  <Component id="bookTitleInputTextField" max="32767" attributes="0"/>
+                                  <Component id="bookPublisherInputTextField" max="32767" attributes="0"/>
+                                  <Component id="bookYearInputTextField" max="32767" attributes="0"/>
+                                  <Component id="bookOptionalVolumeField" max="32767" attributes="0"/>
+                                  <Component id="bookOptionalSeriesField" max="32767" attributes="0"/>
+                                  <Component id="bookOptionalAddressField" max="32767" attributes="0"/>
+                                  <Component id="bookOptionalEditionField" max="32767" attributes="0"/>
+                                  <Component id="bookOptionalNoteField" max="32767" attributes="0"/>
+                                  <Component id="bookOptionalMonthCombobox" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -208,62 +208,62 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelKey" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="keyInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookKeyInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="authorInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookAuthorInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="titleInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookTitleInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelPublisher" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="publisherInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookPublisherInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelYear" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="yearInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookYearInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="labelOptionalFieldsHeader" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelVolume" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="optionalVolumeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookOptionalVolumeField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelSeries" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="optionalSeriesField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookOptionalSeriesField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="optionalAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookOptionalAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelEdition" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="optionalEditionField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookOptionalEditionField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelMonth" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="optionalMonthCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookOptionalMonthCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelNote" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="optionalNoteField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookOptionalNoteField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
-                      <Component id="addButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                      <Component id="bookAddButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -275,52 +275,37 @@
                 <Property name="text" type="java.lang.String" value="Key:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="keyInputTextField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="keyInputTextFieldActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JTextField" name="bookKeyInputTextField">
             </Component>
             <Component class="javax.swing.JLabel" name="labelAuthor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Author:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="authorInputTextField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="authorInputTextFieldActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JTextField" name="bookAuthorInputTextField">
             </Component>
             <Component class="javax.swing.JLabel" name="labelTitle">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Title:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="titleInputTextField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="titleInputTextFieldActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JTextField" name="bookTitleInputTextField">
             </Component>
             <Component class="javax.swing.JLabel" name="labelPublisher">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Publisher:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="publisherInputTextField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="publisherInputTextFieldActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JTextField" name="bookPublisherInputTextField">
             </Component>
             <Component class="javax.swing.JLabel" name="labelYear">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Year:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="yearInputTextField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="yearInputTextFieldActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JTextField" name="bookYearInputTextField">
             </Component>
-            <Component class="javax.swing.JButton" name="addButton">
+            <Component class="javax.swing.JButton" name="bookAddButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/reference_add.png"/>
@@ -328,7 +313,7 @@
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookAddButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="labelOptionalFieldsHeader">
@@ -344,28 +329,28 @@
                 <Property name="text" type="java.lang.String" value="Volume:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="optionalVolumeField">
+            <Component class="javax.swing.JTextField" name="bookOptionalVolumeField">
             </Component>
             <Component class="javax.swing.JLabel" name="labelSeries">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Series:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="optionalSeriesField">
+            <Component class="javax.swing.JTextField" name="bookOptionalSeriesField">
             </Component>
             <Component class="javax.swing.JLabel" name="labelAddress">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Address:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="optionalAddressField">
+            <Component class="javax.swing.JTextField" name="bookOptionalAddressField">
             </Component>
             <Component class="javax.swing.JLabel" name="labelEdition">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edition:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="optionalEditionField">
+            <Component class="javax.swing.JTextField" name="bookOptionalEditionField">
             </Component>
             <Component class="javax.swing.JLabel" name="labelMonth">
               <Properties>
@@ -377,9 +362,9 @@
                 <Property name="text" type="java.lang.String" value="Note:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="optionalNoteField">
+            <Component class="javax.swing.JTextField" name="bookOptionalNoteField">
             </Component>
-            <Component class="javax.swing.JComboBox" name="optionalMonthCombobox">
+            <Component class="javax.swing.JComboBox" name="bookOptionalMonthCombobox">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="13">
@@ -416,7 +401,52 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelComingSoon" pref="304" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelOptionalFieldsHeader1" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="articleAddButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelAuthor1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelTitle1" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="labelKey1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelPublisher1" alignment="0" pref="134" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="labelYear1" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="labelVolume1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelAddress1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelSeries1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelMonth1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelNote1" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="articleKeyInputTextField" alignment="0" pref="205" max="32767" attributes="0"/>
+                                  <Component id="articleAuthorInputTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="articleTitleInputTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="articleJournalInputTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="articleYearInputTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="articleVolumeField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="articleOptionalNumberField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="articleOptionalPagesField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="articleOptionalNoteField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="articleOptionalMonthCombobox" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -425,18 +455,227 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelComingSoon" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace pref="370" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelKey1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleKeyInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelAuthor1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleAuthorInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelTitle1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleTitleInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelPublisher1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleJournalInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelYear1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleYearInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelVolume1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleVolumeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelOptionalFieldsHeader1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelSeries1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleOptionalNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelAddress1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleOptionalPagesField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelMonth1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleOptionalMonthCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelNote1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="articleOptionalNoteField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="82" max="32767" attributes="0"/>
+                      <Component id="articleAddButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="labelComingSoon">
+            <Component class="javax.swing.JLabel" name="labelKey1">
               <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Key:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="articleKeyInputTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAuthor1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Author:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="articleAuthorInputTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelTitle1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Title:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="articleTitleInputTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="articleJournalInputTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelPublisher1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Journal:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelYear1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Year:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="articleYearInputTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="articleVolumeField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelOptionalFieldsHeader1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Optional fields:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelVolume1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Volume:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelSeries1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Number"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="articleOptionalNumberField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="articleOptionalPagesField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAddress1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pages:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="articleOptionalMonthCombobox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="13">
+                    <StringItem index="0" value="NaN"/>
+                    <StringItem index="1" value="jan"/>
+                    <StringItem index="2" value="feb"/>
+                    <StringItem index="3" value="mar"/>
+                    <StringItem index="4" value="apr"/>
+                    <StringItem index="5" value="may"/>
+                    <StringItem index="6" value="jun"/>
+                    <StringItem index="7" value="jul"/>
+                    <StringItem index="8" value="aug"/>
+                    <StringItem index="9" value="sep"/>
+                    <StringItem index="10" value="oct"/>
+                    <StringItem index="11" value="nov"/>
+                    <StringItem index="12" value="dec"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelMonth1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Month:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelNote1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Note:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="articleOptionalNoteField">
+            </Component>
+            <Component class="javax.swing.JButton" name="articleAddButton">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/reference_add.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Add"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="articleAddButtonActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="panelInproceedings">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Inproceedings">
+                <Property name="tabTitle" type="java.lang.String" value="Inproceedings"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="inproceedingsIncoming" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="280" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="inproceedingsAddButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="inproceedingsIncoming" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="387" max="32767" attributes="0"/>
+                      <Component id="inproceedingsAddButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="inproceedingsIncoming">
+              <Properties>
                 <Property name="text" type="java.lang.String" value="Coming soon..."/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="inproceedingsAddButton">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/reference_add.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Add"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inproceedingsAddButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -452,7 +691,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="labelSelectedItem" pref="247" max="32767" attributes="0"/>
+                          <Component id="labelSelectedItem" pref="206" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonEditSelected" min="-2" pref="37" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -467,7 +706,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="435" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="buttonDeleteSelected" alignment="1" max="32767" attributes="0"/>
@@ -487,7 +726,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="jListRefereces">
+            <Component class="javax.swing.JList" name="listRefereces">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="1">
@@ -503,7 +742,7 @@
                 <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
               </AccessibilityProperties>
               <Events>
-                <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jListReferecesValueChanged"/>
+                <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="listReferecesValueChanged"/>
               </Events>
             </Component>
           </SubComponents>

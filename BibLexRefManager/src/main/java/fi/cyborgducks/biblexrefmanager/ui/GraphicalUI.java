@@ -7,15 +7,13 @@ package fi.cyborgducks.biblexrefmanager.ui;
 
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
-import fi.cyborgducks.biblexrefmanager.exporters.JSONExporter;
 import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
 import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
-
-
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,13 +23,6 @@ import org.jbibtex.*;
 import org.jbibtex.StringValue.Style;
 
 public class GraphicalUI extends javax.swing.JFrame {
-
-    private String key;
-    private String author;
-    private String title;
-    private String publisher;
-    private String year;
-
     // validators
     private Validator bookValidator;
 
@@ -57,34 +48,58 @@ public class GraphicalUI extends javax.swing.JFrame {
         tabbedPanel = new javax.swing.JTabbedPane();
         panelBook = new javax.swing.JPanel();
         labelKey = new javax.swing.JLabel();
-        keyInputTextField = new javax.swing.JTextField();
+        bookKeyInputTextField = new javax.swing.JTextField();
         labelAuthor = new javax.swing.JLabel();
-        authorInputTextField = new javax.swing.JTextField();
+        bookAuthorInputTextField = new javax.swing.JTextField();
         labelTitle = new javax.swing.JLabel();
-        titleInputTextField = new javax.swing.JTextField();
+        bookTitleInputTextField = new javax.swing.JTextField();
         labelPublisher = new javax.swing.JLabel();
-        publisherInputTextField = new javax.swing.JTextField();
+        bookPublisherInputTextField = new javax.swing.JTextField();
         labelYear = new javax.swing.JLabel();
-        yearInputTextField = new javax.swing.JTextField();
-        addButton = new javax.swing.JButton();
+        bookYearInputTextField = new javax.swing.JTextField();
+        bookAddButton = new javax.swing.JButton();
         labelOptionalFieldsHeader = new javax.swing.JLabel();
         labelVolume = new javax.swing.JLabel();
-        optionalVolumeField = new javax.swing.JTextField();
+        bookOptionalVolumeField = new javax.swing.JTextField();
         labelSeries = new javax.swing.JLabel();
-        optionalSeriesField = new javax.swing.JTextField();
+        bookOptionalSeriesField = new javax.swing.JTextField();
         labelAddress = new javax.swing.JLabel();
-        optionalAddressField = new javax.swing.JTextField();
+        bookOptionalAddressField = new javax.swing.JTextField();
         labelEdition = new javax.swing.JLabel();
-        optionalEditionField = new javax.swing.JTextField();
+        bookOptionalEditionField = new javax.swing.JTextField();
         labelMonth = new javax.swing.JLabel();
         labelNote = new javax.swing.JLabel();
-        optionalNoteField = new javax.swing.JTextField();
-        optionalMonthCombobox = new javax.swing.JComboBox();
+        bookOptionalNoteField = new javax.swing.JTextField();
+        bookOptionalMonthCombobox = new javax.swing.JComboBox();
         panelArticle = new javax.swing.JPanel();
-        labelComingSoon = new javax.swing.JLabel();
+        labelKey1 = new javax.swing.JLabel();
+        articleKeyInputTextField = new javax.swing.JTextField();
+        labelAuthor1 = new javax.swing.JLabel();
+        articleAuthorInputTextField = new javax.swing.JTextField();
+        labelTitle1 = new javax.swing.JLabel();
+        articleTitleInputTextField = new javax.swing.JTextField();
+        articleJournalInputTextField = new javax.swing.JTextField();
+        labelPublisher1 = new javax.swing.JLabel();
+        labelYear1 = new javax.swing.JLabel();
+        articleYearInputTextField = new javax.swing.JTextField();
+        articleVolumeField = new javax.swing.JTextField();
+        labelOptionalFieldsHeader1 = new javax.swing.JLabel();
+        labelVolume1 = new javax.swing.JLabel();
+        labelSeries1 = new javax.swing.JLabel();
+        articleOptionalNumberField = new javax.swing.JTextField();
+        articleOptionalPagesField = new javax.swing.JTextField();
+        labelAddress1 = new javax.swing.JLabel();
+        articleOptionalMonthCombobox = new javax.swing.JComboBox();
+        labelMonth1 = new javax.swing.JLabel();
+        labelNote1 = new javax.swing.JLabel();
+        articleOptionalNoteField = new javax.swing.JTextField();
+        articleAddButton = new javax.swing.JButton();
+        panelInproceedings = new javax.swing.JPanel();
+        inproceedingsIncoming = new javax.swing.JLabel();
+        inproceedingsAddButton = new javax.swing.JButton();
         panelReferenceList = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jListRefereces = new javax.swing.JList();
+        listRefereces = new javax.swing.JList();
         buttonDeleteSelected = new javax.swing.JButton();
         buttonEditSelected = new javax.swing.JButton();
         labelSelectedItem = new javax.swing.JLabel();
@@ -107,49 +122,19 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         labelKey.setText("Key:");
 
-        keyInputTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keyInputTextFieldActionPerformed(evt);
-            }
-        });
-
         labelAuthor.setText("Author:");
-
-        authorInputTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                authorInputTextFieldActionPerformed(evt);
-            }
-        });
 
         labelTitle.setText("Title:");
 
-        titleInputTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleInputTextFieldActionPerformed(evt);
-            }
-        });
-
         labelPublisher.setText("Publisher:");
-
-        publisherInputTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                publisherInputTextFieldActionPerformed(evt);
-            }
-        });
 
         labelYear.setText("Year:");
 
-        yearInputTextField.addActionListener(new java.awt.event.ActionListener() {
+        bookAddButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_add.png"))); // NOI18N
+        bookAddButton.setText("Add");
+        bookAddButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yearInputTextFieldActionPerformed(evt);
-            }
-        });
-
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_add.png"))); // NOI18N
-        addButton.setText("Add");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
+                bookAddButtonActionPerformed(evt);
             }
         });
 
@@ -168,7 +153,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         labelNote.setText("Note:");
 
-        optionalMonthCombobox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NaN", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" }));
+        bookOptionalMonthCombobox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NaN", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" }));
 
         javax.swing.GroupLayout panelBookLayout = new javax.swing.GroupLayout(panelBook);
         panelBook.setLayout(panelBookLayout);
@@ -180,7 +165,7 @@ public class GraphicalUI extends javax.swing.JFrame {
                     .addComponent(labelOptionalFieldsHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBookLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(addButton))
+                        .addComponent(bookAddButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBookLayout.createSequentialGroup()
                         .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelBookLayout.createSequentialGroup()
@@ -188,7 +173,7 @@ public class GraphicalUI extends javax.swing.JFrame {
                                     .addComponent(labelAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(labelTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(labelKey, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelPublisher, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                                    .addComponent(labelPublisher, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(panelBookLayout.createSequentialGroup()
                                 .addComponent(labelYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -203,17 +188,17 @@ public class GraphicalUI extends javax.swing.JFrame {
                                     .addComponent(labelNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(keyInputTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .addComponent(authorInputTextField)
-                            .addComponent(titleInputTextField)
-                            .addComponent(publisherInputTextField)
-                            .addComponent(yearInputTextField)
-                            .addComponent(optionalVolumeField)
-                            .addComponent(optionalSeriesField)
-                            .addComponent(optionalAddressField)
-                            .addComponent(optionalEditionField)
-                            .addComponent(optionalNoteField)
-                            .addComponent(optionalMonthCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(bookKeyInputTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(bookAuthorInputTextField)
+                            .addComponent(bookTitleInputTextField)
+                            .addComponent(bookPublisherInputTextField)
+                            .addComponent(bookYearInputTextField)
+                            .addComponent(bookOptionalVolumeField)
+                            .addComponent(bookOptionalSeriesField)
+                            .addComponent(bookOptionalAddressField)
+                            .addComponent(bookOptionalEditionField)
+                            .addComponent(bookOptionalNoteField)
+                            .addComponent(bookOptionalMonthCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         panelBookLayout.setVerticalGroup(
@@ -222,58 +207,88 @@ public class GraphicalUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelKey)
-                    .addComponent(keyInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookKeyInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAuthor)
-                    .addComponent(authorInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookAuthorInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTitle)
-                    .addComponent(titleInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookTitleInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPublisher)
-                    .addComponent(publisherInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookPublisherInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelYear)
-                    .addComponent(yearInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookYearInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelOptionalFieldsHeader)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelVolume)
-                    .addComponent(optionalVolumeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookOptionalVolumeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSeries)
-                    .addComponent(optionalSeriesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookOptionalSeriesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAddress)
-                    .addComponent(optionalAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookOptionalAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEdition)
-                    .addComponent(optionalEditionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookOptionalEditionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelMonth)
-                    .addComponent(optionalMonthCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookOptionalMonthCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNote)
-                    .addComponent(optionalNoteField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(addButton)
+                    .addComponent(bookOptionalNoteField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(bookAddButton)
                 .addContainerGap())
         );
 
         tabbedPanel.addTab("Book", panelBook);
 
-        labelComingSoon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelComingSoon.setText("Coming soon...");
+        labelKey1.setText("Key:");
+
+        labelAuthor1.setText("Author:");
+
+        labelTitle1.setText("Title:");
+
+        labelPublisher1.setText("Journal:");
+
+        labelYear1.setText("Year:");
+
+        labelOptionalFieldsHeader1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelOptionalFieldsHeader1.setText("Optional fields:");
+
+        labelVolume1.setText("Volume:");
+
+        labelSeries1.setText("Number");
+
+        labelAddress1.setText("Pages:");
+
+        articleOptionalMonthCombobox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NaN", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" }));
+
+        labelMonth1.setText("Month:");
+
+        labelNote1.setText("Note:");
+
+        articleAddButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_add.png"))); // NOI18N
+        articleAddButton.setText("Add");
+        articleAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                articleAddButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelArticleLayout = new javax.swing.GroupLayout(panelArticle);
         panelArticle.setLayout(panelArticleLayout);
@@ -281,33 +296,145 @@ public class GraphicalUI extends javax.swing.JFrame {
             panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelArticleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelComingSoon, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelOptionalFieldsHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelArticleLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(articleAddButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelArticleLayout.createSequentialGroup()
+                        .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelArticleLayout.createSequentialGroup()
+                                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelAuthor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelTitle1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelKey1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelPublisher1, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(panelArticleLayout.createSequentialGroup()
+                                .addComponent(labelYear1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(16, 16, 16))
+                            .addGroup(panelArticleLayout.createSequentialGroup()
+                                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelVolume1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelAddress1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelSeries1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelMonth1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelNote1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(articleKeyInputTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(articleAuthorInputTextField)
+                            .addComponent(articleTitleInputTextField)
+                            .addComponent(articleJournalInputTextField)
+                            .addComponent(articleYearInputTextField)
+                            .addComponent(articleVolumeField)
+                            .addComponent(articleOptionalNumberField)
+                            .addComponent(articleOptionalPagesField)
+                            .addComponent(articleOptionalNoteField)
+                            .addComponent(articleOptionalMonthCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         panelArticleLayout.setVerticalGroup(
             panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelArticleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelComingSoon, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelKey1)
+                    .addComponent(articleKeyInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAuthor1)
+                    .addComponent(articleAuthorInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTitle1)
+                    .addComponent(articleTitleInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPublisher1)
+                    .addComponent(articleJournalInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelYear1)
+                    .addComponent(articleYearInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelVolume1)
+                    .addComponent(articleVolumeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelOptionalFieldsHeader1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSeries1)
+                    .addComponent(articleOptionalNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAddress1)
+                    .addComponent(articleOptionalPagesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelMonth1)
+                    .addComponent(articleOptionalMonthCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNote1)
+                    .addComponent(articleOptionalNoteField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(articleAddButton)
+                .addContainerGap())
         );
 
         tabbedPanel.addTab("Article", panelArticle);
 
-        jListRefereces.setModel(new javax.swing.AbstractListModel() {
+        inproceedingsIncoming.setText("Coming soon...");
+
+        inproceedingsAddButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_add.png"))); // NOI18N
+        inproceedingsAddButton.setText("Add");
+        inproceedingsAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inproceedingsAddButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelInproceedingsLayout = new javax.swing.GroupLayout(panelInproceedings);
+        panelInproceedings.setLayout(panelInproceedingsLayout);
+        panelInproceedingsLayout.setHorizontalGroup(
+            panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInproceedingsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inproceedingsIncoming)
+                .addContainerGap(280, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInproceedingsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(inproceedingsAddButton)
+                .addContainerGap())
+        );
+        panelInproceedingsLayout.setVerticalGroup(
+            panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInproceedingsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inproceedingsIncoming)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 387, Short.MAX_VALUE)
+                .addComponent(inproceedingsAddButton)
+                .addContainerGap())
+        );
+
+        tabbedPanel.addTab("Inproceedings", panelInproceedings);
+
+        listRefereces.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "NaN" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jListRefereces.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jListRefereces.setSelectionBackground(new java.awt.Color(153, 153, 153));
-        jListRefereces.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        listRefereces.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listRefereces.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        listRefereces.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListReferecesValueChanged(evt);
+                listReferecesValueChanged(evt);
             }
         });
-        jScrollPane2.setViewportView(jListRefereces);
-        jListRefereces.getAccessibleContext().setAccessibleName("");
+        jScrollPane2.setViewportView(listRefereces);
+        listRefereces.getAccessibleContext().setAccessibleName("");
 
         buttonDeleteSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reference_delete.png"))); // NOI18N
         buttonDeleteSelected.setToolTipText("Delete selected reference");
@@ -338,7 +465,7 @@ public class GraphicalUI extends javax.swing.JFrame {
                 .addGroup(panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(panelReferenceListLayout.createSequentialGroup()
-                        .addComponent(labelSelectedItem, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addComponent(labelSelectedItem, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonEditSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -349,7 +476,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelReferenceListLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelReferenceListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonDeleteSelected, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -411,62 +538,45 @@ public class GraphicalUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tabbedPanel)
-                    .addComponent(panelReferenceList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelReferenceList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void authorInputTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorInputTextFieldActionPerformed
-        this.author = authorInputTextField.getText();
-    }//GEN-LAST:event_authorInputTextFieldActionPerformed
-
-    private void keyInputTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keyInputTextFieldActionPerformed
-        this.key = keyInputTextField.getText();
-    }//GEN-LAST:event_keyInputTextFieldActionPerformed
-
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        keyInputTextFieldActionPerformed(evt);
-        authorInputTextFieldActionPerformed(evt);
-        titleInputTextFieldActionPerformed(evt);
-        publisherInputTextFieldActionPerformed(evt);
-        yearInputTextFieldActionPerformed(evt);
-
-        String[] bookParams = new String[]{this.key, this.author, this.title, this.publisher, this.year};
+    private void bookAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookAddButtonActionPerformed
+        String[] bookParams = new String[]{
+            getTextFromField(this.bookKeyInputTextField), 
+            getTextFromField(this.bookAuthorInputTextField), 
+            getTextFromField(this.bookTitleInputTextField), 
+            getTextFromField(this.bookPublisherInputTextField), 
+            getTextFromField(this.bookYearInputTextField)
+        };
+        
         handleOneBook(bookParams);
-    }//GEN-LAST:event_addButtonActionPerformed
+    }//GEN-LAST:event_bookAddButtonActionPerformed
 
     private void clearFields() {
-        clearTextField(authorInputTextField);
-        clearTextField(keyInputTextField);
-        clearTextField(publisherInputTextField);
-        clearTextField(yearInputTextField);
-        clearTextField(titleInputTextField);
+        clearTextField(bookAuthorInputTextField);
+        clearTextField(bookKeyInputTextField);
+        clearTextField(bookPublisherInputTextField);
+        clearTextField(bookYearInputTextField);
+        clearTextField(bookTitleInputTextField);
 
-        clearTextField(optionalAddressField);
-        clearTextField(optionalEditionField);
-        clearTextField(optionalNoteField);
-        clearTextField(optionalSeriesField);
-        clearTextField(optionalVolumeField);
-        optionalMonthCombobox.setSelectedIndex(0); // 0 is the index for NaN
+        clearTextField(bookOptionalAddressField);
+        clearTextField(bookOptionalEditionField);
+        clearTextField(bookOptionalNoteField);
+        clearTextField(bookOptionalSeriesField);
+        clearTextField(bookOptionalVolumeField);
+        
+        bookOptionalMonthCombobox.setSelectedIndex(0); // 0 is the index for NaN
+        articleOptionalMonthCombobox.setSelectedIndex(0);
     }
-
-    private void publisherInputTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publisherInputTextFieldActionPerformed
-        this.publisher = publisherInputTextField.getText();
-    }//GEN-LAST:event_publisherInputTextFieldActionPerformed
-
-    private void yearInputTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearInputTextFieldActionPerformed
-        this.year = yearInputTextField.getText();
-    }//GEN-LAST:event_yearInputTextFieldActionPerformed
-
-    private void titleInputTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleInputTextFieldActionPerformed
-        this.title = titleInputTextField.getText();
-    }//GEN-LAST:event_titleInputTextFieldActionPerformed
 
     private void jMenuItemExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExportActionPerformed
         try {
@@ -501,8 +611,8 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void buttonEditSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
-        if (this.jListRefereces.getSelectedIndex() != -1) {
-            BibTeXEntry chosenReference = (BibTeXEntry) this.jListRefereces.getSelectedValue();
+        if (this.listRefereces.getSelectedIndex() != -1) {
+            BibTeXEntry chosenReference = (BibTeXEntry) this.listRefereces.getSelectedValue();
             showEditWindow(chosenReference);
         }
 
@@ -517,33 +627,69 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void buttonDeleteSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
-        if (this.jListRefereces.getSelectedIndex() != -1) {
-            BibTeXEntry chosenReference = (BibTeXEntry) this.jListRefereces.getSelectedValue();
+        if (this.listRefereces.getSelectedIndex() != -1) {
+            BibTeXEntry chosenReference = (BibTeXEntry) this.listRefereces.getSelectedValue();
             database.deleteReference(chosenReference.getKey(), chosenReference.getType());
             this.updateReferenceList();
             errorMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
         }
-
-        // TODO
-
     }//GEN-LAST:event_buttonDeleteSelectedActionPerformed
 
-    private void jListReferecesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListReferecesValueChanged
-        if (this.jListRefereces.getSelectedIndex() == -1) {
+    private void listReferecesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listReferecesValueChanged
+        if (this.listRefereces.getSelectedIndex() == -1) {
             this.labelSelectedItem.setText("Selected item");
         } else {
-            BibTeXEntry reference = (BibTeXEntry) this.jListRefereces.getSelectedValue();
+            BibTeXEntry reference = (BibTeXEntry) this.listRefereces.getSelectedValue();
             this.labelSelectedItem.setText("Selected: " + reference.getKey().toString());
         }
-    }//GEN-LAST:event_jListReferecesValueChanged
+    }//GEN-LAST:event_listReferecesValueChanged
+
+    private void articleAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_articleAddButtonActionPerformed
+        String[] articleParams = new String[]{
+            getTextFromField(this.articleKeyInputTextField), 
+            getTextFromField(this.articleAuthorInputTextField), 
+            getTextFromField(this.articleTitleInputTextField), 
+            getTextFromField(this.articleJournalInputTextField), 
+            getTextFromField(this.articleYearInputTextField),
+            getTextFromField(this.articleVolumeField)
+        };
+        
+        handleOneArticle(articleParams);
+    }//GEN-LAST:event_articleAddButtonActionPerformed
+
+    private void inproceedingsAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inproceedingsAddButtonActionPerformed
+        // TODO inproceedings
+    }//GEN-LAST:event_inproceedingsAddButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton;
-    private javax.swing.JTextField authorInputTextField;
+    private javax.swing.JButton articleAddButton;
+    private javax.swing.JTextField articleAuthorInputTextField;
+    private javax.swing.JTextField articleJournalInputTextField;
+    private javax.swing.JTextField articleKeyInputTextField;
+    private javax.swing.JComboBox articleOptionalMonthCombobox;
+    private javax.swing.JTextField articleOptionalNoteField;
+    private javax.swing.JTextField articleOptionalNumberField;
+    private javax.swing.JTextField articleOptionalPagesField;
+    private javax.swing.JTextField articleTitleInputTextField;
+    private javax.swing.JTextField articleVolumeField;
+    private javax.swing.JTextField articleYearInputTextField;
+    private javax.swing.JButton bookAddButton;
+    private javax.swing.JTextField bookAuthorInputTextField;
+    private javax.swing.JTextField bookKeyInputTextField;
+    private javax.swing.JTextField bookOptionalAddressField;
+    private javax.swing.JTextField bookOptionalEditionField;
+    private javax.swing.JComboBox bookOptionalMonthCombobox;
+    private javax.swing.JTextField bookOptionalNoteField;
+    private javax.swing.JTextField bookOptionalSeriesField;
+    private javax.swing.JTextField bookOptionalVolumeField;
+    private javax.swing.JTextField bookPublisherInputTextField;
+    private javax.swing.JTextField bookTitleInputTextField;
+    private javax.swing.JTextField bookYearInputTextField;
     private javax.swing.JButton buttonDeleteSelected;
     private javax.swing.JButton buttonEditSelected;
     private javax.swing.JTextArea errorMessageArea;
-    private javax.swing.JList jListRefereces;
+    private javax.swing.JButton inproceedingsAddButton;
+    private javax.swing.JLabel inproceedingsIncoming;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemExport;
@@ -551,34 +697,36 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemSave;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField keyInputTextField;
     private javax.swing.JLabel labelAddress;
+    private javax.swing.JLabel labelAddress1;
     private javax.swing.JLabel labelAuthor;
-    private javax.swing.JLabel labelComingSoon;
+    private javax.swing.JLabel labelAuthor1;
     private javax.swing.JLabel labelEdition;
     private javax.swing.JLabel labelKey;
+    private javax.swing.JLabel labelKey1;
     private javax.swing.JLabel labelMonth;
+    private javax.swing.JLabel labelMonth1;
     private javax.swing.JLabel labelNote;
+    private javax.swing.JLabel labelNote1;
     private javax.swing.JLabel labelOptionalFieldsHeader;
+    private javax.swing.JLabel labelOptionalFieldsHeader1;
     private javax.swing.JLabel labelPublisher;
+    private javax.swing.JLabel labelPublisher1;
     private javax.swing.JLabel labelSelectedItem;
     private javax.swing.JLabel labelSeries;
+    private javax.swing.JLabel labelSeries1;
     private javax.swing.JLabel labelTitle;
+    private javax.swing.JLabel labelTitle1;
     private javax.swing.JLabel labelVolume;
+    private javax.swing.JLabel labelVolume1;
     private javax.swing.JLabel labelYear;
-    private javax.swing.JTextField optionalAddressField;
-    private javax.swing.JTextField optionalEditionField;
-    private javax.swing.JComboBox optionalMonthCombobox;
-    private javax.swing.JTextField optionalNoteField;
-    private javax.swing.JTextField optionalSeriesField;
-    private javax.swing.JTextField optionalVolumeField;
+    private javax.swing.JLabel labelYear1;
+    private javax.swing.JList listRefereces;
     private javax.swing.JPanel panelArticle;
     private javax.swing.JPanel panelBook;
+    private javax.swing.JPanel panelInproceedings;
     private javax.swing.JPanel panelReferenceList;
-    private javax.swing.JTextField publisherInputTextField;
     private javax.swing.JTabbedPane tabbedPanel;
-    private javax.swing.JTextField titleInputTextField;
-    private javax.swing.JTextField yearInputTextField;
     // End of variables declaration//GEN-END:variables
 
     private void clearTextField(JTextField field) {
@@ -591,7 +739,14 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     public void updateReferenceList() {
         List<BibTeXEntry> allSavedReferences = this.database.getAllSavedReferences();
-        jListRefereces.setListData(allSavedReferences.toArray());
+        listRefereces.setListData(allSavedReferences.toArray());
+    }
+    
+    private void handleOneArticle(String[] articleParams) {
+        // TODO
+        
+        System.out.println("Handle one article with params: "+ Arrays.toString(articleParams));
+        
     }
 
     private void handleOneBook(String[] bookParams) {
@@ -615,42 +770,46 @@ public class GraphicalUI extends javax.swing.JFrame {
         }
 
     }
+    
+    private String getTextFromField(JTextField field){
+        return field.getText();
+    }
 
     private void addOptionalBookFields(BibTeXEntry reference) {
-        if (!optionalVolumeField.getText().isEmpty()) {
+        if (!bookOptionalVolumeField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_VOLUME,
-                    new DigitStringValue(optionalVolumeField.getText())
+                    new DigitStringValue(bookOptionalVolumeField.getText())
             );
         }
 
-        if (!optionalSeriesField.getText().isEmpty()) {
+        if (!bookOptionalSeriesField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_SERIES,
-                    new StringValue(optionalSeriesField.getText(), Style.BRACED)
+                    new StringValue(bookOptionalSeriesField.getText(), Style.BRACED)
             );
         }
 
-        if (!optionalAddressField.getText().isEmpty()) {
+        if (!bookOptionalAddressField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_ADDRESS,
-                    new StringValue(optionalAddressField.getText(), Style.BRACED)
+                    new StringValue(bookOptionalAddressField.getText(), Style.BRACED)
             );
         }
 
-        if (!optionalEditionField.getText().isEmpty()) {
+        if (!bookOptionalEditionField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_EDITION,
-                    new StringValue(optionalEditionField.getText(), Style.BRACED)
+                    new StringValue(bookOptionalEditionField.getText(), Style.BRACED)
             );
         }
 
         // 0 is the index for NaN
-        if (this.optionalMonthCombobox.getSelectedIndex() != 0) {
+        if (this.bookOptionalMonthCombobox.getSelectedIndex() != 0) {
             reference.addField(BibTeXEntry.KEY_MONTH,
-                    new StringValue(optionalMonthCombobox.getSelectedItem().toString(), Style.BRACED)
+                    new StringValue(bookOptionalMonthCombobox.getSelectedItem().toString(), Style.BRACED)
             );
         }
 
-        if (!optionalNoteField.getText().isEmpty()) {
+        if (!bookOptionalNoteField.getText().isEmpty()) {
             reference.addField(BibTeXEntry.KEY_NOTE,
-                    new StringValue(optionalNoteField.getText(), Style.BRACED)
+                    new StringValue(bookOptionalNoteField.getText(), Style.BRACED)
             );
         }
     }
