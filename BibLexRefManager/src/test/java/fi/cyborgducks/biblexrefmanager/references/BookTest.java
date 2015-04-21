@@ -38,11 +38,6 @@ public class BookTest {
     }
 
     @Test
-    public void testIsCompleteAfterCreation() {
-        assertTrue(book.isComplete());
-    }
-
-    @Test
     public void testAbleToAddOptionalField() {
         KeyValue value = new KeyValue("First Edition");
         book.addField(BibTeXEntry.KEY_EDITION, value);
