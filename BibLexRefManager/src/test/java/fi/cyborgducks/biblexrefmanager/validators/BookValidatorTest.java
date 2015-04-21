@@ -31,24 +31,6 @@ public class BookValidatorTest {
     }
 
     @Test
-    public void incorrectKeyRaisesAnError() {
-        bookValidator.isValidOptionalFieldFor("asdaasd");
-        assertEquals("asdaasd was not a correct key for Book reference\n", bookValidator.fullErrors());
-    }
-
-    @Test
-    public void correctKeyNotRaisesAnError() {
-        bookValidator.isValidOptionalFieldFor("month");
-        assertEquals(false, bookValidator.hasErrors());
-    }
-
-    @Test
-    public void emptyKeyNotRaisesAnError() {
-        bookValidator.isValidOptionalFieldFor("");
-        assertEquals(false, bookValidator.hasErrors());
-    }
-
-    @Test
     public void notValidIfInvalidKey() {
         bookValidator.isValidParams(new String[]{
             "c",

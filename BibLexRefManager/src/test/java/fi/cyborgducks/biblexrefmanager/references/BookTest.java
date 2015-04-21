@@ -40,6 +40,7 @@ public class BookTest {
     @Test
     public void testIsCompleteAfterCreation() {
         assertTrue(book.isComplete());
+        
     }
 
     @Test

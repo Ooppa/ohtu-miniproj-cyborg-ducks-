@@ -5,6 +5,7 @@
  */
 package fi.cyborgducks.biblexrefmanager.references;
 
+import fi.cyborgducks.biblexrefmanager.references.utils.ReferenceUtils;
 import org.codehaus.jackson.annotate.JsonTypeName;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.jbibtex.*;
@@ -28,31 +29,23 @@ public class Book extends BibTeXEntry {
     public Book(String key, String author, String title, String publisher, String year) {
         super(BibTeXEntry.TYPE_BOOK, new Key(key));
 
-        setRequiredAndOptionalFields();
-
         addField(BibTeXEntry.KEY_AUTHOR, new StringValue(author, Style.BRACED));
         addField(BibTeXEntry.KEY_TITLE, new StringValue(title, Style.BRACED));
         addField(BibTeXEntry.KEY_PUBLISHER, new StringValue(publisher, Style.BRACED));
         addField(BibTeXEntry.KEY_YEAR, new DigitStringValue(year));
     }
 
-    private void setRequiredAndOptionalFields() {
-        setRequiredFields(new Key[]{
-            BibTeXEntry.KEY_AUTHOR,
-            BibTeXEntry.KEY_TITLE,
-            BibTeXEntry.KEY_PUBLISHER,
-            BibTeXEntry.KEY_YEAR
-        });
+    boolean isComplete() {
 
-        setOptionalFields(new Key[]{
-            BibTeXEntry.KEY_VOLUME,
-            BibTeXEntry.KEY_SERIES,
-            BibTeXEntry.KEY_ADDRESS,
-            BibTeXEntry.KEY_EDITION,
-            BibTeXEntry.KEY_MONTH,
-            BibTeXEntry.KEY_NOTE,
-            BibTeXEntry.KEY_KEY
-        });
+        Key[] req = ReferenceUtils.getRequiredKeysForBook();
+
+        for (int i = 0; i < req.length; i++) {
+            if (getField(req[i]) == null) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -61,19 +54,6 @@ public class Book extends BibTeXEntry {
     @Override
     public String toString() {
         return super.getType() + " | " + super.getKey() + " (" + super.getField(KEY_TITLE).toUserString() + ")";
-    }
-
-    private void setRequiredFields(Key[] key) {
-        
-    }
-    
-
-    private void setOptionalFields(Key[] key) {
-
-    }
-
-    public Key[] getOptionalFields() {
-        return new Key[]{};
     }
 
 }

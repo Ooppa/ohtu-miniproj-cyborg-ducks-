@@ -47,7 +47,7 @@ public class ReferenceTest {
         KeyValue value = new KeyValue("Generic Chapter");
         genericTestReference.addField(BibTeXEntry.KEY_CHAPTER, value);
 
-        assertTrue(genericTestReference.getField(BibTeXEntry.KEY_NOTE)==null);
+        assertTrue(genericTestReference.getField(BibTeXEntry.KEY_NOTE) == null);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class ReferenceTest {
     @Test
     public void testIsNotComplete() {
         genericTestReference.setRequiredFields(
-                new Key[] {
+                new Key[]{
                     BibTeXEntry.KEY_AUTHOR,
                     BibTeXEntry.KEY_TITLE,
                     BibTeXEntry.KEY_YEAR
@@ -79,12 +79,12 @@ public class ReferenceTest {
     /*
      * Creates a generic BibTeXEntry implementation that we can test.
      */
-    public class GenericReferenceImpl extends BibTeXEntry {
+    public class GenericReferenceImpl extends Reference {
 
         public GenericReferenceImpl(String author, String title) {
             super(BibTeXEntry.TYPE_MISC, new Key("Generic Reference"));
-            setRequiredFields(new Key[] {BibTeXEntry.KEY_AUTHOR, BibTeXEntry.KEY_TITLE});
-            setOptionalFields(new Key[] {BibTeXEntry.KEY_NOTE, BibTeXEntry.KEY_KEY});
+            setRequiredFields(new Key[]{BibTeXEntry.KEY_AUTHOR, BibTeXEntry.KEY_TITLE});
+            setOptionalFields(new Key[]{BibTeXEntry.KEY_NOTE, BibTeXEntry.KEY_KEY});
 
             addField(BibTeXEntry.KEY_AUTHOR, new KeyValue(author));
             addField(BibTeXEntry.KEY_TITLE, new KeyValue(title));

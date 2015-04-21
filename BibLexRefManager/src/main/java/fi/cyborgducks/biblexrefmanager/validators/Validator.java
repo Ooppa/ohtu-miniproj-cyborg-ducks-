@@ -32,7 +32,6 @@ public abstract class Validator {
         this.errors = new ArrayList<>();
     }
 
-    public abstract void isValidOptionalFieldFor(String key);
 
     public abstract void isValidParams(String[] fields);
 

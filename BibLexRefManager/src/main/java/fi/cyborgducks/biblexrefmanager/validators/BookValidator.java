@@ -15,23 +15,6 @@ import org.jbibtex.Key;
  * @author kride
  */
 public class BookValidator extends Validator {
-    
-    @Override
-    public void isValidOptionalFieldFor(String key) {
-        if (key == null || key.isEmpty()) {
-            return;
-        }
-        key = key.toLowerCase();
-        Book stub = new Book("", "", "", "", "");
-        Key[] Optionals = stub.getOptionalFields();
-        
-        for (Key k : Optionals) {
-            if (k.getValue().equals(key)) {
-                return;
-            }
-        }
-        super.addError(key + " was not a correct key for Book reference");
-    }
 
     /**
      * @param fields - key, author, title, publisher, year
@@ -43,40 +26,40 @@ public class BookValidator extends Validator {
         String title = fields[2];
         String publisher = fields[3];
         int year = 0;
-        
+
         try {
             year = Integer.parseInt(fields[4]);
         } catch (Exception ex) {
             super.addError("Unable to find correct year");
         }
-        
+
         if (stringLengthCheck(key, 2, 16)) {
             super.addError("Key length is wrong! Should be more than 2 and less than 16");
         }
-        
+
         if (stringLengthCheck(author, 3, 100)) {
             super.addError("Author name should be more than 2 and less than 100");
         }
-        
+
         if (stringLengthCheck(title, 3, 100)) {
             super.addError("Title lenght should be more than 2 and less than 100");
         }
-        
-        if (stringLengthCheck(title, 3, 100)) {
+
+        if (stringLengthCheck(publisher, 3, 100)) {
             super.addError("Publisher length is wrong! Should be more than 2 and less than 100");
         }
-        
+
         if (year < 1000 || year > Calendar.getInstance().get(Calendar.YEAR)) {
             super.addError("Year should be more than 1000 and less or equal than current year");
         }
-        
+
     }
-    
+
     @Override
     public void validateReference(BibTeXEntry toBeValidated) {
         // would be type of book
         if (toBeValidated instanceof Book) {
-            
+
             String[] fieldsOfTheBook = new String[]{
                 toBeValidated.getKey().getValue(),
                 toBeValidated.getField(BibTeXEntry.KEY_AUTHOR).toUserString(),
@@ -86,9 +69,9 @@ public class BookValidator extends Validator {
             isValidParams(fieldsOfTheBook);
         }
     }
-    
-    private boolean stringLengthCheck(String string, int minLength, int maxLength){
+
+    private boolean stringLengthCheck(String string, int minLength, int maxLength) {
         return string.length() >= minLength && string.length() <= maxLength;
     }
-    
+
 }
