@@ -38,24 +38,19 @@ public class BookTest {
     }
 
     @Test
-    public void testIsCompleteAfterCreation() {
-        assertTrue(book.isComplete());
-        
-    }
 
-    @Test
     public void testAbleToAddOptionalField() {
         KeyValue value = new KeyValue("First Edition");
         book.addField(BibTeXEntry.KEY_EDITION, value);
-        
+
         assertTrue(book.getField(BibTeXEntry.KEY_EDITION).equals(value));
     }
-    
+
     @Test
     public void testNotAbleToAddWrongField() {
         book.addField(BibTeXEntry.KEY_HOWPUBLISHED, new KeyValue("Not like this!"));
-        
-        assertTrue(book.getField(BibTeXEntry.KEY_HOWPUBLISHED)==null);
+
+        assertTrue(book.getField(BibTeXEntry.KEY_HOWPUBLISHED) == null);
     }
 
 }
