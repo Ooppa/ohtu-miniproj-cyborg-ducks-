@@ -50,19 +50,19 @@ public class BookValidator extends Validator {
             super.addError("Unable to find correct year");
         }
         
-        if (stringLengthCheck(key, 2, 16)) {
+        if (stringLengthNotBetween(key, 2, 16)) {
             super.addError("Key length is wrong! Should be more than 2 and less than 16");
         }
         
-        if (stringLengthCheck(author, 3, 100)) {
+        if (stringLengthNotBetween(author, 3, 100)) {
             super.addError("Author name should be more than 2 and less than 100");
         }
         
-        if (stringLengthCheck(title, 3, 100)) {
+        if (stringLengthNotBetween(title, 3, 100)) {
             super.addError("Title lenght should be more than 2 and less than 100");
         }
         
-        if (stringLengthCheck(title, 3, 100)) {
+        if (stringLengthNotBetween(title, 3, 100)) {
             super.addError("Publisher length is wrong! Should be more than 2 and less than 100");
         }
         
@@ -87,8 +87,9 @@ public class BookValidator extends Validator {
         }
     }
     
-    private boolean stringLengthCheck(String string, int minLength, int maxLength){
-        return string.length() >= minLength && string.length() <= maxLength;
+    private boolean stringLengthNotBetween(String string, int minLength, int maxLength){
+        String regex = "\\w{" + minLength + "," +maxLength+ "}\\b";
+        return !string.matches(regex);
     }
     
 }
