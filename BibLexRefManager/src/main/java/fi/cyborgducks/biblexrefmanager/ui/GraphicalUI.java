@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jbibtex.*;
@@ -25,7 +23,6 @@ import org.jbibtex.StringValue.Style;
 public class GraphicalUI extends javax.swing.JFrame {
 
     // validators
-
     private Validator bookValidator;
 
     private Database database;
@@ -596,9 +593,9 @@ public class GraphicalUI extends javax.swing.JFrame {
         try {
             BibExporter.export(database.getDB());
         } catch(UnsupportedEncodingException ex) {
-            Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
+            appendToOutput("UnsupportedEncoding: Failed to export");
         } catch(IOException ex) {
-            Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
+            appendToOutput("IOException: Failed to export");
         }
     }//GEN-LAST:event_jMenuItemExportActionPerformed
 
@@ -606,7 +603,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         try {
             database.setDB(BibImporter.importFromBib());
         } catch(ObjectResolutionException|ParseException|IOException ex) {
-            System.out.println(ex.getMessage());
+            appendToOutput("Could not load the database.");
         } finally {
             updateReferenceList();
         }
@@ -617,9 +614,9 @@ public class GraphicalUI extends javax.swing.JFrame {
         try {
             BibExporter.export(database.getDB());
         } catch(UnsupportedEncodingException ex) {
-            Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
+            appendToOutput("UnsupportedEncoding: Failed to save");
         } catch(IOException ex) {
-            Logger.getLogger(GraphicalUI.class.getName()).log(Level.SEVERE, null, ex);
+            appendToOutput("IOException: Failed to save");
         }
     }//GEN-LAST:event_jMenuItemSaveActionPerformed
 
