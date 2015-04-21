@@ -22,7 +22,6 @@ import org.jbibtex.StringValue.Style;
 
 public class GraphicalUI extends javax.swing.JFrame {
 
-    // validators
     private Validator bookValidator;
 
     private Database database;
@@ -572,7 +571,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         clearTextField(bookOptionalNoteField);
         clearTextField(bookOptionalSeriesField);
         clearTextField(bookOptionalVolumeField);
-        
+
         bookOptionalMonthCombobox.setSelectedIndex(0); // 0 is the index for NaN
 
         clearTextField(articleKeyInputTextField);
@@ -585,7 +584,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         clearTextField(articleOptionalPagesField);
         clearTextField(articleOptionalNumberField);
         clearTextField(articleOptionalNoteField);
-        
+
         articleOptionalMonthCombobox.setSelectedIndex(0); // 0 is the index for NaN
     }
 
@@ -669,7 +668,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_articleAddButtonActionPerformed
 
     private void inproceedingsAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inproceedingsAddButtonActionPerformed
-        // TODO inproceedings
+        // TODO inproceedings, tulee myöhemmin kun article voidaan oikeasti lisätä
     }//GEN-LAST:event_inproceedingsAddButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -756,8 +755,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void handleOneArticle(String[] articleParams) {
         // TODO
 
-        System.out.println("Handle one article with params: "+Arrays.toString(articleParams));
-
+        this.appendToOutput("Handle one article with params: "+Arrays.toString(articleParams));
     }
 
     private void handleOneBook(String[] bookParams) {
