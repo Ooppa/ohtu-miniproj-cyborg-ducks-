@@ -44,7 +44,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        errorMessageArea = new javax.swing.JTextArea();
+        outputMessageArea = new javax.swing.JTextArea();
         tabbedPanel = new javax.swing.JTabbedPane();
         panelBook = new javax.swing.JPanel();
         labelKey = new javax.swing.JLabel();
@@ -111,14 +111,16 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        errorMessageArea.setEditable(false);
-        errorMessageArea.setColumns(20);
-        errorMessageArea.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        errorMessageArea.setRows(5);
-        errorMessageArea.setText("> Welcome");
-        errorMessageArea.setToolTipText("");
-        errorMessageArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Output"));
-        jScrollPane1.setViewportView(errorMessageArea);
+        outputMessageArea.setEditable(false);
+        outputMessageArea.setColumns(20);
+        outputMessageArea.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        outputMessageArea.setRows(5);
+        outputMessageArea.setText("> Welcome");
+        outputMessageArea.setToolTipText("");
+        outputMessageArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Output"));
+        jScrollPane1.setViewportView(outputMessageArea);
+
+        tabbedPanel.setToolTipText("");
 
         labelKey.setText("Key:");
 
@@ -643,7 +645,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             BibTeXEntry chosenReference = (BibTeXEntry) this.listRefereces.getSelectedValue();
             database.deleteReference(chosenReference.getKey(), chosenReference.getType());
             this.updateReferenceList();
-            errorMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+            outputMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
         }
     }//GEN-LAST:event_buttonDeleteSelectedActionPerformed
 
@@ -699,7 +701,6 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JTextField bookYearInputTextField;
     private javax.swing.JButton buttonDeleteSelected;
     private javax.swing.JButton buttonEditSelected;
-    private javax.swing.JTextArea errorMessageArea;
     private javax.swing.JButton inproceedingsAddButton;
     private javax.swing.JLabel inproceedingsIncoming;
     private javax.swing.JMenuBar jMenuBar;
@@ -734,6 +735,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JLabel labelYear;
     private javax.swing.JLabel labelYear1;
     private javax.swing.JList listRefereces;
+    private javax.swing.JTextArea outputMessageArea;
     private javax.swing.JPanel panelArticle;
     private javax.swing.JPanel panelBook;
     private javax.swing.JPanel panelInproceedings;
@@ -746,7 +748,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     }
 
     public void appendToOutput(String text) {
-        this.errorMessageArea.append("\n> "+text);
+        this.outputMessageArea.append("\n> "+text);
     }
 
     public void updateReferenceList() {
@@ -765,7 +767,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         // TODO: Optional fieldeille oma validaattori
 
         if(!bookValidator.hasErrors()) {
-            errorMessageArea.append("\n> Input was valid.");
+            outputMessageArea.append("\n> Input was valid.");
 
             BibTeXEntry addableReference = BookFactory.createBook(bookParams);
 
@@ -775,7 +777,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             updateReferenceList();
             clearFields();
 
-            errorMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+            outputMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
         } else {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
         }
