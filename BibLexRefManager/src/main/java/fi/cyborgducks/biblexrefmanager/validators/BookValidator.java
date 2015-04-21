@@ -6,10 +6,8 @@
 package fi.cyborgducks.biblexrefmanager.validators;
 
 import fi.cyborgducks.biblexrefmanager.references.Book;
-
 import java.util.Calendar;
 import org.jbibtex.BibTeXEntry;
-import org.jbibtex.DigitStringValue;
 import org.jbibtex.Key;
 
 /**
@@ -45,26 +43,27 @@ public class BookValidator extends Validator {
         String title = fields[2];
         String publisher = fields[3];
         int year = 0;
+        
         try {
             year = Integer.parseInt(fields[4]);
         } catch (Exception ex) {
             super.addError("Unable to find correct year");
         }
         
-        if (key.length() <= 2 || key.length() >= 15) {
+        if (stringLengthCheck(key, 2, 16)) {
             super.addError("Key length is wrong! Should be more than 2 and less than 16");
         }
         
-        if (author.length() < 2 || author.length() > 20) {
+        if (stringLengthCheck(author, 3, 20)) {
             super.addError("Author name should be more than 2 and less than 20");
         }
         
-        if (title.length() < 2 || title.length() > 40) {
-            super.addError("Title lenght should be more than 2 and less than 20");
+        if (stringLengthCheck(title, 3, 50)) {
+            super.addError("Title lenght should be more than 2 and less than 50");
         }
         
-        if (publisher.length() < 2 || publisher.length() > 20) {
-            super.addError("Publisher should be more than 2 and less than 20");
+        if (stringLengthCheck(title, 3, 30)) {
+            super.addError("Publisher length is wrong! Should be more than 2 and less than 30");
         }
         
         if (year < 1000 || year > Calendar.getInstance().get(Calendar.YEAR)) {
@@ -86,6 +85,10 @@ public class BookValidator extends Validator {
                 toBeValidated.getField(BibTeXEntry.KEY_YEAR).toUserString()};
             isValidParams(fieldsOfTheBook);
         }
+    }
+    
+    private boolean stringLengthCheck(String string, int minLength, int maxLength){
+        return string.length() >= minLength && string.length() <= maxLength;
     }
     
 }
