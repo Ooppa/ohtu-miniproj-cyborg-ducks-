@@ -6,6 +6,7 @@
 package fi.cyborgducks.biblexrefmanager.ui;
 
 import java.awt.Component;
+import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -39,6 +40,7 @@ public class BibTeXEntryListRenderer extends JLabel implements ListCellRenderer<
             setForeground(list.getForeground());
         }
 
+        setFont(new Font("Trebuchet MS", 0, 14));
         setText(getBibTeXEntryAsString(value));
         setIcon(getIconForBibTeXEntry(value));
 
