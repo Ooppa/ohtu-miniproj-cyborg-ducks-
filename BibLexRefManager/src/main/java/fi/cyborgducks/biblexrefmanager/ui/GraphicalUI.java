@@ -11,10 +11,12 @@ import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
 import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
+import java.awt.Color;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jbibtex.*;
@@ -419,13 +421,13 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         tabbedPanel.addTab("Inproceedings", panelInproceedings);
 
-        listRefereces.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "NaN" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        listRefereces.setModel(new DefaultListModel<>()
+
+        );
         listRefereces.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listRefereces.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        listRefereces.setCellRenderer(new BibTeXEntryListRenderer());
+        listRefereces.setFixedCellHeight(25);
+        listRefereces.setSelectionBackground(new Color(204, 217, 244));
         listRefereces.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listReferecesValueChanged(evt);
