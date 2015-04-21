@@ -7,6 +7,7 @@ package fi.cyborgducks.biblexrefmanager.validators;
 
 import fi.cyborgducks.biblexrefmanager.references.Book;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 import org.jbibtex.BibTeXEntry;
 import org.jbibtex.Key;
 
@@ -72,8 +73,8 @@ public class BookValidator extends Validator {
     }
 
     private boolean stringLengthNotBetween(String string, int minLength, int maxLength) {
-        String regex = "\\w{" + minLength + "," + maxLength + "}\\b";
-        return !string.matches(regex);
+        Pattern p = Pattern.compile("^.{" + minLength + "," + maxLength + "}$");
+        return  !p.matcher(string).matches();
 
     }
 
