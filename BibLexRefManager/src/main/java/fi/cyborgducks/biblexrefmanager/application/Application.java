@@ -6,6 +6,7 @@
 package fi.cyborgducks.biblexrefmanager.application;
 
 import fi.cyborgducks.biblexrefmanager.ui.GraphicalUI;
+import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 
 /**
  * Starting point for the application.
@@ -13,13 +14,22 @@ import fi.cyborgducks.biblexrefmanager.ui.GraphicalUI;
 public class Application {
 
     public static void main(String[] args) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GraphicalUI().setVisible(true);
-            }
+        
+         new BookValidator().isValidParams(new String[]{
+            "cleandcode",
+            "Robert C. Martinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+            "Clean Code: A Handbook of Agile Software Craftsmanship",
+            "Prentice Hall",
+            "2008"
         });
+        
+//
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new GraphicalUI().setVisible(true);
+//            }
+//        });
 
     }
 }

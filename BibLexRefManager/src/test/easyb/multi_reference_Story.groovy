@@ -1,6 +1,7 @@
 import fi.cyborgducks.biblexrefmanager.*;
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.references.*;
+import fi.cyborgducks.biblexrefmanager.references.utils.*;
 import fi.cyborgducks.biblexrefmanager.exporters.*;
 import fi.cyborgducks.biblexrefmanager.validators.*;
 import org.jbibtex.*;
@@ -33,7 +34,7 @@ scenario "user can save a valid book reference with multi fields", {
         database.getAllSavedReferences().size().shouldBe 1
         reference = database.fetchReference(book.getKey(), book.getType())
         reference.shouldNotBe null
-        reference.hasKeySet(new Key("month")).shouldBe true
+        ReferenceUtils.hasKeySet(reference, new Key("month")).shouldBe true
     }
     
 }

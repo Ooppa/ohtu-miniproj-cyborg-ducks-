@@ -5,6 +5,8 @@
  */
 package fi.cyborgducks.biblexrefmanager.validators;
 
+import fi.cyborgducks.biblexrefmanager.references.Book;
+import org.jbibtex.BibTeXEntry;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,7 +60,29 @@ public class BookValidatorTest {
     public void notValidIfInvalidAuthor() {
         bookValidator.isValidParams(new String[]{
             "cleandcode",
-            "Robert C. Martinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+            "Robert C. Martinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnn",
             "Clean Code: A Handbook of Agile Software Craftsmanship",
             "Prentice Hall",
             "2008"
@@ -76,6 +100,19 @@ public class BookValidatorTest {
             "2008"
         });
         assertEquals(true, bookValidator.hasErrors());
+    }
+
+    @Test
+    public void validBookShouldBeValid() {
+        BibTeXEntry e = new Book(
+                "abc",
+                "Robert",
+                "Clean Code",
+                "Prentice",
+                "2008");
+
+        bookValidator.validateReference(e);
+        assertEquals("", bookValidator.fullErrors());
     }
 
     @Test

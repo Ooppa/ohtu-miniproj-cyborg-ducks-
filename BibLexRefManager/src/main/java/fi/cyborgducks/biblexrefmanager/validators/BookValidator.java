@@ -38,15 +38,15 @@ public class BookValidator extends Validator {
             super.addError("Key length is wrong! Should be more than 2 and less than 16");
         }
 
-        if (stringLengthNotBetween(author, 3, 100)) {
+        if (stringLengthNotBetween(author, 3, 40)) {
             super.addError("Author name should be more than 2 and less than 100");
         }
 
-        if (stringLengthNotBetween(title, 3, 100)) {
+        if (stringLengthNotBetween(title, 3, 40)) {
             super.addError("Title lenght should be more than 2 and less than 100");
         }
 
-        if (stringLengthNotBetween(title, 3, 100)) {
+        if (stringLengthNotBetween(publisher, 3, 40)) {
 
             super.addError("Publisher length is wrong! Should be more than 2 and less than 100");
         }
@@ -57,6 +57,8 @@ public class BookValidator extends Validator {
 
     }
 
+    
+    
     @Override
     public void validateReference(BibTeXEntry toBeValidated) {
         // would be type of book
@@ -72,6 +74,8 @@ public class BookValidator extends Validator {
         }
     }
 
+    
+    
     private boolean stringLengthNotBetween(String string, int minLength, int maxLength) {
         Pattern p = Pattern.compile("^.{" + minLength + "," + maxLength + "}$");
         return  !p.matcher(string).matches();

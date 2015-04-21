@@ -25,7 +25,29 @@ scenario "user can retrieve all valid references", {
         book3 = new Book(
                 "ccc",
                 "Robert",
-                "Clean Codeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                "Robert C. Martinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnn",
                 "Prentice",
                 "2008")
         books = [book, book2, book3]
@@ -68,7 +90,29 @@ scenario "fetched references has correct data", {
         book3 = new Book(
                 "ccc",
                 "Robert",
-                "Clean Codeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                "Robert C. Martinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnnnn"
+            + "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnMartinnnnnnnnnn",
                 "Prentice",
                 "2008")
         books = [book, book2, book3]
