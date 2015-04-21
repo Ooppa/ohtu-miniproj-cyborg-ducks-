@@ -14,22 +14,13 @@ import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 public class Application {
 
     public static void main(String[] args) {
-        
-         new BookValidator().isValidParams(new String[]{
-            "cleandcode",
-            "Robert C. Martinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
-            "Clean Code: A Handbook of Agile Software Craftsmanship",
-            "Prentice Hall",
-            "2008"
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new GraphicalUI().setVisible(true);
+            }
         });
-        
-//
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new GraphicalUI().setVisible(true);
-//            }
-//        });
 
     }
 }
