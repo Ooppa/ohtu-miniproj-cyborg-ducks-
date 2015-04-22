@@ -18,7 +18,7 @@ import org.jbibtex.StringValue;
 public class Article extends BibTeXEntry {
 
     public Article(String key, String author, String title, String journal, String year, String volume) {
-        super(BibTeXEntry.TYPE_BOOK, new Key(key));
+        super(BibTeXEntry.TYPE_ARTICLE, new Key(key));
 
         addField(BibTeXEntry.KEY_AUTHOR, new StringValue(author, StringValue.Style.BRACED));
         addField(BibTeXEntry.KEY_TITLE, new StringValue(title, StringValue.Style.BRACED));

@@ -9,6 +9,7 @@ import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.factory.ReferenceFactory;
 import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
+import fi.cyborgducks.biblexrefmanager.references.Book;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
 import java.awt.Color;
@@ -552,7 +553,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookAddButtonActionPerformed
-        String[] bookParams = new String[] {
+        String[] bookParams = new String[]{
             getTextFromField(this.bookKeyInputTextField),
             getTextFromField(this.bookAuthorInputTextField),
             getTextFromField(this.bookTitleInputTextField),
@@ -595,9 +596,9 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void jMenuItemExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExportActionPerformed
         try {
             BibExporter.export(database.getDB());
-        } catch(UnsupportedEncodingException ex) {
+        } catch (UnsupportedEncodingException ex) {
             appendToOutput("UnsupportedEncoding: Failed to export");
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             appendToOutput("IOException: Failed to export");
         }
     }//GEN-LAST:event_jMenuItemExportActionPerformed
@@ -605,7 +606,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void jMenuItemLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoadActionPerformed
         try {
             database.setDB(BibImporter.importFromBib());
-        } catch(ObjectResolutionException|ParseException|IOException ex) {
+        } catch (ObjectResolutionException | ParseException | IOException ex) {
             appendToOutput("Could not load the database.");
         } finally {
             updateReferenceList();
@@ -616,16 +617,16 @@ public class GraphicalUI extends javax.swing.JFrame {
         // kun tallennetaan nykyinen tietokanta
         try {
             BibExporter.export(database.getDB());
-        } catch(UnsupportedEncodingException ex) {
+        } catch (UnsupportedEncodingException ex) {
             appendToOutput("UnsupportedEncoding: Failed to save");
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             appendToOutput("IOException: Failed to save");
         }
     }//GEN-LAST:event_jMenuItemSaveActionPerformed
 
     private void buttonEditSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
-        if(this.listRefereces.getSelectedIndex()!=-1) {
+        if (this.listRefereces.getSelectedIndex() != -1) {
             BibTeXEntry chosenReference = (BibTeXEntry) this.listRefereces.getSelectedValue();
             showEditWindow(chosenReference);
         }
@@ -635,31 +636,35 @@ public class GraphicalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEditSelectedActionPerformed
 
     private void showEditWindow(final BibTeXEntry selected) {
-        BookEditWindow dialog = new BookEditWindow(this, true, selected);
-        dialog.setVisible(true);
+
+        if (selected.getType().equals(BibTeXEntry.TYPE_BOOK)) {
+            BookEditWindow dialog = new BookEditWindow(this, true, selected);
+            dialog.setVisible(true);
+        }
+
     }
 
     private void buttonDeleteSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteSelectedActionPerformed
         // -1 index indicates that "nothing is selected"
-        if(this.listRefereces.getSelectedIndex()!=-1) {
+        if (this.listRefereces.getSelectedIndex() != -1) {
             BibTeXEntry chosenReference = (BibTeXEntry) this.listRefereces.getSelectedValue();
             database.deleteReference(chosenReference.getKey(), chosenReference.getType());
             this.updateReferenceList();
-            outputMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+            outputMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
         }
     }//GEN-LAST:event_buttonDeleteSelectedActionPerformed
 
     private void listReferecesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listReferecesValueChanged
-        if(this.listRefereces.getSelectedIndex()==-1) {
+        if (this.listRefereces.getSelectedIndex() == -1) {
             this.labelSelectedItem.setText("Selected item");
         } else {
             BibTeXEntry reference = (BibTeXEntry) this.listRefereces.getSelectedValue();
-            this.labelSelectedItem.setText("Selected: "+reference.getKey().toString());
+            this.labelSelectedItem.setText("Selected: " + reference.getKey().toString());
         }
     }//GEN-LAST:event_listReferecesValueChanged
 
     private void articleAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_articleAddButtonActionPerformed
-        String[] articleParams = new String[] {
+        String[] articleParams = new String[]{
             getTextFromField(this.articleKeyInputTextField),
             getTextFromField(this.articleAuthorInputTextField),
             getTextFromField(this.articleTitleInputTextField),
@@ -748,28 +753,38 @@ public class GraphicalUI extends javax.swing.JFrame {
     }
 
     public void appendToOutput(String text) {
-        this.outputMessageArea.append("\n> "+text);
+        this.outputMessageArea.append("\n> " + text);
     }
 
     public void updateReferenceList() {
+
+        if (database.getDB() == null) {
+            return;
+        }
+
         List<BibTeXEntry> allSavedReferences = this.database.getAllSavedReferences();
         listRefereces.setListData(allSavedReferences.toArray());
     }
 
     private void handleOneArticle(String[] articleParams) {
-        // TODO
+        // TODO  Optional fieldeille oma validaattori/validointi
 
-        
-        
-        
-        this.appendToOutput("Handle one article with params: "+Arrays.toString(articleParams));
+        BibTeXEntry addableReference = ReferenceFactory.createArticle(articleParams);
+        addOptionalArticleFields(addableReference);
+        database.saveReference(addableReference);
+
+        updateReferenceList();
+        clearFields();
+        outputMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
+
+        //  this.appendToOutput("Handle one article with params: " + Arrays.toString(articleParams));
     }
 
     private void handleOneBook(String[] bookParams) {
         bookValidator.isValidParams(bookParams);
         // TODO: Optional fieldeille oma validaattori
 
-        if(!bookValidator.hasErrors()) {
+        if (!bookValidator.hasErrors()) {
             outputMessageArea.append("\n> Input was valid.");
 
             BibTeXEntry addableReference = ReferenceFactory.createBook(bookParams);
@@ -780,7 +795,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             updateReferenceList();
             clearFields();
 
-            outputMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+            outputMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
         } else {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
         }
@@ -791,41 +806,64 @@ public class GraphicalUI extends javax.swing.JFrame {
         return field.getText();
     }
 
-    private void addOptionalBookFields(BibTeXEntry reference) {
-        if(!bookOptionalVolumeField.getText().isEmpty()) {
-            reference.addField(BibTeXEntry.KEY_VOLUME,
+    private void addOptionalBookFields(BibTeXEntry book) {
+        if (!bookOptionalVolumeField.getText().isEmpty()) {
+            book.addField(BibTeXEntry.KEY_VOLUME,
                     new DigitStringValue(bookOptionalVolumeField.getText())
             );
         }
 
-        if(!bookOptionalSeriesField.getText().isEmpty()) {
-            reference.addField(BibTeXEntry.KEY_SERIES,
+        if (!bookOptionalSeriesField.getText().isEmpty()) {
+            book.addField(BibTeXEntry.KEY_SERIES,
                     new StringValue(bookOptionalSeriesField.getText(), Style.BRACED)
             );
         }
 
-        if(!bookOptionalAddressField.getText().isEmpty()) {
-            reference.addField(BibTeXEntry.KEY_ADDRESS,
+        if (!bookOptionalAddressField.getText().isEmpty()) {
+            book.addField(BibTeXEntry.KEY_ADDRESS,
                     new StringValue(bookOptionalAddressField.getText(), Style.BRACED)
             );
         }
 
-        if(!bookOptionalEditionField.getText().isEmpty()) {
-            reference.addField(BibTeXEntry.KEY_EDITION,
+        if (!bookOptionalEditionField.getText().isEmpty()) {
+            book.addField(BibTeXEntry.KEY_EDITION,
                     new StringValue(bookOptionalEditionField.getText(), Style.BRACED)
             );
         }
 
         // 0 is the index for NaN
-        if(this.bookOptionalMonthCombobox.getSelectedIndex()!=0) {
-            reference.addField(BibTeXEntry.KEY_MONTH,
+        if (this.bookOptionalMonthCombobox.getSelectedIndex() != 0) {
+            book.addField(BibTeXEntry.KEY_MONTH,
                     new StringValue(bookOptionalMonthCombobox.getSelectedItem().toString(), Style.BRACED)
             );
         }
 
-        if(!bookOptionalNoteField.getText().isEmpty()) {
-            reference.addField(BibTeXEntry.KEY_NOTE,
+        if (!bookOptionalNoteField.getText().isEmpty()) {
+            book.addField(BibTeXEntry.KEY_NOTE,
                     new StringValue(bookOptionalNoteField.getText(), Style.BRACED)
+            );
+        }
+    }
+
+    private void addOptionalArticleFields(BibTeXEntry article) {
+        if (!articleOptionalNumberField.getText().isEmpty()) {
+            article.addField(BibTeXEntry.KEY_NUMBER,
+                    new StringValue(articleOptionalNumberField.getText(), Style.BRACED)
+            );
+        }
+        if (!articleOptionalPagesField.getText().isEmpty()) {
+            article.addField(BibTeXEntry.KEY_PAGES,
+                    new StringValue(articleOptionalPagesField.getText(), Style.BRACED)
+            );
+        }
+        if (this.articleOptionalMonthCombobox.getSelectedIndex() != 0) {
+            article.addField(BibTeXEntry.KEY_MONTH,
+                    new StringValue(articleOptionalMonthCombobox.getSelectedItem().toString(), Style.BRACED)
+            );
+        }
+        if (!articleOptionalNoteField.getText().isEmpty()) {
+            article.addField(BibTeXEntry.KEY_NOTE,
+                    new StringValue(articleOptionalNoteField.getText(), Style.BRACED)
             );
         }
     }
