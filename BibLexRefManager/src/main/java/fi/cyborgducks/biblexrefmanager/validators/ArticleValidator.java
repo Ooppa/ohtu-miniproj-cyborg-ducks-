@@ -5,6 +5,7 @@
  */
 package fi.cyborgducks.biblexrefmanager.validators;
 
+import fi.cyborgducks.biblexrefmanager.references.Article;
 import java.util.Calendar;
 import org.jbibtex.BibTeXEntry;
 
@@ -65,16 +66,16 @@ public class ArticleValidator extends Validator {
 
     @Override
     public void validateReference(BibTeXEntry toBeValidated) {
-//        if (toBeValidated instanceof Article) {
-//
-//            String[] fieldsOfTheBook = new String[]{
-//                toBeValidated.getKey().getValue(),
-//                toBeValidated.getField(BibTeXEntry.KEY_AUTHOR).toUserString(),
-//                toBeValidated.getField(BibTeXEntry.KEY_TITLE).toUserString(),
-//                toBeValidated.getField(BibTeXEntry.KEY_PUBLISHER).toUserString(),
-//                toBeValidated.getField(BibTeXEntry.KEY_YEAR).toUserString()};
-//            isValidParams(fieldsOfTheBook);
-//        }
+        if (toBeValidated instanceof Article) {
+            String[] fieldsOfTheArticle = new String[]{
+                toBeValidated.getKey().getValue(),
+                toBeValidated.getField(BibTeXEntry.KEY_AUTHOR).toUserString(),
+                toBeValidated.getField(BibTeXEntry.KEY_TITLE).toUserString(),
+                toBeValidated.getField(BibTeXEntry.KEY_JOURNAL).toUserString(),
+                toBeValidated.getField(BibTeXEntry.KEY_YEAR).toUserString(),
+                toBeValidated.getField(BibTeXEntry.KEY_VOLUME).toUserString()};
+            isValidParams(fieldsOfTheArticle);
+        }
     }
     
 }
