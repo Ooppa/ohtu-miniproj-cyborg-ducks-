@@ -83,7 +83,17 @@
                   <Group type="102" attributes="0">
                       <Component id="tabbedPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panelReferenceList" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="panelReferenceList" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="labelSelectedItem" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonEditSelected" min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonDeleteSelected" min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -94,12 +104,20 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panelReferenceList" min="-2" max="-2" attributes="0"/>
-                  <Component id="tabbedPanel" min="-2" pref="476" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="panelReferenceList" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelSelectedItem" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="buttonEditSelected" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonDeleteSelected" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="tabbedPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="98" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="147" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -154,7 +172,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelOptionalFieldsHeader" max="32767" attributes="0"/>
+                          <Component id="labelOptionalFieldsHeaderForBook" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="bookAddButton" min="-2" max="-2" attributes="0"/>
@@ -234,7 +252,7 @@
                           <Component id="bookYearInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="labelOptionalFieldsHeader" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelOptionalFieldsHeaderForBook" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelVolume" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -319,7 +337,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookAddButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelOptionalFieldsHeader">
+            <Component class="javax.swing.JLabel" name="labelOptionalFieldsHeaderForBook">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
@@ -405,7 +423,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelOptionalFieldsHeader1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelOptionalFieldsHeaderForArticle" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="articleAddButton" min="-2" max="-2" attributes="0"/>
@@ -437,7 +455,6 @@
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="articleKeyInputTextField" alignment="0" pref="205" max="32767" attributes="0"/>
                                   <Component id="articleAuthorInputTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="articleTitleInputTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="articleJournalInputTextField" alignment="0" max="32767" attributes="0"/>
@@ -446,7 +463,8 @@
                                   <Component id="articleOptionalNumberField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="articleOptionalPagesField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="articleOptionalNoteField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="articleOptionalMonthCombobox" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="articleOptionalMonthCombobox" alignment="0" pref="205" max="32767" attributes="0"/>
+                                  <Component id="articleKeyInputTextField" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -488,7 +506,7 @@
                           <Component id="articleVolumeField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="labelOptionalFieldsHeader1" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelOptionalFieldsHeaderForArticle" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelSeries1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -509,7 +527,7 @@
                           <Component id="labelNote1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="articleOptionalNoteField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="82" max="32767" attributes="0"/>
+                      <EmptySpace pref="131" max="32767" attributes="0"/>
                       <Component id="articleAddButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -554,7 +572,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="articleVolumeField">
             </Component>
-            <Component class="javax.swing.JLabel" name="labelOptionalFieldsHeader1">
+            <Component class="javax.swing.JLabel" name="labelOptionalFieldsHeaderForArticle">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
@@ -641,12 +659,64 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="inproceedingsIncoming" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="280" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="inproceedingsAddButton" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelOptionalFieldsHeaderForInpro" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelYear2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelAuthor2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelTitle2" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="labelKey2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelPublisher2" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="labelVolume2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelAddress2" alignment="0" pref="134" max="32767" attributes="0"/>
+                                          <Component id="labelMonth2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelNote2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelSeries2" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" pref="134" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                                      <Component id="inproceedingsAddButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="inproceedingsTitleInputTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsBookTitleInputTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsYearInputTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsOptionalSeriesField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsOptionalEditorField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsOptionalVolumeField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsOptionalMonthCombobox" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsOptionalNoteField" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsOptionalPagesField" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsOptionalAddressField" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsKeyInputTextField" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsAuthorInputTextField" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel3" pref="134" max="32767" attributes="0"/>
+                                  <Component id="jLabel4" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="inproceedingsOptionalPublisherField" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsOptionalOrganizationField" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -655,8 +725,82 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="inproceedingsIncoming" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="387" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelKey2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsKeyInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelAuthor2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsAuthorInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelTitle2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsTitleInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelPublisher2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsBookTitleInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelYear2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsYearInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelOptionalFieldsHeaderForInpro" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelSeries2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inproceedingsOptionalEditorField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelAddress2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inproceedingsOptionalVolumeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelVolume2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inproceedingsOptionalSeriesField" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="inproceedingsOptionalPagesField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelMonth2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="inproceedingsOptionalAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="inproceedingsOptionalMonthCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsOptionalOrganizationField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="inproceedingsOptionalPublisherField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="inproceedingsOptionalNoteField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNote2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
                       <Component id="inproceedingsAddButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -664,11 +808,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="inproceedingsIncoming">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Coming soon..."/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="inproceedingsAddButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -679,6 +818,131 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inproceedingsAddButtonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelKey2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Key:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAuthor2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Author:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelTitle2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Title:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelPublisher2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Book title:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelYear2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Year:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelVolume2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Series:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelOptionalFieldsHeaderForInpro">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Optional fields:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelSeries2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editor:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Address:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Publisher:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Organization:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Month:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAddress2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Volume/Number:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelMonth2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pages:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelNote2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Note:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsOptionalNoteField">
+            </Component>
+            <Component class="javax.swing.JComboBox" name="inproceedingsOptionalMonthCombobox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="13">
+                    <StringItem index="0" value="NaN"/>
+                    <StringItem index="1" value="jan"/>
+                    <StringItem index="2" value="feb"/>
+                    <StringItem index="3" value="mar"/>
+                    <StringItem index="4" value="apr"/>
+                    <StringItem index="5" value="may"/>
+                    <StringItem index="6" value="jun"/>
+                    <StringItem index="7" value="jul"/>
+                    <StringItem index="8" value="aug"/>
+                    <StringItem index="9" value="sep"/>
+                    <StringItem index="10" value="oct"/>
+                    <StringItem index="11" value="nov"/>
+                    <StringItem index="12" value="dec"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsOptionalVolumeField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsOptionalEditorField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsOptionalSeriesField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsYearInputTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsBookTitleInputTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsTitleInputTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsAuthorInputTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsKeyInputTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsOptionalPagesField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsOptionalAddressField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsOptionalOrganizationField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="inproceedingsOptionalPublisherField">
             </Component>
           </SubComponents>
         </Container>
@@ -691,17 +955,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="labelSelectedItem" pref="206" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonEditSelected" min="-2" pref="37" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonDeleteSelected" min="-2" pref="37" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jScrollPane2" pref="309" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -709,14 +963,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="435" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="buttonDeleteSelected" alignment="1" max="32767" attributes="0"/>
-                      <Component id="buttonEditSelected" alignment="1" max="32767" attributes="0"/>
-                      <Component id="labelSelectedItem" alignment="1" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" pref="477" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -752,40 +999,40 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="buttonDeleteSelected">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/reference_delete.png"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Delete selected reference"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDeleteSelectedActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="buttonEditSelected">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/reference_edit.png"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="View and Edit selected reference"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEditSelectedActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelSelectedItem">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="10" style="2"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="99" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Selected Item"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="labelSelectedItem">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="10" style="2"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Selected Item"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonDeleteSelected">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/reference_delete.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Delete selected reference"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDeleteSelectedActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonEditSelected">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/reference_edit.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="View and Edit selected reference"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEditSelectedActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

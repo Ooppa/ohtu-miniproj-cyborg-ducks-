@@ -46,7 +46,7 @@ public class Book extends BibTeXEntry {
     }
 
     /**
-     * type |  key |  (author)
+     * type |  key |  (title)
      */
     @Override
     public String toString() {
