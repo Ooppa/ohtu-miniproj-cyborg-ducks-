@@ -22,16 +22,6 @@ public class ReferenceUtils {
 
     public static Key[] getOptionalKeysForBook() {
         return new Key[]{
-            BibTeXEntry.KEY_AUTHOR,
-            BibTeXEntry.KEY_TITLE,
-            BibTeXEntry.KEY_PUBLISHER,
-            BibTeXEntry.KEY_YEAR
-        };
-    }
-
-
-    public static Key[] getRequiredKeysForBook() {
-        return new Key[]{
             BibTeXEntry.KEY_VOLUME,
             BibTeXEntry.KEY_SERIES,
             BibTeXEntry.KEY_ADDRESS,
@@ -40,6 +30,27 @@ public class ReferenceUtils {
             BibTeXEntry.KEY_NOTE,
             BibTeXEntry.KEY_KEY
         };
+    }
+
+    public static Key[] getRequiredKeysForBook() {
+        return new Key[]{
+            BibTeXEntry.KEY_AUTHOR,
+            BibTeXEntry.KEY_TITLE,
+            BibTeXEntry.KEY_PUBLISHER,
+            BibTeXEntry.KEY_YEAR
+        };
+    }
+
+    public static Key[] getRequiredKeysForArticle() {
+        return new Key[]{
+            BibTeXEntry.KEY_AUTHOR,
+            BibTeXEntry.KEY_TITLE,
+            BibTeXEntry.KEY_JOURNAL,
+            BibTeXEntry.KEY_YEAR,
+            BibTeXEntry.KEY_VOLUME
+
+        };
+
     }
 
 }
