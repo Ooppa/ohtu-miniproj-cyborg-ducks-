@@ -5,7 +5,9 @@
  */
 package fi.cyborgducks.biblexrefmanager.references;
 
+import fi.cyborgducks.biblexrefmanager.references.utils.ReferenceUtils;
 import org.jbibtex.BibTeXEntry;
+import static org.jbibtex.BibTeXEntry.KEY_TITLE;
 import org.jbibtex.Key;
 import org.jbibtex.StringValue;
 
@@ -24,6 +26,27 @@ public class Article extends BibTeXEntry {
         addField(BibTeXEntry.KEY_YEAR, new StringValue(year, StringValue.Style.BRACED));
         addField(BibTeXEntry.KEY_VOLUME, new StringValue(volume, StringValue.Style.BRACED));
 
+    }
+
+    boolean isComplete() {
+
+        Key[] req = ReferenceUtils.getRequiredKeysForArticle();
+
+        for (int i = 0; i < req.length; i++) {
+            if (getField(req[i]) == null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * type |  key |  (author)
+     */
+    @Override
+    public String toString() {
+        return super.getType() + " | " + super.getKey() + " (" + super.getField(KEY_TITLE).toUserString() + ")";
     }
 
 }
