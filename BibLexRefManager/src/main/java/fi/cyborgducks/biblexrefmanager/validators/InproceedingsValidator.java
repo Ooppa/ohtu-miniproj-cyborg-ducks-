@@ -10,6 +10,7 @@ import java.util.Calendar;
 import org.jbibtex.BibTeXEntry;
 
 /**
+ * Validates an Inproceedings type reference.
  *
  * @author Ooppa
  */

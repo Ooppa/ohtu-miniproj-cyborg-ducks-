@@ -838,7 +838,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             BibTeXEntry chosenReference = (BibTeXEntry) this.listRefereces.getSelectedValue();
             database.deleteReference(chosenReference.getKey(), chosenReference.getType());
             this.updateReferenceList();
-            outputMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+            appendDatabaseStatusToOutput();
         }
     }//GEN-LAST:event_buttonDeleteSelectedActionPerformed
 
@@ -974,12 +974,20 @@ public class GraphicalUI extends javax.swing.JFrame {
         field.setText("");
     }
 
+    /**
+     * Appends to the output field found on the main window.
+     *
+     * @param text Text to output
+     */
     public void appendToOutput(String text) {
         this.outputMessageArea.append("\n> "+text);
     }
 
-    public void updateReferenceList() {
+    private void appendDatabaseStatusToOutput() {
+        outputMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+    }
 
+    public void updateReferenceList() {
         if(database.getDB()==null) {
             return;
         }
@@ -998,7 +1006,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
             updateReferenceList();
             clearFields();
-            outputMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+            appendDatabaseStatusToOutput();
         } else {
             JOptionPane.showMessageDialog(this, articleValidator.fullErrors());
         }
@@ -1018,7 +1026,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             updateReferenceList();
             clearFields();
 
-            outputMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+            appendDatabaseStatusToOutput();
         } else {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
         }
@@ -1036,7 +1044,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
             updateReferenceList();
             clearFields();
-            outputMessageArea.append("\n> Database has now "+database.getAllSavedReferences().size()+" items.");
+            appendDatabaseStatusToOutput();
         } else {
             JOptionPane.showMessageDialog(this, inproceedingsValidator.fullErrors());
         }

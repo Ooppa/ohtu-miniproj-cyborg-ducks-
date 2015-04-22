@@ -12,11 +12,20 @@ import org.jbibtex.Key;
 import org.jbibtex.StringValue;
 
 /**
- *
- * @author
+ * Defines an Article reference.
  */
 public class Article extends BibTeXEntry {
 
+    /**
+     * Creates a new Article object.
+     *
+     * @param key     Key to identify the reference by
+     * @param author  Author of the Article
+     * @param title   Title of the Article
+     * @param journal Journal the Article was published in
+     * @param year    Year the Article was published
+     * @param volume  Volume of the Article
+     */
     public Article(String key, String author, String title, String journal, String year, String volume) {
         super(BibTeXEntry.TYPE_ARTICLE, new Key(key));
 
@@ -28,12 +37,16 @@ public class Article extends BibTeXEntry {
 
     }
 
-    boolean isComplete() {
-
+    /**
+     * Returns the status of the Article.
+     *
+     * @return true if complete, false if not
+     */
+    public boolean isComplete() {
         Key[] req = ReferenceUtils.getRequiredKeysForArticle();
 
-        for (int i = 0; i < req.length; i++) {
-            if (getField(req[i]) == null) {
+        for(int i = 0; i<req.length; i++) {
+            if(getField(req[i])==null) {
                 return false;
             }
         }
@@ -46,7 +59,7 @@ public class Article extends BibTeXEntry {
      */
     @Override
     public String toString() {
-        return super.getType() + " | " + super.getKey() + " (" + super.getField(KEY_TITLE).toUserString() + ")";
+        return super.getType()+" | "+super.getKey()+" ("+super.getField(KEY_TITLE).toUserString()+")";
     }
 
 }
