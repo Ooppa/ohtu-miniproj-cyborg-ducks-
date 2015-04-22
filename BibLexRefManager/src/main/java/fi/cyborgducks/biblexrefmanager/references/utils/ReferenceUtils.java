@@ -36,9 +36,8 @@ public class ReferenceUtils {
         return new Key[]{
             BibTeXEntry.KEY_AUTHOR,
             BibTeXEntry.KEY_TITLE,
-            BibTeXEntry.KEY_JOURNAL,
-            BibTeXEntry.KEY_YEAR,
-            BibTeXEntry.KEY_VOLUME
+            BibTeXEntry.KEY_PUBLISHER,
+            BibTeXEntry.KEY_YEAR
         };
     }
 
@@ -46,8 +45,9 @@ public class ReferenceUtils {
         return new Key[]{
             BibTeXEntry.KEY_AUTHOR,
             BibTeXEntry.KEY_TITLE,
-            BibTeXEntry.KEY_PUBLISHER,
-            BibTeXEntry.KEY_YEAR
+            BibTeXEntry.KEY_JOURNAL,
+            BibTeXEntry.KEY_YEAR,
+            BibTeXEntry.KEY_VOLUME
 
         };
 

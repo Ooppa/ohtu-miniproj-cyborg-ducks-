@@ -569,7 +569,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="labelSeries1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Number"/>
+                <Property name="text" type="java.lang.String" value="Number:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="articleOptionalNumberField">

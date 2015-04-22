@@ -253,7 +253,7 @@ public class GraphicalUI extends javax.swing.JFrame {
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNote)
                     .addComponent(bookOptionalNoteField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bookAddButton)
                 .addContainerGap())
         );
@@ -275,7 +275,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         labelVolume1.setText("Volume:");
 
-        labelSeries1.setText("Number");
+        labelSeries1.setText("Number:");
 
         labelAddress1.setText("Pages:");
 
@@ -639,6 +639,10 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         if (selected.getType().equals(BibTeXEntry.TYPE_BOOK)) {
             BookEditWindow dialog = new BookEditWindow(this, true, selected);
+            dialog.setVisible(true);
+        }
+        if (selected.getType().equals(BibTeXEntry.TYPE_ARTICLE)) {
+            ArticleEditWindow dialog = new ArticleEditWindow(this, true, selected);
             dialog.setVisible(true);
         }
 
