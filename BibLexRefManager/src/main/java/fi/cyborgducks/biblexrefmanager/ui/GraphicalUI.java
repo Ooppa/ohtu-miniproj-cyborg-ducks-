@@ -7,7 +7,7 @@ package fi.cyborgducks.biblexrefmanager.ui;
 
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
-import fi.cyborgducks.biblexrefmanager.factory.BookFactory;
+import fi.cyborgducks.biblexrefmanager.factory.ReferenceFactory;
 import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
@@ -759,6 +759,9 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void handleOneArticle(String[] articleParams) {
         // TODO
 
+        
+        
+        
         this.appendToOutput("Handle one article with params: "+Arrays.toString(articleParams));
     }
 
@@ -769,7 +772,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         if(!bookValidator.hasErrors()) {
             outputMessageArea.append("\n> Input was valid.");
 
-            BibTeXEntry addableReference = BookFactory.createBook(bookParams);
+            BibTeXEntry addableReference = ReferenceFactory.createBook(bookParams);
 
             addOptionalBookFields(addableReference);
             database.saveReference(addableReference);

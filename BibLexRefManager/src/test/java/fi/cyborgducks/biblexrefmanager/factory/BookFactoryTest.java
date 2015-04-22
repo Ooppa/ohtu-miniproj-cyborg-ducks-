@@ -12,11 +12,11 @@ import static org.junit.Assert.*;
 
 public class BookFactoryTest {
 
-    private BookFactory factory;
+    private ReferenceFactory factory;
 
     @Before
     public void setUp() {
-        factory = new BookFactory();
+        factory = new ReferenceFactory();
     }
 
     @Test

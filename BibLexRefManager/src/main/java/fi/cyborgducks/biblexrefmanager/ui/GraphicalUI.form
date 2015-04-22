@@ -265,7 +265,7 @@
                           <Component id="labelNote" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bookOptionalNoteField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="bookAddButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

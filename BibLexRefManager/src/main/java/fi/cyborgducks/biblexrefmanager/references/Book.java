@@ -6,15 +6,12 @@
 package fi.cyborgducks.biblexrefmanager.references;
 
 import fi.cyborgducks.biblexrefmanager.references.utils.ReferenceUtils;
-import org.codehaus.jackson.annotate.JsonTypeName;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.jbibtex.*;
 import org.jbibtex.StringValue.Style;
 
 /**
  * Defines a Book reference
  */
-@JsonTypeName("book")
 public class Book extends BibTeXEntry {
 
     /**
