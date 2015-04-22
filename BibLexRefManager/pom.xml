@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>fi.cyborgducks</groupId>
     <artifactId>BibLexRefManager</artifactId>
-    <version>v1.00</version><!-- Sprintti 2, merge 00 -->
+    <version>v1.00</version><!-- Sprintti 3, merge 00 -->
     <description>Ohjelmistotuotanto kevät 2015 Miniprojekti, BibLex viitteiden hallintajärjestelmä</description>
     <packaging>jar</packaging>
     

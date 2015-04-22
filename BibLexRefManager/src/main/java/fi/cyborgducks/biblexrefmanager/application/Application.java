@@ -6,10 +6,9 @@
 package fi.cyborgducks.biblexrefmanager.application;
 
 import fi.cyborgducks.biblexrefmanager.ui.GraphicalUI;
-import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 
 /**
- * Starting point for the application.
+ * Starting point for the BibLexRefManager application.
  */
 public class Application {
 
