@@ -10,6 +10,7 @@ import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.factory.ReferenceFactory;
 import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
 import fi.cyborgducks.biblexrefmanager.references.Book;
+import fi.cyborgducks.biblexrefmanager.validators.ArticleValidator;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
 import java.awt.Color;
@@ -26,6 +27,7 @@ import org.jbibtex.StringValue.Style;
 public class GraphicalUI extends javax.swing.JFrame {
 
     private Validator bookValidator;
+    private Validator articleValidator;
 
     private Database database;
 
@@ -38,6 +40,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         this.database = new InMemoryDatabase();
         this.bookValidator = new BookValidator();
+        this.articleValidator = new ArticleValidator();
         updateReferenceList();
     }
 
@@ -772,14 +775,19 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void handleOneArticle(String[] articleParams) {
         // TODO  Optional fieldeille oma validaattori/validointi
+        articleValidator.isValidParams(articleParams);
+        if (!articleValidator.hasErrors()) {
+            outputMessageArea.append("\n> Input was valid.");
+            BibTeXEntry addableReference = ReferenceFactory.createArticle(articleParams);
+            addOptionalArticleFields(addableReference);
+            database.saveReference(addableReference);
 
-        BibTeXEntry addableReference = ReferenceFactory.createArticle(articleParams);
-        addOptionalArticleFields(addableReference);
-        database.saveReference(addableReference);
-
-        updateReferenceList();
-        clearFields();
-        outputMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
+            updateReferenceList();
+            clearFields();
+            outputMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
+        } else {
+            JOptionPane.showMessageDialog(this, articleValidator.fullErrors());
+        }
 
         //  this.appendToOutput("Handle one article with params: " + Arrays.toString(articleParams));
     }
