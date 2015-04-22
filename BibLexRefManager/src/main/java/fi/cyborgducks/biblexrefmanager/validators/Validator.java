@@ -7,6 +7,7 @@ package fi.cyborgducks.biblexrefmanager.validators;
 
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.jbibtex.BibTeXEntry;
 
 public abstract class Validator {
@@ -59,6 +60,12 @@ public abstract class Validator {
 
         errors.clear();
         return errorBuilder.toString();
+    }
+    
+    protected boolean stringLengthNotBetween(String string, int minLength, int maxLength) {
+        Pattern p = Pattern.compile("^.{" + minLength + "," + maxLength + "}$");
+        return  !p.matcher(string).matches();
+
     }
 
 }

@@ -5,31 +5,36 @@
  */
 package fi.cyborgducks.biblexrefmanager.validators;
 
-import fi.cyborgducks.biblexrefmanager.references.Book;
 import java.util.Calendar;
 import org.jbibtex.BibTeXEntry;
 
 /**
  *
- * @author kride
+ * @author samutamm
  */
-public class BookValidator extends Validator {
+public class ArticleValidator extends Validator {
 
     /**
-     * @param fields - key, author, title, publisher, year
+     * @param fields - key, author, title, journal, year, volume
      */
     @Override
     public void isValidParams(String[] fields) {
         String key = fields[0];
         String author = fields[1];
         String title = fields[2];
-        String publisher = fields[3];
+        String journal = fields[3];
         int year = 0;
+        int volume = 0;
 
         try {
             year = Integer.parseInt(fields[4]);
         } catch (Exception ex) {
             super.addError("Unable to find correct year");
+        }
+        try {
+            volume = Integer.parseInt(fields[5]);
+        } catch (Exception ex) {
+            super.addError("Volume is not an integer.");
         }
 
         if (stringLengthNotBetween(key, 2, 16)) {
@@ -44,29 +49,32 @@ public class BookValidator extends Validator {
             super.addError("Title lenght should be more than 2 and less than 100");
         }
 
-        if (stringLengthNotBetween(publisher, 3, 40)) {
+        if (stringLengthNotBetween(journal, 3, 40)) {
 
-            super.addError("Publisher length is wrong! Should be more than 2 and less than 100");
+            super.addError("Journal length is wrong! Should be more than 2 and less than 100");
         }
 
         if (year < 1000 || year > Calendar.getInstance().get(Calendar.YEAR)) {
             super.addError("Year should be more than 1000 and less or equal than current year");
         }
-
+        
+        if (volume > 9999 || volume < 0) {
+            super.addError("Volume should be between 0 and 9999.");
+        }
     }
 
     @Override
     public void validateReference(BibTeXEntry toBeValidated) {
-        // would be type of book
-        if (toBeValidated instanceof Book) {
-
-            String[] fieldsOfTheBook = new String[]{
-                toBeValidated.getKey().getValue(),
-                toBeValidated.getField(BibTeXEntry.KEY_AUTHOR).toUserString(),
-                toBeValidated.getField(BibTeXEntry.KEY_TITLE).toUserString(),
-                toBeValidated.getField(BibTeXEntry.KEY_PUBLISHER).toUserString(),
-                toBeValidated.getField(BibTeXEntry.KEY_YEAR).toUserString()};
-            isValidParams(fieldsOfTheBook);
-        }
+//        if (toBeValidated instanceof Article) {
+//
+//            String[] fieldsOfTheBook = new String[]{
+//                toBeValidated.getKey().getValue(),
+//                toBeValidated.getField(BibTeXEntry.KEY_AUTHOR).toUserString(),
+//                toBeValidated.getField(BibTeXEntry.KEY_TITLE).toUserString(),
+//                toBeValidated.getField(BibTeXEntry.KEY_PUBLISHER).toUserString(),
+//                toBeValidated.getField(BibTeXEntry.KEY_YEAR).toUserString()};
+//            isValidParams(fieldsOfTheBook);
+//        }
     }
+    
 }
