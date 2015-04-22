@@ -5,6 +5,11 @@ import fi.cyborgducks.biblexrefmanager.references.*;
 public class ReferenceFactory {
 
     public static Book createBook(String[] bookParameters) {
+
+        if (bookParameters.length < 5) {
+            throw new IllegalStateException("Too few parameters to construct a Book object");
+        }
+
         return new Book(bookParameters[0],
                 bookParameters[1],
                 bookParameters[2],
@@ -13,6 +18,11 @@ public class ReferenceFactory {
     }
 
     public static Article createArticle(String[] articleParameters) {
+
+        if (articleParameters.length < 6) {
+            throw new IllegalStateException("Too few parameters to construct an Article object");
+        }
+
         return new Article(
                 articleParameters[0],
                 articleParameters[1],
