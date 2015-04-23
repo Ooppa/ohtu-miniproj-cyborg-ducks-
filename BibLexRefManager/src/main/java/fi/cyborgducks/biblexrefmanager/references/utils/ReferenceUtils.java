@@ -53,4 +53,19 @@ public class ReferenceUtils {
 
     }
 
+    public static Key[] getRequiredKeysForInProceedings() {
+        return new Key[]{
+            
+            
+            
+            BibTeXEntry.KEY_AUTHOR,
+            BibTeXEntry.KEY_TITLE,
+            BibTeXEntry.KEY_BOOKTITLE,
+            BibTeXEntry.KEY_YEAR
+        };
+
+    }
+    
+    
+
 }

@@ -31,10 +31,10 @@ public class ReferenceFactory {
                 articleParameters[4],
                 articleParameters[5]);
     }
-    
+
     public static Inproceedings createInproceedings(String[] inproceedingsParams) {
 
-        if (inproceedingsParams.length < 4) {
+        if (inproceedingsParams.length < 5) {
             throw new IllegalStateException("Too few parameters to construct an Inproceedings object");
         }
 
@@ -42,7 +42,9 @@ public class ReferenceFactory {
                 inproceedingsParams[0],
                 inproceedingsParams[1],
                 inproceedingsParams[2],
-                inproceedingsParams[3]);
+                inproceedingsParams[3],
+                inproceedingsParams[4]
+        );
     }
 
 }

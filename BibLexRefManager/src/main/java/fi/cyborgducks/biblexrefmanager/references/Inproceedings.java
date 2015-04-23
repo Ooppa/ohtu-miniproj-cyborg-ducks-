@@ -20,14 +20,16 @@ public class Inproceedings extends BibTeXEntry {
     /**
      * Creates a new Inproceedings object.
      *
-     * @param key       Key to identify the reference by
-     * @param title     Title of the Inproceedings
+     * @param key Key to identify the reference by
+     * @param author Author of the inproceedings
+     * @param title Title of the Inproceedings
      * @param bookTitle Book title of the Inproceedings
-     * @param year      Year of the Inproceedings
+     * @param year Year of the Inproceedings
      */
-    public Inproceedings(String key, String title, String bookTitle, String year) {
+    public Inproceedings(String key, String author, String title, String bookTitle, String year) {
         super(BibTeXEntry.TYPE_INPROCEEDINGS, new Key(key));
 
+        addField(BibTeXEntry.KEY_AUTHOR, new StringValue(title, StringValue.Style.BRACED));
         addField(BibTeXEntry.KEY_TITLE, new StringValue(title, StringValue.Style.BRACED));
         addField(BibTeXEntry.KEY_BOOKTITLE, new StringValue(bookTitle, StringValue.Style.BRACED));
         addField(BibTeXEntry.KEY_YEAR, new DigitStringValue(year));
@@ -42,8 +44,8 @@ public class Inproceedings extends BibTeXEntry {
     public boolean isComplete() {
         Key[] req = ReferenceUtils.getRequiredKeysForArticle();
 
-        for(int i = 0; i<req.length; i++) {
-            if(getField(req[i])==null) {
+        for (int i = 0; i < req.length; i++) {
+            if (getField(req[i]) == null) {
                 return false;
             }
         }
@@ -56,7 +58,7 @@ public class Inproceedings extends BibTeXEntry {
      */
     @Override
     public String toString() {
-        return super.getType()+" | "+super.getKey()+" ("+super.getField(KEY_TITLE).toUserString()+")";
+        return super.getType() + " | " + super.getKey() + " (" + super.getField(KEY_TITLE).toUserString() + ")";
     }
 
 }
