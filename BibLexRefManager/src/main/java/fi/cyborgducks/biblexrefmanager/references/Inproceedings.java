@@ -42,10 +42,14 @@ public class Inproceedings extends BibTeXEntry {
      * @return true if complete, false if not
      */
     public boolean isComplete() {
-        Key[] req = ReferenceUtils.getRequiredKeysForArticle();
+        Key[] req = ReferenceUtils.getRequiredKeysForInProceedings();
+
+        if (this.getKey() == null) {
+            return false;
+        }
 
         for (int i = 0; i < req.length; i++) {
-            if (getField(req[i]) == null) {
+            if (this.getField(req[i]) == null || getField(req[i]).toUserString().isEmpty()) {
                 return false;
             }
         }

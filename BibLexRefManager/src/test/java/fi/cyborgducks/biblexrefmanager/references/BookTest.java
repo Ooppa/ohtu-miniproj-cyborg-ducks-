@@ -8,6 +8,8 @@ package fi.cyborgducks.biblexrefmanager.references;
 import org.jbibtex.BibTeXEntry;
 import org.jbibtex.KeyValue;
 import org.junit.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -47,10 +49,22 @@ public class BookTest {
     }
 
     @Test
-    public void testNotAbleToAddWrongField() {
-       //book.addField(BibTeXEntry.KEY_HOWPUBLISHED, new KeyValue("Not like this!"));
+    public void isValidWhenCreatedWithValidParametersInitially() {
+        assertTrue(book.isComplete());
+    }
 
-       // assertTrue(book.getField(BibTeXEntry.KEY_HOWPUBLISHED) == null);
+    @Test(expected = IllegalArgumentException.class)
+    public void notValidWhenConstructorHasNulls() {
+        book = new Book(null, "", "aaaa", "kaapos book", "1999");
+        assertFalse(book.isComplete());
+    }
+
+    @Test
+    public void toStringFormatIsCorrect() {
+
+        String string = "book" + " | " + "abc" + " (" + "aaaa" + ")";
+
+        assertEquals(string, book.toString());
     }
 
 }
