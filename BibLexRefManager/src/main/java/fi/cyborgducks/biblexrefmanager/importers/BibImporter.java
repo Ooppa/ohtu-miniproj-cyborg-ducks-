@@ -5,8 +5,10 @@
  */
 package fi.cyborgducks.biblexrefmanager.importers;
 
+import fi.cyborgducks.biblexrefmanager.helpers.ScandCharFixer;
 import org.jbibtex.BibTeXDatabase;
 import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
+import groovy.xml.Entity;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -34,7 +36,6 @@ public class BibImporter {
     }
 
     public static BibTeXDatabase importFromBib(String filePath) throws ObjectResolutionException, ParseException, IOException {
-
         File inputFile = new File(filePath);
         BibTeXDatabase importedDB = parseBibTex(inputFile);
 

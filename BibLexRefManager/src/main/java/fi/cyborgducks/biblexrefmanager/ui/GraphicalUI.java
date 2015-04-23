@@ -13,6 +13,7 @@ import fi.cyborgducks.biblexrefmanager.validators.ArticleValidator;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.InproceedingsValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
+import fi.cyborgducks.biblexrefmanager.helpers.BibTexDataTransferHelper;
 import java.awt.Color;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -775,7 +776,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void jMenuItemExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExportActionPerformed
         try {
-            BibExporter.export(database.getDB());
+            BibTexDataTransferHelper.export(database.getDB());
         } catch(UnsupportedEncodingException ex) {
             appendToOutput("UnsupportedEncoding: Failed to export");
         } catch(IOException ex) {
@@ -785,7 +786,10 @@ public class GraphicalUI extends javax.swing.JFrame {
 
     private void jMenuItemLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoadActionPerformed
         try {
-            database.setDB(BibImporter.importFromBib());
+            BibTeXDatabase db = BibTexDataTransferHelper.importFromBib();
+            if (db != null) {
+                database.setDB(db);
+            }
         } catch(ObjectResolutionException|ParseException|IOException ex) {
             appendToOutput("Could not load the database.");
         } finally {

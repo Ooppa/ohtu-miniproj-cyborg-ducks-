@@ -18,6 +18,7 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import org.jbibtex.BibTeXDatabase;
 import org.jbibtex.BibTeXEntry;
 import org.jbibtex.BibTeXFormatter;
@@ -81,8 +82,7 @@ public class BibTexDataTransferHelper {
         } finally {
             writer1.close();
             
-            String fixedString = ScandCharFixer.fixScands(path);
-            System.out.println(fixedString);
+            String fixedString = ScandCharFixer.fixScandsforExport(path);
             Files.delete(new File(path).toPath());
             
             Writer writer2 = new BufferedWriter(
@@ -104,10 +104,19 @@ public class BibTexDataTransferHelper {
     }
 
     public static BibTeXDatabase importFromBib(String filePath) throws ObjectResolutionException, ParseException, IOException {
-
-        File inputFile = new File(filePath);
+        String tempFilePath = filePath.replace(".bib", "_temp.bib");
+        Writer writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(tempFilePath), "8859_1"));
+    
+        String fileAsFixedString = ScandCharFixer.fixScandsForImport(filePath);
+        writer.write(fileAsFixedString);
+        writer.close();
+        
+        File inputFile = new File(tempFilePath);
         BibTeXDatabase importedDB = parseBibTex(inputFile);
 
+        Files.delete(Paths.get(tempFilePath));
+        
         return importedDB;
     }
 
