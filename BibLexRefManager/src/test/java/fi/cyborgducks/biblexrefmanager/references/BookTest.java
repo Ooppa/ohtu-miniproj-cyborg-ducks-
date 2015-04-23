@@ -62,7 +62,7 @@ public class BookTest {
     @Test
     public void toStringFormatIsCorrect() {
 
-        String string = "book" + " | " + "abc" + " (" + "aaaa" + ")";
+        String string = "book" + " | " + "cleancode" + " (" + "Clean Code: A Handbook of Agile Software Craftsmanship" + ")";
 
         assertEquals(string, book.toString());
     }
