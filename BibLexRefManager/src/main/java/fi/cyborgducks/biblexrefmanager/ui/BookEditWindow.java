@@ -375,50 +375,7 @@ public class BookEditWindow extends javax.swing.JDialog {
     }
 
     private Key resolveKey(String componentName) {
-        String lastPart = componentName.replaceAll("jTextField", "");
-
-        if (lastPart.length() >= componentName.length()) { // must be comboBox
-            lastPart = componentName.replaceAll("jCombo", "");
-        }
-
-        Key key = null;
-
-        switch (lastPart) {
-
-            case "Title":
-                key = BibTeXEntry.KEY_TITLE;
-                break;
-            case "Author":
-                key = BibTeXEntry.KEY_AUTHOR;
-                break;
-            case "Publisher":
-                key = BibTeXEntry.KEY_PUBLISHER;
-                break;
-            case "Year":
-                key = BibTeXEntry.KEY_YEAR;
-                break;
-            case "Volume":
-                key = BibTeXEntry.KEY_VOLUME;
-                break;
-            case "Series":
-                key = BibTeXEntry.KEY_SERIES;
-                break;
-            case "Address":
-                key = BibTeXEntry.KEY_ADDRESS;
-                break;
-            case "Edition":
-                key = BibTeXEntry.KEY_EDITION;
-                break;
-            case "Note":
-                key = BibTeXEntry.KEY_NOTE;
-                break;
-            case "Month":
-                key = BibTeXEntry.KEY_MONTH;
-                break;
-
-        }
-
-        return key;
+        return ReferenceUtils.resolveKey(componentName);
     }
 
     private Value resolveValue(Key keyAssociatedToInput, String valueOfKey) {

@@ -365,47 +365,7 @@ public class ArticleEditWindow extends javax.swing.JDialog {
 
     // find the key via componentname
     private Key resolveKey(String componentName) {
-        String lastPart = componentName.replaceAll("jTextField", "");
-
-        if (lastPart.length() >= componentName.length()) { // must be comboBox
-            lastPart = componentName.replaceAll("jCombo", "");
-        }
-
-        Key key = null;
-
-        switch (lastPart) {
-
-            case "Title":
-                key = BibTeXEntry.KEY_TITLE;
-                break;
-            case "Author":
-                key = BibTeXEntry.KEY_AUTHOR;
-                break;
-            case "Journal":
-                key = BibTeXEntry.KEY_JOURNAL;
-                break;
-            case "Year":
-                key = BibTeXEntry.KEY_YEAR;
-                break;
-            case "Volume":
-                key = BibTeXEntry.KEY_VOLUME;
-                break;
-            case "Number":
-                key = BibTeXEntry.KEY_NUMBER;
-                break;
-            case "Pages":
-                key = BibTeXEntry.KEY_PAGES;
-                break;
-            case "Note":
-                key = BibTeXEntry.KEY_NOTE;
-                break;
-            case "Month":
-                key = BibTeXEntry.KEY_MONTH;
-                break;
-
-        }
-
-        return key;
+          return ReferenceUtils.resolveKey(componentName);
     }
 
     private Value resolveValue(Key keyAssociatedToInput, String valueOfKey) {

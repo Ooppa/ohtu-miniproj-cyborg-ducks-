@@ -55,9 +55,6 @@ public class ReferenceUtils {
 
     public static Key[] getRequiredKeysForInProceedings() {
         return new Key[]{
-            
-            
-            
             BibTeXEntry.KEY_AUTHOR,
             BibTeXEntry.KEY_TITLE,
             BibTeXEntry.KEY_BOOKTITLE,
@@ -65,7 +62,73 @@ public class ReferenceUtils {
         };
 
     }
-    
-    
+
+    /**
+     * Returns the matching Key for component name 
+     */
+    public static Key resolveKey(String componentName) {
+        String lastPart = componentName.replaceAll("jTextField", "");
+
+        if (lastPart.length() >= componentName.length()) { // must be comboBox
+            lastPart = componentName.replaceAll("jCombo", "");
+        }
+
+        Key key = null;
+
+        switch (lastPart) {
+
+            case "Title":
+                key = BibTeXEntry.KEY_TITLE;
+                break;
+            case "Author":
+                key = BibTeXEntry.KEY_AUTHOR;
+                break;
+            case "BookTitle":
+                key = BibTeXEntry.KEY_BOOKTITLE;
+                break;
+            case "Year":
+                key = BibTeXEntry.KEY_YEAR;
+                break;
+            case "Volume":
+                key = BibTeXEntry.KEY_VOLUME;
+                break;
+            case "Number":
+                key = BibTeXEntry.KEY_NUMBER;
+                break;
+            case "Pages":
+                key = BibTeXEntry.KEY_PAGES;
+                break;
+            case "Note":
+                key = BibTeXEntry.KEY_NOTE;
+                break;
+            case "Month":
+                key = BibTeXEntry.KEY_MONTH;
+                break;
+            case "Series":
+                key = BibTeXEntry.KEY_SERIES;
+                break;
+            case "Address":
+                key = BibTeXEntry.KEY_ADDRESS;
+                break;
+            case "Organization":
+                key = BibTeXEntry.KEY_ORGANIZATION;
+                break;
+            case "Publisher":
+                key = BibTeXEntry.KEY_PUBLISHER;
+                break;
+            case "Editor":
+                key = BibTeXEntry.KEY_EDITOR;
+                break;
+            case "Edition":
+                key = BibTeXEntry.KEY_EDITION;
+                break;
+            case "Journal":
+                key = BibTeXEntry.KEY_JOURNAL;
+                break;
+
+        }
+
+        return key;
+    }
 
 }
