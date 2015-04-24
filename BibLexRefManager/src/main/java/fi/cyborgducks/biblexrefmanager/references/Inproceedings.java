@@ -29,7 +29,7 @@ public class Inproceedings extends BibTeXEntry {
     public Inproceedings(String key, String author, String title, String bookTitle, String year) {
         super(BibTeXEntry.TYPE_INPROCEEDINGS, new Key(key));
 
-        addField(BibTeXEntry.KEY_AUTHOR, new StringValue(title, StringValue.Style.BRACED));
+        addField(BibTeXEntry.KEY_AUTHOR, new StringValue(author, StringValue.Style.BRACED));
         addField(BibTeXEntry.KEY_TITLE, new StringValue(title, StringValue.Style.BRACED));
         addField(BibTeXEntry.KEY_BOOKTITLE, new StringValue(bookTitle, StringValue.Style.BRACED));
         addField(BibTeXEntry.KEY_YEAR, new DigitStringValue(year));

@@ -42,6 +42,15 @@ public class ArticleValidatorTest {
 
         assertTrue(articleValidator.hasErrors());
     }
+    
+    @Test
+    public void articleInvalidIfKeyTooShort() {
+        articleValidator.validateReference(
+                new Article("a", "kaapo", "aaaa", "kaapos book", "1999", "wrongnumber")
+        );
+
+        assertTrue(articleValidator.hasErrors());
+    }
 
     @Test
     public void articleInvalidIfBadAuthor() {
@@ -77,6 +86,15 @@ public class ArticleValidatorTest {
         );
 
         assertEquals("Year should be more than 1000 and less or equal than current year\n", articleValidator.fullErrors());
+    }
+    
+    @Test
+    public void articleInvalidIfYearContainsAlphabets() {
+        articleValidator.validateReference(
+                new Article("abc", "kaapo", "aaaa", "kaapos book", "199o", "5")
+        );
+
+        assertTrue(articleValidator.hasErrors());
     }
 
     @Test
