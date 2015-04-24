@@ -9,6 +9,9 @@ import fi.cyborgducks.biblexrefmanager.data.InMemoryDatabase;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.exporters.BibExporterTest;
 import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +19,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jbibtex.BibTeXDatabase;
 import org.jbibtex.ObjectResolutionException;
 import org.jbibtex.ParseException;
@@ -35,51 +40,83 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({FileChooser.class, BibImporter.class})
 public class BibImporterTest {
-    
+
     @Test
-    public void importingFromBibFile() throws UnsupportedEncodingException, IOException, FileNotFoundException, ObjectResolutionException, ParseException{
-        
+    public void importingFromBibFile() throws UnsupportedEncodingException, IOException, FileNotFoundException, ObjectResolutionException, ParseException {
+
         InMemoryDatabase inMemDB = BibExporterTest.constructDataBaseWithTwoRefereces();
-        
+
         String path1 = "src/mybib";
         BibExporter.export(inMemDB.getDB(), path1);
-        
+
         path1 += ".bib";
-        BibTeXDatabase importedDB = BibImporter.importFromBib(path1); 
+        BibTeXDatabase importedDB = BibImporter.importFromBib(path1);
         inMemDB.setDB(importedDB);
-        
+
         String path2 = "src/mybib2";
         BibExporter.export(inMemDB.getDB(), path2);
 
         path2 += ".bib";
-        
+
         String bib1 = bibAsString(path1);
-       // System.out.println("First file: " + bib1);
+        // System.out.println("First file: " + bib1);
         String bib2 = bibAsString(path2);
         //System.out.println("Second file: "+ bib2);
-        
+
         assertEquals(bib1, bib2);
-        
+
         File file1 = new File(path1);
         File file2 = new File(path2);
         file1.delete();
         file2.delete();
     }
-    
-        @Test
+
+    @Test
+    public void importWorksViaRobot() throws UnsupportedEncodingException, IOException, ObjectResolutionException, ParseException {
+
+        InMemoryDatabase inMemDB = BibExporterTest.constructDataBaseWithTwoRefereces();
+
+        String path1 = "src/mybib";
+        BibExporter.export(inMemDB.getDB(), path1);
+        path1 += ".bib";
+
+        
+        
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Robot robot = null;
+//                try {
+//                    robot = new Robot();
+//                } catch (AWTException ex) {
+//                    System.out.println(ex.getMessage());
+//                }
+//                robot.delay(1000);
+//                robot.keyPress(KeyEvent.VK_ESCAPE);
+//                
+//            }
+//        }).start();
+        
+       // BibImporter.importFromBib();
+        
+        File file1 = new File(path1);
+        file1.delete();
+    }
+
+    @Test()
     public void importFromBibReturnsNullIfPathIsNull() throws UnsupportedEncodingException, IOException, ObjectResolutionException, ParseException {
         PowerMockito.mockStatic(FileChooser.class);
         BDDMockito.given(FileChooser.chooseFile("Load", "bib")).willReturn(null);
-        
+
         PowerMockito.mockStatic(BibImporter.class);
-        
+
         assertNull(BibImporter.importFromBib());
-        
+
         PowerMockito.verifyStatic();
     }
 
     private String bibAsString(String filePath) throws FileNotFoundException {
-        
+
         InputStream streamFromFile = new FileInputStream(filePath);
         Scanner scanner = new Scanner(streamFromFile);
 
@@ -90,7 +127,7 @@ public class BibImporterTest {
             fileAsString += lineInBibFile;
         }
         scanner.close();
-        
+
         return fileAsString;
     }
 }
