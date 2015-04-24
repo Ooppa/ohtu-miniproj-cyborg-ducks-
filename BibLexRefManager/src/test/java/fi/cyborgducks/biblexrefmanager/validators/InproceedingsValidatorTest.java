@@ -5,6 +5,7 @@
  */
 package fi.cyborgducks.biblexrefmanager.validators;
 
+import fi.cyborgducks.biblexrefmanager.references.Inproceedings;
 import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,56 +26,57 @@ public class InproceedingsValidatorTest {
 
     @Test
     public void validInPoceedingIsAccepted() {
-        validator.isValidParams(createStringParameters("", -1));
+        validator.validateReference(createInproceedings("", -1));
         assertFalse(validator.hasErrors());
     }
     
     @Test
     public void tooShortKeyIsNotAccepted() {
-        validator.isValidParams(createStringParameters("A", 0));
-        assertTrue(validator.hasErrors());
-    }
-    
-    @Test
-    public void tooLongtKeyIsNotAccepted() {
-        validator.isValidParams(createStringParameters("Avain joka on aivan liian pitkäääääääääää. Liiiiiiaaan pitkäääääää.", 0));
+        validator.validateReference(createInproceedings("A", 0));
         assertTrue(validator.hasErrors());
     }
     
     @Test
     public void tooShortAuthorIsNotAccepted() {
-        validator.isValidParams(createStringParameters("i", 1));
+        Inproceedings ip = createInproceedings("i", 1);
+        validator.validateReference(ip);
         assertTrue(validator.hasErrors());
     }
     
     @Test
     public void tooShortInproceedingsTitleIsNotAccepted() {
-        validator.isValidParams(createStringParameters("i", 2));
+        validator.validateReference(createInproceedings("i", 2));
         assertTrue(validator.hasErrors());
     }
     
     @Test
     public void tooShortBookTitleIsNotAccepted() {
-        validator.isValidParams(createStringParameters("i", 3));
+        validator.validateReference(createInproceedings("i", 3));
         assertTrue(validator.hasErrors());
     }
     
     @Test
     public void yearAfterCurrentDateIsNotAccepted() {
-        validator.isValidParams(createStringParameters((Calendar.getInstance().get(Calendar.YEAR) + 1) + "", 4));
+        validator.validateReference(createInproceedings((Calendar.getInstance().get(Calendar.YEAR) + 1) + "", 4));
         assertTrue(validator.hasErrors());
     }
     
-    private String[] createStringParameters(String newValue, int index) {
-        String[] inproceedingsParams = new String[]{
+    @Test
+    public void alphabetsInYearFieldRaisesError() {
+        validator.validateReference(createInproceedings("vannabbevuos", 4));
+        assertTrue(validator.hasErrors());
+    }
+    
+    private Inproceedings createInproceedings(String newValue, int index) {
+        String[] params = new String[]{
             "Avain",
             "kirjoittaja",
             "inpro otsikko",
             "book title",
             "1765"};
-        if (index >= 0 && index < inproceedingsParams.length) {
-            inproceedingsParams[index] = newValue;
+        if (index >= 0 && index < params.length) {
+            params[index] = newValue;
         }
-        return inproceedingsParams;
+        return new Inproceedings(params[0], params[1], params[2], params[3], params[4]);
     }
 }
