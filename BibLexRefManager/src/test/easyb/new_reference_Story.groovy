@@ -113,22 +113,3 @@ scenario "user cannot save a invalid book reference", {
         database.getAllSavedReferences().size().shouldBe 0
     }
 }
-
-//scenario "user cannot save a invalid article reference", {
-//    given 'save a new article reference', {
-//         article = new Article(
-//                "cleancode",
-//                "Robert C. Martin",
-//                "Clean Code: A Handbook of Agile Software Craftsmanship",
-//                "Prentice Hall",
-//                "2oo8",
-//                "21")
-//        database = new InMemoryDatabase()
-//    }
-//    when 'new article reference is invalid', {
-//        database.saveReference(article)
-//    }
-//    then 'added article reference is not saved to system', {
-//        database.getAllSavedReferences().size().shouldBe 0
-//    }
-//}
