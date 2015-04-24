@@ -1,5 +1,6 @@
 package fi.cyborgducks.biblexrefmanager.factory;
 
+import fi.cyborgducks.biblexrefmanager.references.Article;
 import fi.cyborgducks.biblexrefmanager.references.Book;
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,18 +11,11 @@ import org.jbibtex.Value;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class BookFactoryTest {
-
-    private ReferenceFactory factory;
-
-    @Before
-    public void setUp() {
-        factory = new ReferenceFactory();
-    }
+public class ReferenceFactoryTest {
 
     @Test
     public void factoryCreatesBook() {
-        Book b = factory.createBook(
+        Book b = ReferenceFactory.createBook(
                 new String[]{
                     "keyValue",
                     "authorValue",
@@ -31,9 +25,16 @@ public class BookFactoryTest {
                 }
         );
 
+        
         assertEquals(b.getField(BibTeXEntry.KEY_AUTHOR).toUserString(), "authorValue");
         assertEquals(b.getField(BibTeXEntry.KEY_TITLE).toUserString(), "titleValue");
         assertEquals(b.getField(BibTeXEntry.KEY_PUBLISHER).toUserString(), "publisherValue");
         assertEquals(b.getField(BibTeXEntry.KEY_YEAR).toUserString(), "yearValue");
     }
+    
+   
+    
+    
+    
+    
 }

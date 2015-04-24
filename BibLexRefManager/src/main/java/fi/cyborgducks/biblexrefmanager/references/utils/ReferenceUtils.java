@@ -12,24 +12,23 @@ import org.jbibtex.Key;
 
 /**
  *
- * @author kride
+ *  Contains helper-methods for all references
+ * 
+ * @author kristian
  */
 public class ReferenceUtils {
 
+    
+    /**
+     * Checks if a key has been se to a wanted reference
+     * 
+     * @param reference  asked reference
+     * @param k asked key
+     * @return true if reference has been set
+     */
+    
     public static boolean hasKeySet(BibTeXEntry reference, Key k) {
         return reference.getField(k) != null;
-    }
-
-    public static Key[] getOptionalKeysForBook() {
-        return new Key[]{
-            BibTeXEntry.KEY_VOLUME,
-            BibTeXEntry.KEY_SERIES,
-            BibTeXEntry.KEY_ADDRESS,
-            BibTeXEntry.KEY_EDITION,
-            BibTeXEntry.KEY_MONTH,
-            BibTeXEntry.KEY_NOTE,
-            BibTeXEntry.KEY_KEY
-        };
     }
 
     public static Key[] getRequiredKeysForBook() {
@@ -65,6 +64,8 @@ public class ReferenceUtils {
 
     /**
      * Returns the matching Key for component name 
+     * @param componentName Name of the component; jTextField or jCombo
+     * @return matching key
      */
     public static Key resolveKey(String componentName) {
         String lastPart = componentName.replaceAll("jTextField", "");
