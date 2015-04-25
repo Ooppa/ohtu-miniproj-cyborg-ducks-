@@ -1,7 +1,6 @@
 import fi.cyborgducks.biblexrefmanager.*;
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.references.*;
-<<<<<<< HEAD
 import fi.cyborgducks.biblexrefmanager.exporters.*;
 import fi.cyborgducks.biblexrefmanager.validators.*;
 import org.jbibtex.*;
@@ -22,9 +21,9 @@ then "", {
  
  * */
 
-=======
+
 import fi.cyborgducks.biblexrefmanager.validators.*;
->>>>>>> d030ae755d4a5d4553a912421ffa302996a02488
+
 
 description 'User can add a reference, which is saved to database'
 
@@ -47,7 +46,7 @@ scenario "user can save a valid book reference", {
 }
 
 scenario "user can save a valid article reference", {
-<<<<<<< HEAD
+
     given "save a new article reference", {
         article = new Article(
             "abc", "kaapo", "aaaa", "kaapos book", "1999", "5"
@@ -57,29 +56,15 @@ scenario "user can save a valid article reference", {
     when "new article reference is valid", {
         database.saveReference(article)
     }
-    then "added article reference is saved to system", {
-=======
-    given 'save a new article reference', {
-         article = new Article(
-                "cleancode",
-                "Robert C. Martin",
-                "Clean Code: A Handbook of Agile Software Craftsmanship",
-                "Prentice Hall",
-                "2008",
-                "21")
-        database = new InMemoryDatabase()
-    }
-    when 'new article reference is valid', {
-        database.saveReference(article)
-    }
+ 
     then 'added article reference is saved to system', {
->>>>>>> d030ae755d4a5d4553a912421ffa302996a02488
+
         database.getAllSavedReferences().size().shouldBe 1
     }
 }
 
 scenario "user can save a valid inproceedings reference", {
-<<<<<<< HEAD
+
     given "save a new inproceedings reference", {
         inpro = new Inproceedings(
             "abc", "kaapo", "aaaa", "kaapos book", "1999"
@@ -94,34 +79,7 @@ scenario "user can save a valid inproceedings reference", {
     }
 }
 
-scenario "invalid book reference is not getting saved to database", {
-    given "invalid book reference", {
-        book = new Book(
-                "cleancode",
-                "",
-=======
-    given 'save a new article reference', {
-         inproceedings = new Inproceedings(
-                "cleancode",
-                "Robert C. Martin",
->>>>>>> d030ae755d4a5d4553a912421ffa302996a02488
-                "Clean Code: A Handbook of Agile Software Craftsmanship",
-                "Prentice Hall",
-                "2008")
-        database = new InMemoryDatabase()
-<<<<<<< HEAD
-        bookValidator = new BookValidator()
-    }
-    when "trying to add invalid book reference", {
-        bookValidator.validateReference(book)
-        if(!bookValidator.hasErrors()){
-            database.saveReference(book)
-        }
-    }
-    then "no new book references are being saved to database", {
-        database.getAllSavedReferences().size().shouldBe 0
-    }
-}
+
 
 scenario "invalid article reference is not getting saved to database", {
     given "invalid article reference", {
@@ -144,17 +102,6 @@ scenario "invalid article reference is not getting saved to database", {
 
 
 
-=======
-    }
-    when 'new article reference is valid', {
-        database.saveReference(inproceedings)
-    }
-    then 'added article reference is saved to system', {
-        database.getAllSavedReferences().size().shouldBe 1
-    }
-}
-
->>>>>>> d030ae755d4a5d4553a912421ffa302996a02488
 scenario "multiple references are saved correctly", {
     given 'multiple book references being saved', {
         book = new Book(
