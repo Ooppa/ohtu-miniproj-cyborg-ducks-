@@ -6,9 +6,7 @@
 package fi.cyborgducks.biblexrefmanager.ui;
 
 import fi.cyborgducks.biblexrefmanager.data.*;
-import fi.cyborgducks.biblexrefmanager.exporters.BibExporter;
 import fi.cyborgducks.biblexrefmanager.factory.ReferenceFactory;
-import fi.cyborgducks.biblexrefmanager.importers.BibImporter;
 import fi.cyborgducks.biblexrefmanager.validators.ArticleValidator;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.InproceedingsValidator;
@@ -25,11 +23,11 @@ import org.jbibtex.*;
 import org.jbibtex.StringValue.Style;
 
 public class GraphicalUI extends javax.swing.JFrame {
-    
+
     private Validator bookValidator;
     private Validator articleValidator;
     private Validator inproceedingsValidator;
-    
+
     private Database database;
 
     /**
@@ -724,23 +722,23 @@ public class GraphicalUI extends javax.swing.JFrame {
             getTextFromField(this.bookPublisherInputTextField),
             getTextFromField(this.bookYearInputTextField)
         };
-        
+
         handleOneBook(bookParams);
     }//GEN-LAST:event_bookAddButtonActionPerformed
-    
+
     private void clearFields() {
         clearTextField(bookAuthorInputTextField);
         clearTextField(bookKeyInputTextField);
         clearTextField(bookPublisherInputTextField);
         clearTextField(bookYearInputTextField);
         clearTextField(bookTitleInputTextField);
-        
+
         clearTextField(bookOptionalAddressField);
         clearTextField(bookOptionalEditionField);
         clearTextField(bookOptionalNoteField);
         clearTextField(bookOptionalSeriesField);
         clearTextField(bookOptionalVolumeField);
-        
+
         bookOptionalMonthCombobox.setSelectedIndex(0); // 0 is the index for NaN
 
         clearTextField(articleKeyInputTextField);
@@ -749,11 +747,11 @@ public class GraphicalUI extends javax.swing.JFrame {
         clearTextField(articleJournalInputTextField);
         clearTextField(articleYearInputTextField);
         clearTextField(articleVolumeField);
-        
+
         clearTextField(articleOptionalPagesField);
         clearTextField(articleOptionalNumberField);
         clearTextField(articleOptionalNoteField);
-        
+
         articleOptionalMonthCombobox.setSelectedIndex(0); // 0 is the index for NaN
 
         clearTextField(inproceedingsKeyInputTextField);
@@ -761,7 +759,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         clearTextField(inproceedingsBookTitleInputTextField);
         clearTextField(inproceedingsYearInputTextField);
         clearTextField(inproceedingsTitleInputTextField);
-        
+
         clearTextField(inproceedingsOptionalAddressField);
         clearTextField(inproceedingsOptionalEditorField);
         clearTextField(inproceedingsOptionalNoteField);
@@ -770,7 +768,7 @@ public class GraphicalUI extends javax.swing.JFrame {
         clearTextField(inproceedingsOptionalPublisherField);
         clearTextField(inproceedingsOptionalSeriesField);
         clearTextField(inproceedingsOptionalVolumeField);
-        
+
         inproceedingsOptionalMonthCombobox.setSelectedIndex(0); // 0 is the index for NaN
     }
 
@@ -800,7 +798,7 @@ public class GraphicalUI extends javax.swing.JFrame {
     private void jMenuItemSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSaveActionPerformed
         // kun tallennetaan nykyinen tietokanta
         try {
-            BibExporter.export(database.getDB());
+            BibTexDataTransferHelper.export(database.getDB());
         } catch (UnsupportedEncodingException ex) {
             appendToOutput("UnsupportedEncoding: Failed to save");
         } catch (IOException ex) {
@@ -816,9 +814,9 @@ public class GraphicalUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_buttonEditSelectedActionPerformed
-    
+
     private void showEditWindow(final BibTeXEntry selected) {
-        
+
         if (selected.getType().equals(BibTeXEntry.TYPE_BOOK)) {
             BookEditWindow dialog = new BookEditWindow(this, true, selected);
             dialog.setVisible(true);
@@ -831,7 +829,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             InproceedingEditWindow dialog = new InproceedingEditWindow(this, rootPaneCheckingEnabled, selected);
             dialog.setVisible(true);
         }
-        
+
     }
 
     private void buttonDeleteSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteSelectedActionPerformed
@@ -862,7 +860,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             getTextFromField(articleYearInputTextField),
             getTextFromField(articleVolumeField)
         };
-        
+
         handleOneArticle(articleParams);
     }//GEN-LAST:event_articleAddButtonActionPerformed
 
@@ -872,7 +870,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             getTextFromField(inproceedingsTitleInputTextField),
             getTextFromField(inproceedingsBookTitleInputTextField),
             getTextFromField(inproceedingsYearInputTextField),};
-        
+
         handleOneInproceeding(inproceedingsParams);
     }//GEN-LAST:event_inproceedingsAddButtonActionPerformed
 
@@ -984,20 +982,20 @@ public class GraphicalUI extends javax.swing.JFrame {
     public void appendToOutput(String text) {
         this.outputMessageArea.append("\n> " + text);
     }
-    
+
     private void appendDatabaseStatusToOutput() {
         outputMessageArea.append("\n> Database has now " + database.getAllSavedReferences().size() + " items.");
     }
-    
+
     public void updateReferenceList() {
         if (database.getDB() == null) {
             return;
         }
-        
+
         List<BibTeXEntry> allSavedReferences = this.database.getAllSavedReferences();
         listRefereces.setListData(allSavedReferences.toArray());
     }
-    
+
     private void handleOneArticle(String[] articleParams) {
         articleValidator.isValidParams(articleParams);
         if (!articleValidator.hasErrors()) {
@@ -1005,7 +1003,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             BibTeXEntry addableReference = ReferenceFactory.createArticle(articleParams);
             addOptionalArticleFields(addableReference);
             database.saveReference(addableReference);
-            
+
             updateReferenceList();
             clearFields();
             appendDatabaseStatusToOutput();
@@ -1013,37 +1011,37 @@ public class GraphicalUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, articleValidator.fullErrors());
         }
     }
-    
+
     private void handleOneBook(String[] bookParams) {
         bookValidator.isValidParams(bookParams);
-        
+
         if (!bookValidator.hasErrors()) {
             outputMessageArea.append("\n> Input was valid.");
-            
+
             BibTeXEntry addableReference = ReferenceFactory.createBook(bookParams);
-            
+
             addOptionalBookFields(addableReference);
             database.saveReference(addableReference);
-            
+
             updateReferenceList();
             clearFields();
-            
+
             appendDatabaseStatusToOutput();
         } else {
             JOptionPane.showMessageDialog(this, bookValidator.fullErrors());
         }
-        
+
     }
-    
+
     private void handleOneInproceeding(String[] inproceedingsParams) {
         inproceedingsValidator.isValidParams(inproceedingsParams);
-        
+
         if (!inproceedingsValidator.hasErrors()) {
             outputMessageArea.append("\n> Input was valid.");
             BibTeXEntry addableReference = ReferenceFactory.createInproceedings(inproceedingsParams);
             addOptionalInproceedingFields(addableReference);
             database.saveReference(addableReference);
-            
+
             updateReferenceList();
             clearFields();
             appendDatabaseStatusToOutput();
@@ -1051,30 +1049,30 @@ public class GraphicalUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, inproceedingsValidator.fullErrors());
         }
     }
-    
+
     private String getTextFromField(JTextField field) {
         return field.getText();
     }
-    
+
     private void addOptionalBookFields(BibTeXEntry book) {
         if (!bookOptionalVolumeField.getText().isEmpty()) {
             book.addField(BibTeXEntry.KEY_VOLUME,
                     new DigitStringValue(bookOptionalVolumeField.getText())
             );
         }
-        
+
         if (!bookOptionalSeriesField.getText().isEmpty()) {
             book.addField(BibTeXEntry.KEY_SERIES,
                     new StringValue(bookOptionalSeriesField.getText(), Style.BRACED)
             );
         }
-        
+
         if (!bookOptionalAddressField.getText().isEmpty()) {
             book.addField(BibTeXEntry.KEY_ADDRESS,
                     new StringValue(bookOptionalAddressField.getText(), Style.BRACED)
             );
         }
-        
+
         if (!bookOptionalEditionField.getText().isEmpty()) {
             book.addField(BibTeXEntry.KEY_EDITION,
                     new StringValue(bookOptionalEditionField.getText(), Style.BRACED)
@@ -1087,14 +1085,14 @@ public class GraphicalUI extends javax.swing.JFrame {
                     new StringValue(bookOptionalMonthCombobox.getSelectedItem().toString(), Style.BRACED)
             );
         }
-        
+
         if (!bookOptionalNoteField.getText().isEmpty()) {
             book.addField(BibTeXEntry.KEY_NOTE,
                     new StringValue(bookOptionalNoteField.getText(), Style.BRACED)
             );
         }
     }
-    
+
     private void addOptionalArticleFields(BibTeXEntry article) {
         if (!articleOptionalNumberField.getText().isEmpty()) {
             article.addField(BibTeXEntry.KEY_NUMBER,
@@ -1117,7 +1115,7 @@ public class GraphicalUI extends javax.swing.JFrame {
             );
         }
     }
-    
+
     private void addOptionalInproceedingFields(BibTeXEntry inproceedings) {
         if (!inproceedingsOptionalAddressField.getText().isEmpty()) {
             inproceedings.addField(BibTeXEntry.KEY_ADDRESS, new StringValue(
@@ -1165,5 +1163,5 @@ public class GraphicalUI extends javax.swing.JFrame {
             );
         }
     }
-    
+
 }
