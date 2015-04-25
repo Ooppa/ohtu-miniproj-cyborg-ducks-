@@ -79,12 +79,15 @@
                     <instrumentation>
                         <includes>
                             <include>fi/cyborgducks/biblexrefmanager/validators/*.class</include>
-                            <!--<include>fi/cyborgducks/biblexrefmanager/importers/*.class</include>-->
+                            <include>fi/cyborgducks/biblexrefmanager/importers/BibImporter.class</include>
                             <include>fi/cyborgducks/biblexrefmanager/exporters/BibExporter.class</include>
                             <include>fi/cyborgducks/biblexrefmanager/factory/*.class</include>
                             <include>fi/cyborgducks/biblexrefmanager/references/*.class</include>
                             <include>fi/cyborgducks/biblexrefmanager/data/*.class</include>
                             <include>fi/cyborgducks/biblexrefmanager/factory/*.class</include>
+                            <include>fi/cyborgducks/biblexrefmanager/helpers/*.class</include>
+                            <include>fi/cyborgducks/biblexrefmanager/references/utils/*.class</include>
+                           
                         </includes>
                     </instrumentation>
                 </configuration>

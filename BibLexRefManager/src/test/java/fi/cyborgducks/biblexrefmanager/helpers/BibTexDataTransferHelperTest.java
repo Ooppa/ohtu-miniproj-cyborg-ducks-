@@ -12,56 +12,67 @@ import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.jbibtex.BibTeXEntry;
+import org.jbibtex.BibTeXParser;
+import org.jbibtex.ObjectResolutionException;
+import org.jbibtex.ParseException;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.Mockito;
 
 /**
  *
  * @author goalaleo
  */
 public class BibTexDataTransferHelperTest {
-    
+
     @Test
-    public void scandsGetReplacedWithBibUmlauts() throws UnsupportedEncodingException, IOException{
+    public void scandsGetReplacedWithBibUmlauts() throws UnsupportedEncodingException, IOException {
         InMemoryDatabase inMemDB = createDbWithTwoEntriesWhichHaveUmlauts();
-        
+
         String path = "src/scandTest1.bib";
-        
+
         BibTexDataTransferHelper.export(inMemDB.getDB(), path);
-        
+
         String fileAsString = ScandCharFixer.readFileToString(path);
-        
+
         assertEquals(false, fileAsString.contains("ä"));
         assertEquals(false, fileAsString.contains("Ä"));
         assertEquals(false, fileAsString.contains("ö"));
         assertEquals(false, fileAsString.contains("Ö"));
-        
+
         Files.delete(Paths.get(path));
     }
 
     @Test
-    public void bibVersionsOfUmlautsGetReplacedWithRealUmlauts() throws UnsupportedEncodingException, IOException{
+    public void bibVersionsOfUmlautsGetReplacedWithRealUmlauts() throws UnsupportedEncodingException, IOException {
         InMemoryDatabase inMemDB = createDbWithTwoEntriesWhichHaveUmlauts();
-        
-        String path ="src/scandTest2.bib";
-        
+
+        String path = "src/scandTest2.bib";
+
         BibTexDataTransferHelper.export(inMemDB.getDB(), path);
-        
+
         String fileAsString = ScandCharFixer.readFileToString(path);
         fileAsString = ScandCharFixer.replaceAllBibUmlautsForImport(fileAsString);
-        
-        String bibUmlautA =  "\\" +"\"{a}";
-        String bibCapUmlautA = "\\" +"\"{A}";
-        String bibUmlautO = "\\" +"\"{o}";
-        String bibCapUmlautO = "\\" +"\"{O}";
-        
+
+        String bibUmlautA = "\\" + "\"{a}";
+        String bibCapUmlautA = "\\" + "\"{A}";
+        String bibUmlautO = "\\" + "\"{o}";
+        String bibCapUmlautO = "\\" + "\"{O}";
+
         assertEquals(false, fileAsString.contains(bibUmlautA));
         assertEquals(false, fileAsString.contains(bibCapUmlautA));
         assertEquals(false, fileAsString.contains(bibUmlautO));
         assertEquals(false, fileAsString.contains(bibCapUmlautO));
-        
+
     }
-    
+
+    @Test
+    public void parseBibTexCreatesNewParser() throws ParseException, ObjectResolutionException, IOException {
+        BibTeXParser spyParser = Mockito.spy(new BibTeXParser());
+        BibTexDataTransferHelper.importFromBib("pölölö");
+        Mockito.verify(spyParser);
+    }
+
     private InMemoryDatabase createDbWithTwoEntriesWhichHaveUmlauts() {
         InMemoryDatabase inMemDB = new InMemoryDatabase();
         BibTeXEntry r = new Book("hepuli", "Leö Kiiski", "SillikÄlästuksen alkeet", "Kaläpanimo", "1991");
