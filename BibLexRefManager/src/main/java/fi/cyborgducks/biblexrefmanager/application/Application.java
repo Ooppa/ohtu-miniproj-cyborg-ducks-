@@ -9,7 +9,6 @@ import fi.cyborgducks.biblexrefmanager.ui.GraphicalUI;
 
 /**
  * Starting point for the BibLexRefManager application.
- * 
  */
 public class Application {
 
