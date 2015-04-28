@@ -59,8 +59,11 @@ public class BibTexDataTransferHelperTest {
 
         path2 += ".bib";
 
-        String bib1 = ScandCharFixer.readFileToString(path1);
-        String bib2 = ScandCharFixer.readFileToString(path2);
+        String bib1 = bibAsString(path1);
+        String bib2 = bibAsString(path2);
+        
+         System.out.println(bib1);
+         System.out.println(bib2);
         
         boolean match = bib1.equals(bib2);
         
@@ -227,4 +230,21 @@ public class BibTexDataTransferHelperTest {
         inMemDB.saveReference(r2);
         return inMemDB;
     }
+    
+    private String bibAsString(String filePath) throws FileNotFoundException {
+        
+        InputStream streamFromFile = new FileInputStream(filePath);
+        Scanner scanner = new Scanner(streamFromFile);
+
+        String fileAsString = "";
+
+        while (scanner.hasNextLine()) {
+            String lineInBibFile = scanner.nextLine();
+            fileAsString += lineInBibFile;
+        }
+        scanner.close();
+        
+        return fileAsString;
+    }
 }
+
