@@ -1,4 +1,4 @@
-# Projektiraportti
+﻿# Projektiraportti
 
 ## Kohdatut ongelmat
 
@@ -23,12 +23,28 @@ Javan Serializable tallennustapojen kanssa.
 
 ### Sprintti 3
 
+Kolmannen sprintin lopulla ilmeni ongelma enkoodauseroissa Windows- ja Linux-ympäristöjen
+välillä. Lokaalisti kaikki testit menevät ongelmitta läpi, ja .bib tiedostojen
+importtaaminen ja näyttäminen onnistuu Windows ympäristöissä. Linux ympäristöissä
+kuitenkin ilmeni ongelma .bib tiedoston importtauksen kanssa, kun ISO 8859-1 enkoodattu
+tiedosto pitäisi näyttää UTF-8 muodossa. Linux muutti skandit erikoismerkeiksi, ja
+traviksen buildi failasi, kun joissakin testeissä samaiset skandit eivät muuntuneet oikein
+traviksen servereillä (oletettavasti linux pohjaisia). Lopulta aikaa ei enää ollut ongelman
+korjaamiseksi yrityksistä huolimatta.
+
 ...
 
 ## Mitä opitte, mitä jäi oppimatta
 
+Ulkoisen jbibtex/jbibtex kirjaston käytöstä aiheutuneet ongelmat olisi mahdollisesti voitu
+välttää, jos kirjaston rakenteeseen olisi perehdytty alussa paremmin. Toisaalta
+kirjastossa ei ollut minkäänlaista dokumentaatiota, joten alustavakin tutkimus vei
+hyvin aikaa varatusta 4h/henkilö.
+
 ...
 
 # Osallistujat
+
+Leo Kiiski
 
 ...
