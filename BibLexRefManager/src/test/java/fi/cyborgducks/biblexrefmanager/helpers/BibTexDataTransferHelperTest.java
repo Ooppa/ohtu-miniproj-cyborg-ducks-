@@ -73,20 +73,6 @@ public class BibTexDataTransferHelperTest {
         Files.delete(Paths.get(path1));
         Files.delete(Paths.get(path2));
     }
-
- 
-//   @Test()
-//    public void importFromBibReturnsNullIfPathIsNull() throws UnsupportedEncodingException, IOException, ObjectResolutionException, ParseException {
-//        PowerMockito.mockStatic(FileChooser.class);
-//        BDDMockito.given(FileChooser.chooseFile("Load", "bib")).willReturn(null);
-//
-//        PowerMockito.mockStatic(BibTexDataTransferHelper.class);
-//
-//        assertNull(BibTexDataTransferHelper.importFromBib());
-//        
-//        PowerMockito.verifyStatic();
-//    }
-
     
     @Test
     public void bracketsMatch() throws UnsupportedEncodingException, IOException {
@@ -110,17 +96,6 @@ public class BibTexDataTransferHelperTest {
 
         boolean result = bracketsMatchHelper(path);
         assertEquals(false, result);
-    }
-
-    @Test
-    public void exportToNullDoNotCallExportTest() throws UnsupportedEncodingException, IOException {
-        PowerMockito.mockStatic(FileChooser.class);
-        BDDMockito.given(FileChooser.chooseFile("Save", "bib")).willReturn(null);
-
-        BibTeXDatabase mockDB = mock(BibTeXDatabase.class);
-        BibTexDataTransferHelper.export(mockDB);
-
-        PowerMockito.verifyStatic();
     }
     
     @Test
