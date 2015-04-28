@@ -126,7 +126,7 @@ public class BibTexDataTransferHelper {
     public static BibTeXDatabase importFromBib(String filePath) throws ObjectResolutionException, ParseException, IOException {
         String tempFilePath = filePath.replace(".bib", "_temp.bib");
         Writer writer = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(tempFilePath), "UTF-8"));
+                new OutputStreamWriter(new FileOutputStream(tempFilePath), "8859_1"));
     
         String fileAsFixedString = ScandCharFixer.fixScandsForImport(filePath);
         writer.write(fileAsFixedString);
