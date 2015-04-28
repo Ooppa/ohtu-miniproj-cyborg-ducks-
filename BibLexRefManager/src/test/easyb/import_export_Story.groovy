@@ -20,13 +20,27 @@ scenario "User can import and the export data while list the data stays the same
             "Ooppa Publishings inc.",
             "2015"
         ];
-
+        
         addableReference = ReferenceFactory.createBook(bookParams);
 
         database = new InMemoryDatabase();
         database.saveReference(addableReference);
 
         formatter = new BibTeXFormatter();
+        
+        output = new OutputStream() {
+            private StringBuilder string = new StringBuilder();
+
+            @Override
+            public void write(int b) throws IOException {
+                this.string.append((char) b);
+            }
+
+            @Override
+            public String toString() {
+                return this.string.toString();
+            }
+        };
 
         outputStreamWriter = new OutputStreamWriter(output, "8859_1");
         formatter.format(database.getDB(), outputStreamWriter);
