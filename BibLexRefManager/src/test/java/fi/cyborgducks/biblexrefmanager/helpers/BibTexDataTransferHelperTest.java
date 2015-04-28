@@ -136,6 +136,7 @@ public class BibTexDataTransferHelperTest {
         assertEquals(false, fileAsString.contains(bibCapUmlautA));
         assertEquals(false, fileAsString.contains(bibUmlautO));
         assertEquals(false, fileAsString.contains(bibCapUmlautO));
+        new File(path).delete();
 
     }  
 
