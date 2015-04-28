@@ -7,11 +7,11 @@ package fi.cyborgducks.biblexrefmanager.ui;
 
 import fi.cyborgducks.biblexrefmanager.data.*;
 import fi.cyborgducks.biblexrefmanager.factory.ReferenceFactory;
+import fi.cyborgducks.biblexrefmanager.helpers.BibTexDataTransferHelper;
 import fi.cyborgducks.biblexrefmanager.validators.ArticleValidator;
 import fi.cyborgducks.biblexrefmanager.validators.BookValidator;
 import fi.cyborgducks.biblexrefmanager.validators.InproceedingsValidator;
 import fi.cyborgducks.biblexrefmanager.validators.Validator;
-import fi.cyborgducks.biblexrefmanager.helpers.BibTexDataTransferHelper;
 import java.awt.Color;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -100,21 +100,21 @@ public class GraphicalUI extends javax.swing.JFrame {
         articleAddButton = new javax.swing.JButton();
         panelInproceedings = new javax.swing.JPanel();
         inproceedingsAddButton = new javax.swing.JButton();
-        labelKey2 = new javax.swing.JLabel();
-        labelAuthor2 = new javax.swing.JLabel();
-        labelTitle2 = new javax.swing.JLabel();
-        labelPublisher2 = new javax.swing.JLabel();
-        labelYear2 = new javax.swing.JLabel();
-        labelVolume2 = new javax.swing.JLabel();
-        labelOptionalFieldsHeaderForInpro = new javax.swing.JLabel();
-        labelSeries2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        labelAddress2 = new javax.swing.JLabel();
-        labelMonth2 = new javax.swing.JLabel();
-        labelNote2 = new javax.swing.JLabel();
+        inproceedingsLabelKey = new javax.swing.JLabel();
+        inproceedingsLabelAuthor = new javax.swing.JLabel();
+        inproceedingsLabelTitle = new javax.swing.JLabel();
+        inproceedingsLabelBookTitle = new javax.swing.JLabel();
+        inproceedingsLabelYear = new javax.swing.JLabel();
+        inproceedingsLabelSeries = new javax.swing.JLabel();
+        inproceedingsOptionalFieldsHeader = new javax.swing.JLabel();
+        inproceedingsLabelEditor = new javax.swing.JLabel();
+        inproceedingsLabelAddress = new javax.swing.JLabel();
+        inproceedingsLabelPublisher = new javax.swing.JLabel();
+        inproceedingsLabelOrganization = new javax.swing.JLabel();
+        inproceedingsLabelMonth = new javax.swing.JLabel();
+        inproceedingsLabelVolume = new javax.swing.JLabel();
+        inproceedingsLabelPages = new javax.swing.JLabel();
+        inproceedingsLabelNote = new javax.swing.JLabel();
         inproceedingsOptionalNoteField = new javax.swing.JTextField();
         inproceedingsOptionalMonthCombobox = new javax.swing.JComboBox();
         inproceedingsOptionalVolumeField = new javax.swing.JTextField();
@@ -414,7 +414,7 @@ public class GraphicalUI extends javax.swing.JFrame {
                 .addGroup(panelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNote1)
                     .addComponent(articleOptionalNoteField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addComponent(articleAddButton)
                 .addContainerGap())
         );
@@ -429,36 +429,36 @@ public class GraphicalUI extends javax.swing.JFrame {
             }
         });
 
-        labelKey2.setText("Key:");
+        inproceedingsLabelKey.setText("Key:");
 
-        labelAuthor2.setText("Author:");
+        inproceedingsLabelAuthor.setText("Author:");
 
-        labelTitle2.setText("Title:");
+        inproceedingsLabelTitle.setText("Title:");
 
-        labelPublisher2.setText("Book title:");
+        inproceedingsLabelBookTitle.setText("Book title:");
 
-        labelYear2.setText("Year:");
+        inproceedingsLabelYear.setText("Year:");
 
-        labelVolume2.setText("Series:");
+        inproceedingsLabelSeries.setText("Series:");
 
-        labelOptionalFieldsHeaderForInpro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelOptionalFieldsHeaderForInpro.setText("Optional fields:");
+        inproceedingsOptionalFieldsHeader.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        inproceedingsOptionalFieldsHeader.setText("Optional fields:");
 
-        labelSeries2.setText("Editor:");
+        inproceedingsLabelEditor.setText("Editor:");
 
-        jLabel1.setText("Address:");
+        inproceedingsLabelAddress.setText("Address:");
 
-        jLabel4.setText("Publisher:");
+        inproceedingsLabelPublisher.setText("Publisher:");
 
-        jLabel3.setText("Organization:");
+        inproceedingsLabelOrganization.setText("Organization:");
 
-        jLabel2.setText("Month:");
+        inproceedingsLabelMonth.setText("Month:");
 
-        labelAddress2.setText("Volume/Number:");
+        inproceedingsLabelVolume.setText("Volume/Number:");
 
-        labelMonth2.setText("Pages:");
+        inproceedingsLabelPages.setText("Pages:");
 
-        labelNote2.setText("Note:");
+        inproceedingsLabelNote.setText("Note:");
 
         inproceedingsOptionalMonthCombobox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NaN", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" }));
 
@@ -469,26 +469,25 @@ public class GraphicalUI extends javax.swing.JFrame {
             .addGroup(panelInproceedingsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelOptionalFieldsHeaderForInpro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inproceedingsOptionalFieldsHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInproceedingsLayout.createSequentialGroup()
                         .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelYear2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelAuthor2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelTitle2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelKey2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelPublisher2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inproceedingsLabelYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inproceedingsLabelAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inproceedingsLabelTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inproceedingsLabelKey, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inproceedingsLabelBookTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panelInproceedingsLayout.createSequentialGroup()
                                 .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(labelVolume2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelAddress2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                    .addComponent(labelMonth2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelNote2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelSeries2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(inproceedingsLabelSeries, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(inproceedingsLabelVolume, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                    .addComponent(inproceedingsLabelPages, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(inproceedingsLabelAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(inproceedingsLabelEditor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInproceedingsLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(inproceedingsLabelMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelInproceedingsLayout.createSequentialGroup()
@@ -502,15 +501,19 @@ public class GraphicalUI extends javax.swing.JFrame {
                             .addComponent(inproceedingsOptionalEditorField)
                             .addComponent(inproceedingsOptionalVolumeField)
                             .addComponent(inproceedingsOptionalMonthCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(inproceedingsOptionalNoteField, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(inproceedingsOptionalPagesField, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(inproceedingsOptionalAddressField, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(inproceedingsKeyInputTextField, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(inproceedingsAuthorInputTextField, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInproceedingsLayout.createSequentialGroup()
+                        .addComponent(inproceedingsLabelNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inproceedingsOptionalNoteField, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelInproceedingsLayout.createSequentialGroup()
                         .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(inproceedingsLabelOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inproceedingsLabelPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inproceedingsOptionalPublisherField)
@@ -522,64 +525,66 @@ public class GraphicalUI extends javax.swing.JFrame {
             .addGroup(panelInproceedingsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelKey2)
+                    .addComponent(inproceedingsLabelKey)
                     .addComponent(inproceedingsKeyInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAuthor2)
+                    .addComponent(inproceedingsLabelAuthor)
                     .addComponent(inproceedingsAuthorInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTitle2)
+                    .addComponent(inproceedingsLabelTitle)
                     .addComponent(inproceedingsTitleInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPublisher2)
+                    .addComponent(inproceedingsLabelBookTitle)
                     .addComponent(inproceedingsBookTitleInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelYear2)
+                    .addComponent(inproceedingsLabelYear)
                     .addComponent(inproceedingsYearInputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelOptionalFieldsHeaderForInpro)
+                .addComponent(inproceedingsOptionalFieldsHeader)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelInproceedingsLayout.createSequentialGroup()
                         .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelSeries2)
+                            .addComponent(inproceedingsLabelEditor)
                             .addComponent(inproceedingsOptionalEditorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelAddress2)
+                            .addComponent(inproceedingsLabelVolume)
                             .addComponent(inproceedingsOptionalVolumeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelVolume2)
+                            .addComponent(inproceedingsLabelSeries)
                             .addComponent(inproceedingsOptionalSeriesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inproceedingsOptionalPagesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelMonth2))
+                            .addComponent(inproceedingsLabelPages))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inproceedingsOptionalAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(inproceedingsLabelAddress))
                         .addGap(29, 29, 29))
                     .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(inproceedingsOptionalMonthCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
-                .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(inproceedingsOptionalOrganizationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inproceedingsOptionalPublisherField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                        .addComponent(inproceedingsLabelMonth)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inproceedingsLabelOrganization)
+                    .addGroup(panelInproceedingsLayout.createSequentialGroup()
+                        .addComponent(inproceedingsOptionalOrganizationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inproceedingsOptionalPublisherField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inproceedingsLabelPublisher))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInproceedingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inproceedingsOptionalNoteField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNote2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(inproceedingsLabelNote))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(inproceedingsAddButton)
                 .addContainerGap())
         );
@@ -707,7 +712,7 @@ public class GraphicalUI extends javax.swing.JFrame {
                             .addComponent(buttonDeleteSelected)))
                     .addComponent(tabbedPanel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -904,8 +909,23 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JTextField inproceedingsAuthorInputTextField;
     private javax.swing.JTextField inproceedingsBookTitleInputTextField;
     private javax.swing.JTextField inproceedingsKeyInputTextField;
+    private javax.swing.JLabel inproceedingsLabelAddress;
+    private javax.swing.JLabel inproceedingsLabelAuthor;
+    private javax.swing.JLabel inproceedingsLabelBookTitle;
+    private javax.swing.JLabel inproceedingsLabelEditor;
+    private javax.swing.JLabel inproceedingsLabelKey;
+    private javax.swing.JLabel inproceedingsLabelMonth;
+    private javax.swing.JLabel inproceedingsLabelNote;
+    private javax.swing.JLabel inproceedingsLabelOrganization;
+    private javax.swing.JLabel inproceedingsLabelPages;
+    private javax.swing.JLabel inproceedingsLabelPublisher;
+    private javax.swing.JLabel inproceedingsLabelSeries;
+    private javax.swing.JLabel inproceedingsLabelTitle;
+    private javax.swing.JLabel inproceedingsLabelVolume;
+    private javax.swing.JLabel inproceedingsLabelYear;
     private javax.swing.JTextField inproceedingsOptionalAddressField;
     private javax.swing.JTextField inproceedingsOptionalEditorField;
+    private javax.swing.JLabel inproceedingsOptionalFieldsHeader;
     private javax.swing.JComboBox inproceedingsOptionalMonthCombobox;
     private javax.swing.JTextField inproceedingsOptionalNoteField;
     private javax.swing.JTextField inproceedingsOptionalOrganizationField;
@@ -915,10 +935,6 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JTextField inproceedingsOptionalVolumeField;
     private javax.swing.JTextField inproceedingsTitleInputTextField;
     private javax.swing.JTextField inproceedingsYearInputTextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemExport;
@@ -928,39 +944,28 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelAddress;
     private javax.swing.JLabel labelAddress1;
-    private javax.swing.JLabel labelAddress2;
     private javax.swing.JLabel labelAuthor;
     private javax.swing.JLabel labelAuthor1;
-    private javax.swing.JLabel labelAuthor2;
     private javax.swing.JLabel labelEdition;
     private javax.swing.JLabel labelKey;
     private javax.swing.JLabel labelKey1;
-    private javax.swing.JLabel labelKey2;
     private javax.swing.JLabel labelMonth;
     private javax.swing.JLabel labelMonth1;
-    private javax.swing.JLabel labelMonth2;
     private javax.swing.JLabel labelNote;
     private javax.swing.JLabel labelNote1;
-    private javax.swing.JLabel labelNote2;
     private javax.swing.JLabel labelOptionalFieldsHeaderForArticle;
     private javax.swing.JLabel labelOptionalFieldsHeaderForBook;
-    private javax.swing.JLabel labelOptionalFieldsHeaderForInpro;
     private javax.swing.JLabel labelPublisher;
     private javax.swing.JLabel labelPublisher1;
-    private javax.swing.JLabel labelPublisher2;
     private javax.swing.JLabel labelSelectedItem;
     private javax.swing.JLabel labelSeries;
     private javax.swing.JLabel labelSeries1;
-    private javax.swing.JLabel labelSeries2;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JLabel labelTitle1;
-    private javax.swing.JLabel labelTitle2;
     private javax.swing.JLabel labelVolume;
     private javax.swing.JLabel labelVolume1;
-    private javax.swing.JLabel labelVolume2;
     private javax.swing.JLabel labelYear;
     private javax.swing.JLabel labelYear1;
-    private javax.swing.JLabel labelYear2;
     private javax.swing.JList listRefereces;
     private javax.swing.JTextArea outputMessageArea;
     private javax.swing.JPanel panelArticle;

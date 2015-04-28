@@ -117,7 +117,7 @@
                   <Component id="tabbedPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="146" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="140" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -528,7 +528,7 @@
                           <Component id="labelNote1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="articleOptionalNoteField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="146" max="32767" attributes="0"/>
+                      <EmptySpace pref="152" max="32767" attributes="0"/>
                       <Component id="articleAddButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -658,31 +658,30 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelOptionalFieldsHeaderForInpro" max="32767" attributes="0"/>
+                          <Component id="inproceedingsOptionalFieldsHeader" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelYear2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelAuthor2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelTitle2" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="labelKey2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelPublisher2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsLabelYear" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsLabelAuthor" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsLabelTitle" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsLabelKey" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsLabelBookTitle" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="labelVolume2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="labelAddress2" alignment="0" pref="134" max="32767" attributes="0"/>
-                                          <Component id="labelMonth2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="labelNote2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="labelSeries2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="inproceedingsLabelSeries" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="inproceedingsLabelVolume" alignment="0" pref="134" max="32767" attributes="0"/>
+                                          <Component id="inproceedingsLabelPages" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="inproceedingsLabelAddress" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="inproceedingsLabelEditor" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel2" min="-2" pref="134" max="-2" attributes="0"/>
+                                      <Component id="inproceedingsLabelMonth" min="-2" pref="134" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -699,17 +698,22 @@
                                   <Component id="inproceedingsOptionalEditorField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="inproceedingsOptionalVolumeField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="inproceedingsOptionalMonthCombobox" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="inproceedingsOptionalNoteField" alignment="1" max="32767" attributes="0"/>
                                   <Component id="inproceedingsOptionalPagesField" alignment="1" max="32767" attributes="0"/>
                                   <Component id="inproceedingsOptionalAddressField" alignment="1" max="32767" attributes="0"/>
                                   <Component id="inproceedingsKeyInputTextField" alignment="1" max="32767" attributes="0"/>
                                   <Component id="inproceedingsAuthorInputTextField" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="inproceedingsLabelNote" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="inproceedingsOptionalNoteField" min="-2" pref="209" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel3" pref="134" max="32767" attributes="0"/>
-                                  <Component id="jLabel4" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsLabelOrganization" max="32767" attributes="0"/>
+                                  <Component id="inproceedingsLabelPublisher" min="-2" pref="134" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -727,80 +731,83 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelKey2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsLabelKey" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="inproceedingsKeyInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelAuthor2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsLabelAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="inproceedingsAuthorInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelTitle2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsLabelTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="inproceedingsTitleInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelPublisher2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsLabelBookTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="inproceedingsBookTitleInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelYear2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsLabelYear" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="inproceedingsYearInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="labelOptionalFieldsHeaderForInpro" min="-2" max="-2" attributes="0"/>
+                      <Component id="inproceedingsOptionalFieldsHeader" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="labelSeries2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inproceedingsLabelEditor" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="inproceedingsOptionalEditorField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="labelAddress2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inproceedingsLabelVolume" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="inproceedingsOptionalVolumeField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelVolume2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inproceedingsLabelSeries" min="-2" max="-2" attributes="0"/>
                                   <Component id="inproceedingsOptionalSeriesField" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="inproceedingsOptionalPagesField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelMonth2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inproceedingsLabelPages" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="inproceedingsOptionalAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inproceedingsLabelAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="inproceedingsOptionalMonthCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="inproceedingsLabelMonth" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="inproceedingsOptionalOrganizationField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="inproceedingsOptionalPublisherField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="inproceedingsLabelOrganization" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="inproceedingsOptionalOrganizationField" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="inproceedingsOptionalPublisherField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inproceedingsLabelPublisher" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="inproceedingsOptionalNoteField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelNote2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inproceedingsLabelNote" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace pref="50" max="32767" attributes="0"/>
                       <Component id="inproceedingsAddButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -819,37 +826,37 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inproceedingsAddButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelKey2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelKey">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Key:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelAuthor2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelAuthor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Author:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelTitle2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelTitle">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Title:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelPublisher2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelBookTitle">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Book title:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelYear2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelYear">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Year:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelVolume2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelSeries">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Series:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelOptionalFieldsHeaderForInpro">
+            <Component class="javax.swing.JLabel" name="inproceedingsOptionalFieldsHeader">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="1"/>
@@ -857,42 +864,42 @@
                 <Property name="text" type="java.lang.String" value="Optional fields:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelSeries2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelEditor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editor:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelAddress">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Address:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelPublisher">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Publisher:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelOrganization">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Organization:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelMonth">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Month:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelAddress2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelVolume">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Volume/Number:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelMonth2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelPages">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pages:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelNote2">
+            <Component class="javax.swing.JLabel" name="inproceedingsLabelNote">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Note:"/>
               </Properties>
