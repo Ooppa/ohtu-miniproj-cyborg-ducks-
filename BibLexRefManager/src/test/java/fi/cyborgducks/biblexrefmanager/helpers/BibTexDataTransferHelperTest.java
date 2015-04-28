@@ -43,7 +43,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 public class BibTexDataTransferHelperTest {
 
     
-     @Test
+     //@Test
     public void importingFromBibFile() throws UnsupportedEncodingException, IOException, FileNotFoundException, ObjectResolutionException, ParseException {
 
         InMemoryDatabase inMemDB = createDbWithTwoEntriesWhichHaveUmlauts();
