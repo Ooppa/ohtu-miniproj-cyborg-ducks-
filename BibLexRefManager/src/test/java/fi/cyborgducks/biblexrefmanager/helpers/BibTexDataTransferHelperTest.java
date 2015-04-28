@@ -74,17 +74,6 @@ public class BibTexDataTransferHelperTest {
         Files.delete(Paths.get(path2));
     }
 
-    @Test
-    public void importWorksViaRobot() throws UnsupportedEncodingException, IOException, ObjectResolutionException, ParseException {
-
-        InMemoryDatabase inMemDB = createDbWithTwoEntriesWhichHaveUmlauts();
-
-        String path1 = "src/mybib";
-        BibTexDataTransferHelper.export(inMemDB.getDB(), path1);
-        path1 += ".bib";
-
-        Files.delete(Paths.get(path1));
-    }
  
 //   @Test()
 //    public void importFromBibReturnsNullIfPathIsNull() throws UnsupportedEncodingException, IOException, ObjectResolutionException, ParseException {
