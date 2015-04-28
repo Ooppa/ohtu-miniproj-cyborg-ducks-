@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -42,7 +43,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 public class BibTexDataTransferHelperTest {
 
     
-     //@Test
+     @Test
     public void importingFromBibFile() throws UnsupportedEncodingException, IOException, FileNotFoundException, ObjectResolutionException, ParseException {
 
         InMemoryDatabase inMemDB = createDbWithTwoEntriesWhichHaveUmlauts();
@@ -83,6 +84,7 @@ public class BibTexDataTransferHelperTest {
 
         boolean result = bracketsMatchHelper(path);
         assertEquals(true, result);
+    
     }
 
     @Test

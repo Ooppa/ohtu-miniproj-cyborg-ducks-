@@ -6,6 +6,7 @@ import fi.cyborgducks.biblexrefmanager.exporters.*;
 import fi.cyborgducks.biblexrefmanager.validators.*;
 import fi.cyborgducks.biblexrefmanager.factory.*;
 import fi.cyborgducks.biblexrefmanager.helpers.*;
+import java.io.OutputStreamWriter;
 import org.jbibtex.*;
 
 description 'User can import and then export bib and the data stays intact.'
