@@ -139,7 +139,6 @@ public class GraphicalUI extends javax.swing.JFrame {
         jMenuFile = new javax.swing.JMenu();
         jMenuItemSave = new javax.swing.JMenuItem();
         jMenuItemLoad = new javax.swing.JMenuItem();
-        jMenuItemExport = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -646,7 +645,7 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         jMenuItemSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/table_save.png"))); // NOI18N
-        jMenuItemSave.setText("Save");
+        jMenuItemSave.setText("Export as .bib");
         jMenuItemSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemSaveActionPerformed(evt);
@@ -655,22 +654,13 @@ public class GraphicalUI extends javax.swing.JFrame {
         jMenuFile.add(jMenuItemSave);
 
         jMenuItemLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/folder_table.png"))); // NOI18N
-        jMenuItemLoad.setText("Load");
+        jMenuItemLoad.setText("Import as .bib");
         jMenuItemLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemLoadActionPerformed(evt);
             }
         });
         jMenuFile.add(jMenuItemLoad);
-
-        jMenuItemExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/table_export.png"))); // NOI18N
-        jMenuItemExport.setText("Export as .bib");
-        jMenuItemExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemExportActionPerformed(evt);
-            }
-        });
-        jMenuFile.add(jMenuItemExport);
 
         jMenuBar.add(jMenuFile);
 
@@ -776,16 +766,6 @@ public class GraphicalUI extends javax.swing.JFrame {
 
         inproceedingsOptionalMonthCombobox.setSelectedIndex(0); // 0 is the index for NaN
     }
-
-    private void jMenuItemExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExportActionPerformed
-        try {
-            BibTexDataTransferHelper.export(database.getDB());
-        } catch (UnsupportedEncodingException ex) {
-            appendToOutput("UnsupportedEncoding: Failed to export");
-        } catch (IOException ex) {
-            appendToOutput("IOException: Failed to export");
-        }
-    }//GEN-LAST:event_jMenuItemExportActionPerformed
 
     private void jMenuItemLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoadActionPerformed
         try {
@@ -937,7 +917,6 @@ public class GraphicalUI extends javax.swing.JFrame {
     private javax.swing.JTextField inproceedingsYearInputTextField;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
-    private javax.swing.JMenuItem jMenuItemExport;
     private javax.swing.JMenuItem jMenuItemLoad;
     private javax.swing.JMenuItem jMenuItemSave;
     private javax.swing.JScrollPane jScrollPane1;
