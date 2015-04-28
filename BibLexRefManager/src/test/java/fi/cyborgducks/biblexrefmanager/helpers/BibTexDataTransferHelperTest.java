@@ -89,7 +89,7 @@ public class BibTexDataTransferHelperTest {
         PowerMockito.mockStatic(BibTexDataTransferHelper.class);
 
         assertNull(BibTexDataTransferHelper.importFromBib());
-
+        
         PowerMockito.verifyStatic();
     }
 
