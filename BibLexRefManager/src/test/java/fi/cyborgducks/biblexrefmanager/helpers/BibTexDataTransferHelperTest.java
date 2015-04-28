@@ -35,7 +35,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
- *
+ * 
  * @author goalaleo
  */
 @RunWith(PowerMockRunner.class)
