@@ -18,8 +18,8 @@ scenario "user can save a valid book reference with multi fields", {
                 "2008")
         database = new InMemoryDatabase()
         
-       book.addField(new Key("month"), new DigitStringValue("5"))
-       book.addField(new Key("volume"), new KeyValue("5"))
+        book.addField(new Key("month"), new DigitStringValue("5"))
+        book.addField(new Key("volume"), new KeyValue("5"))
         
         bookValidator = new BookValidator()
         bookValidator.validateReference(book)
