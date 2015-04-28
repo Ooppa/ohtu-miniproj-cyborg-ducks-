@@ -27,41 +27,42 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabelInfo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButtonCancel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-                          <Component id="jButtonAccept" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabelAuthorName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelYear" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelReferenceTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelVolume" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelSeries" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelMonth" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelNote" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelAuthorName" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelYear" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelReferenceTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelVolume" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelSeries" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelAddress" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelMonth" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelNote" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextFieldTitle" max="32767" attributes="0"/>
-                              <Component id="jTextFieldAuthor" max="32767" attributes="0"/>
-                              <Component id="jTextFieldJournal" max="32767" attributes="0"/>
-                              <Component id="jTextFieldYear" max="32767" attributes="0"/>
-                              <Component id="jTextFieldVolume" max="32767" attributes="0"/>
-                              <Component id="jTextFieldNumber" max="32767" attributes="0"/>
-                              <Component id="jTextFieldPages" max="32767" attributes="0"/>
-                              <Component id="jTextFieldNote" max="32767" attributes="0"/>
-                              <Component id="jComboMonth" min="-2" pref="256" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextFieldAuthor" pref="637" max="32767" attributes="0"/>
+                          <Component id="jTextFieldJournal" max="32767" attributes="0"/>
+                          <Component id="jTextFieldYear" max="32767" attributes="0"/>
+                          <Component id="jTextFieldVolume" max="32767" attributes="0"/>
+                          <Component id="jTextFieldNumber" max="32767" attributes="0"/>
+                          <Component id="jTextFieldPages" max="32767" attributes="0"/>
+                          <Component id="jTextFieldNote" max="32767" attributes="0"/>
+                          <Component id="jTextFieldTitle" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jComboMonth" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabelInfo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonCancel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButtonAccept" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
