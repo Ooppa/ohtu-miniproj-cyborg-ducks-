@@ -5,21 +5,9 @@
  */
 package fi.cyborgducks.biblexrefmanager.importers;
 
-import fi.cyborgducks.biblexrefmanager.helpers.ScandCharFixer;
-import org.jbibtex.BibTeXDatabase;
 import fi.cyborgducks.biblexrefmanager.ui.FileChooser;
-import groovy.xml.Entity;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import org.jbibtex.BibTeXEntry;
-import org.jbibtex.BibTeXParser;
-import org.jbibtex.BibTeXString;
-import org.jbibtex.Key;
-import org.jbibtex.ObjectResolutionException;
-import org.jbibtex.ParseException;
+import java.io.*;
+import org.jbibtex.*;
 
 /**
  *
@@ -28,11 +16,7 @@ import org.jbibtex.ParseException;
 public class BibImporter {
 
     public static BibTeXDatabase importFromBib() throws ObjectResolutionException, ParseException, IOException {
-        String filePath = FileChooser.chooseFile("Load", "bib");
-        if (filePath == null) {
-            return null;
-        }
-        return importFromBib(filePath);
+        return importFromBib(FileChooser.chooseFile("Load", "bib"));
     }
 
     public static BibTeXDatabase importFromBib(String filePath) throws ObjectResolutionException, ParseException, IOException {
@@ -51,18 +35,10 @@ public class BibImporter {
 
                 @Override
                 public void checkStringResolution(Key key, BibTeXString string) {
-
-                    if (string == null) {
-                        System.err.println("Unresolved string: \"" + key.getValue() + "\"");
-                    }
                 }
 
                 @Override
                 public void checkCrossReferenceResolution(Key key, BibTeXEntry entry) {
-
-                    if (entry == null) {
-                        System.err.println("Unresolved cross-reference: \"" + key.getValue() + "\"");
-                    }
                 }
             };
 

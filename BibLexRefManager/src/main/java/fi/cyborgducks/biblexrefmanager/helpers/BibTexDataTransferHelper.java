@@ -13,7 +13,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -129,18 +128,10 @@ public class BibTexDataTransferHelper {
 
                 @Override
                 public void checkStringResolution(Key key, BibTeXString string) {
-
-                    if (string == null) {
-                        System.err.println("Unresolved string: \"" + key.getValue() + "\"");
-                    }
                 }
 
                 @Override
                 public void checkCrossReferenceResolution(Key key, BibTeXEntry entry) {
-
-                    if (entry == null) {
-                        System.err.println("Unresolved cross-reference: \"" + key.getValue() + "\"");
-                    }
                 }
             };
 
