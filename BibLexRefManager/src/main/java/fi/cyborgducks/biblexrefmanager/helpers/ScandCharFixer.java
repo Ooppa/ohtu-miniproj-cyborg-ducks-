@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 /**
  *
@@ -22,8 +23,8 @@ public class ScandCharFixer {
     }
 
     public static String readFileToString(String path) throws UnsupportedEncodingException, IOException {
-        byte[] encoded = Files.readAllBytes(Paths.get(path));
-        String fileAsString = new String(encoded, "8859_1");
+        byte[] isoLatin1Encoded = Files.readAllBytes(Paths.get(path));
+        String fileAsString = new String(isoLatin1Encoded, "8859_1");
         return fileAsString;
     }
     
