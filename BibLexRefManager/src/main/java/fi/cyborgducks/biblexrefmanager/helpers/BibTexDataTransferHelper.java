@@ -29,6 +29,8 @@ import org.jbibtex.ParseException;
 
 /**
  *
+ * This class handles saving/exporting and loading .bib files from/into a local inmemory DB
+ * 
  * @author goalaleo
  */
 public class BibTexDataTransferHelper {
@@ -57,8 +59,8 @@ public class BibTexDataTransferHelper {
 
     /**
      *
-     * Handles all the exporting logic apart from choosing a file in a UI. This
-     * method can be used for testing.
+     * Handles all the exporting logic apart from choosing a file in a UI.
+     * This method can be used for testing.
      *
      * @param database a BibTexDatabase of the added references
      * @param path the file path where you wish to export to
@@ -94,6 +96,14 @@ public class BibTexDataTransferHelper {
         
     }
     
+    /**
+     * 
+     * This method is called when the user wants to load/import his saved/exported .bib file into memory.
+     *  When this method is invoked, the program asks for
+     * the user to choose the .bib file to be imported/loaded. For
+     * testing, use the {@link #importFromBib(java.lang.String)} method
+     * 
+     */ 
     public static BibTeXDatabase importFromBib() throws ObjectResolutionException, ParseException, IOException {
         String filePath = FileChooser.chooseFile("Load", "bib");
         if (filePath == null) {
@@ -102,6 +112,17 @@ public class BibTexDataTransferHelper {
         return importFromBib(filePath);
     }
 
+    /**
+     * 
+     * Handles all the importing/loadinh logic apart from choosing the file in UI.
+     * This method can be used for testig.
+     * 
+     * @param filePath is the filepath for the file to be loaded/imported
+     * @return returns the DB formed from the .bib file that was chosen
+     * @throws ObjectResolutionException
+     * @throws ParseException
+     * @throws IOException 
+     */
     public static BibTeXDatabase importFromBib(String filePath) throws ObjectResolutionException, ParseException, IOException {
         String tempFilePath = filePath.replace(".bib", "_temp.bib");
         Writer writer = new BufferedWriter(
@@ -119,10 +140,21 @@ public class BibTexDataTransferHelper {
         return importedDB;
     }
 
+    /**
+     * 
+     * This method has the logic for parsing a .bib file into a local inmemory DB
+     * 
+     * @param inputFile is the .bib file which is parsed to a DB
+     * @return returns the DB created from the .bib file
+     * @throws FileNotFoundException
+     * @throws ObjectResolutionException
+     * @throws ParseException
+     * @throws IOException 
+     */
     private static BibTeXDatabase parseBibTex(File inputFile) throws FileNotFoundException, ObjectResolutionException, ParseException, IOException {
 
         Reader reader = new FileReader(inputFile);
-
+        BibTeXDatabase db;
         try {
             BibTeXParser parser = new BibTeXParser() {
 
@@ -134,11 +166,11 @@ public class BibTexDataTransferHelper {
                 public void checkCrossReferenceResolution(Key key, BibTeXEntry entry) {
                 }
             };
-
-            return parser.parse(reader);
+            db = parser.parse(reader);
         } finally {
             reader.close();
         }
+        return db;
     }
     
 }
