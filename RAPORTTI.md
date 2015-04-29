@@ -1,4 +1,4 @@
-﻿# Projektiraportti
+# Projektiraportti
 
 ## Kohdatut ongelmat
 
@@ -19,8 +19,6 @@ erilaisten refrenssien tallennus myöhempää työskentelyä varten. Osoittautui
 että kirjaston käyttämä objekti-struktuuri ei ollut yhteensopiva esimerkiksi JSON tai
 Javan Serializable tallennustapojen kanssa.
 
-...
-
 ### Sprintti 3
 
 Kolmannen sprintin lopulla ilmeni ongelma enkoodauseroissa Windows- ja Linux-ympäristöjen
@@ -31,8 +29,6 @@ tiedosto pitäisi näyttää UTF-8 muodossa. Linux muutti skandit erikoismerkeik
 traviksen buildi failasi, kun joissakin testeissä samaiset skandit eivät muuntuneet oikein
 traviksen servereillä (oletettavasti linux pohjaisia). Lopulta aikaa ei enää ollut ongelman
 korjaamiseksi yrityksistä huolimatta.
-
-...
 
 ## Mitä opitte, mitä jäi oppimatta
 
@@ -45,6 +41,7 @@ hyvin aikaa varatusta 4h/henkilö.
 
 # Osallistujat
 
-Leo Kiiski
-
-...
+* Leo Kiiski
+* Kristian Wahlroos
+* Olli-Pekka Mehtonen
+* Samu Tamminen
