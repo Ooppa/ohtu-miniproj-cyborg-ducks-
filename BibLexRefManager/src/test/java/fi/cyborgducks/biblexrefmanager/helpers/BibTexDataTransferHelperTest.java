@@ -43,37 +43,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 public class BibTexDataTransferHelperTest {
 
     
-     //@Test
-    public void importingFromBibFile() throws UnsupportedEncodingException, IOException, FileNotFoundException, ObjectResolutionException, ParseException {
-
-        InMemoryDatabase inMemDB = createDbWithTwoEntriesWhichHaveUmlauts();
-
-        String path1 = "src/mybib";
-        BibTexDataTransferHelper.export(inMemDB.getDB(), path1);
-
-        path1 += ".bib";
-        BibTeXDatabase importedDB = BibTexDataTransferHelper.importFromBib(path1);
-        inMemDB.setDB(importedDB);
-
-        String path2 = "src/mybib2";
-        BibTexDataTransferHelper.export(inMemDB.getDB(), path2);
-
-        path2 += ".bib";
-
-        String bib1 = bibAsString(path1);
-        String bib2 = bibAsString(path2);
-        
-         System.out.println(bib1);
-         System.out.println(bib2);
-        
-        boolean match = bib1.equals(bib2);
-        
-        assertEquals(true, match);
-
-        
-        Files.delete(Paths.get(path1));
-        Files.delete(Paths.get(path2));
-    }
+    
     
     @Test
     public void bracketsMatch() throws UnsupportedEncodingException, IOException {
